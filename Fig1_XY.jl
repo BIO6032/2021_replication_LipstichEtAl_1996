@@ -26,6 +26,9 @@ function parasites(xx::Para, X0::Float64, Y0::Float64 ; timesteps::Int64, iter::
             break
         end
     end
+    if (i % 1000 == 0) #or mod(i,1000)==0
+        # call function adding 1000 random strains --> call new_Y() 1000x?
+        Y = Y + 0 #something
     return densities
 end
 
