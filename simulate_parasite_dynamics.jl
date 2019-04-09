@@ -6,6 +6,8 @@ include("Fig1_strain_parameters.jl")
 p = new_Y()
 h = new_X()
 #model
-N = parasites(h, p, 0.5, 0.5, timesteps = 5000, iter = 5000)
+N = parasites(h, p, 0.5, 0.5, timesteps = 2000, iter = 5000)
 #graph
 plot(N, labels = ["X", "Y"], title = "Dynamics of populations X and Y")
+
+png("img/one_parasite.png")
