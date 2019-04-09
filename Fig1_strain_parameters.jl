@@ -56,6 +56,6 @@ function parasites(xx::host_X, yy::para_Y, X0::Float64, Y0::Float64 ; timesteps:
         else
             break
         end
-    end
     return densities
+    end
 end
