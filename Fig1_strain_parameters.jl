@@ -39,33 +39,23 @@ function parasites(xx::host_X, yy::para_Y, X0::Float64, Y0::Float64 ; timesteps:
         # calling the new_Y function in the container 1
         densities = zeros(timesteps+1, 2)
         densities[1,:] = [X0, Y0]
-            X = densities[i, 1]
-            Y = densities[i, 2]
-            for j in 1:iter
-                dXdt = X *(xx.bx*(1 - X - Y) - xx.ux - c*(yy.βy*Y))
-                dYdt = Y *(yy.by * (1 - X - Y) - yy.uy + c*yy.βy*X)
-                X = X + dXdt
-                Y = Y + dYdt
-            end
-            if (mod(i,1000) == 0)
-                # call function adding 1000 random strains --> call new_Y() 1000x?
-                Y = Y + 100 #something
-            end
+        X = densities[i, 1]
+        Y = densities[i, 2]
+        for j in 1:iter
+            dXdt = X * (xx.bx*(1 - X - Y) - xx.ux - c*(yy.βy*Y))
+            dYdt = Y * (yy.by * (1 - X - Y) - yy.uy + c*yy.βy*X)
+            X = X + dXdt
+            Y = Y + dYdt
+        end
+        if (mod(i,1000) == 0)
+            # call function adding 1000 random strains --> call new_Y() 1000x?
+            Y = Y + 100 #something
+        end
         if all([X, Y] .> 0)
             densities[i+1,:] = [X, Y]
         else
             break
         end
+    end
     return densities
 end
-end
-
-#using fonctions defined in Fig1_strain_parameters
-#parameters
-p = new_Y()
-h = new_X()
-#model
-N = parasites(h, p, 100.0, 10.0, timesteps = 5000, iter = 1)
-#graph
-using Plots
-plot(N, labels = ["X", "Y"], title = "Dynamics of populations X and Y")
