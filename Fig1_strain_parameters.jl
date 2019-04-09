@@ -5,12 +5,6 @@ struct para_Y
     βy::Float64
 end
 
-struct beta.y
-    r1::Float64
-    α::Float64
-    by::Float64
-    bx::Float64
-end
 
 struct host_X
     ux::Float64
