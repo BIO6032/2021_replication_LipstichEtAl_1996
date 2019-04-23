@@ -1,17 +1,19 @@
 using DifferentialEquations
 using Plots
 
+n_parasites = 200
+
 #Figure 2
 c = 4.0;
 ux = 0.2;
-ux1 = fill(0.2, 1000); #le ux et uy 1000 à cause de la β # une autre façon :[0.2 for x in 1:1000]
-uy = rand(200:1000, 1000)/1000 #doit être toujours >= à ux
+ux1 = fill(0.2, n_parasites); #le ux et uy 1000 à cause de la β # une autre façon :[0.2 for x in 1:1000]
+uy = rand(200:1000, n_parasites)/1000 #doit être toujours >= à ux
 u1 = (uy - ux1);
 βy = 3 * u1 ./ (u1.+ 1); # augmente avec la mortalité u
 bx = 1.0;
 by = 0.1;
 #ey = bx - by
-ey = fill(0.9, 1000);    # constant for fig 2 part 1
+ey = fill(0.9, n_parasites);    # constant for fig 2 part 1
 
 Y = zeros(Float64, length(ey));
 Y[1] = 1.0;
@@ -27,54 +29,27 @@ function fonction(u, p, t)
     return vcat(dx, dy)
 end
 
-# each strain introduction (1000x) - ORIGINAL ONE
-for i in 1:100
-    parameters = (bx = bx, βy = βy, ey = ey, c = c, K = 100.0, ux = ux, by = by, uy = uy)
-    #i=1.0
-    debut = 0.0
-    fin = 100.0
-    prob = ODEProblem(fonction, vcat(X0, Y), (debut, fin), parameters)
-    solution = solve(prob)
-#        for k in 2:1000
-            for j in 2:100
-            debut = fin
-            debut = i .*100.0
-            fin = i+1 .*100.0
-    		new_u = solution[end]
-            new_y = findfirst(x -> x == 0.0, new_u)
-            new_u[new_y] = 1.0
-            prob = ODEProblem(fonction, new_u, (debut, fin), parameters)
-            solution = solve(prob)
-
-            for j in 3:100
-            debut = fin
-            debut = i .*100.0
-            fin = i+1 .*100.0
-            new_u = solution[end]
-            new_y = findfirst(x -> x == 0.0, new_u)
-            new_u[new_y] = 1.0
-            prob = ODEProblem(fonction, new_u, (debut, fin), parameters)
-            solution = solve(prob)
-return solution
-        end
-    end
-
-end
-
 # SANDRINES TEST
 debut = 0.0
-fin = 10.0
+duree = 100.0
+fin = debut + duree
+N = zeros(Float64, (n_parasites+1, (n_parasites-1)*Int(duree)+1))
 new_U = vcat(X0, Y)
 parameters = (bx = bx, βy = βy, ey = ey, c = c, K = 100.0, ux = ux, by = by, uy = uy)
-# each strain introduction (1000x)
 
-for i in 1:10
-    print(debut)
+# each strain introduction (1000x)
+@progress "Simulation" for i in 2:length(Y)
     # initial conditions
-    #prob = ODEProblem(fonction, vcat(X0, Y), (debut, fin), parameters)
-    #solution = solve(prob)
-    prob = ODEProblem(fonction, new_U, (debut, fin), parameters)
-    solution = solve(prob)
+    prob = ODEProblem(fonction, new_U, (debut,fin), parameters)
+    solution = solve(prob, saveat=debut:1.0:fin)
+    for t in eachindex(solution.t)
+        pop = solution.u[t]
+        N[:,Int(solution.t[t]+1)] = pop
+    end
+
+    # add solution to N matrix
+    #global N[i.*1000-999,i.*1000,:] = hcat(solution.u)
+    #global N[i.*5-4,i.*5,:] = hcat(solution.u)
 
     # set conditions & new parasite for next loop
     global new_U = solution[end]
@@ -83,7 +58,12 @@ for i in 1:10
 
     # set limits for next loop
     global debut = fin
-    global fin = Float64(i+1) #.* 1000.0
-
-    #end
+    #global fin = Float64((i+1).* 1000.0)
+    global fin = debut + duree
 end
+
+Np = N'
+
+plot(Np[:,2:end], c=:grey, lw=0.4, alpha=0.4)
+plot!(Np[:,1], c=:black, lw=5, leg=false)
+plot!(sum(Np[:,2:end]; dims=2))
