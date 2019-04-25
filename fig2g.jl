@@ -82,6 +82,6 @@ function pielou(n)
     return ev
 end
 
-#plot evenness
+#plot evenness as Fig2 i
 ev = mapslices(pielou, Np[:,2:end]; dims=2)
 plot(ev)
