@@ -11,7 +11,7 @@ uy = rand(200:1000, n_parasites)/1000 #doit être toujours >= à ux
 u1 = (uy - ux1);
 βy = 3 * u1 ./ (u1.+ 1); # augmente avec la mortalité u
 bx = 1.0;
-by = 0.1;
+by = 1.0;
 #ey = bx - by
 ey = fill(0.9, n_parasites);    # constant for fig 2 part 1
 
@@ -59,13 +59,27 @@ end
 
 Np = N'
 
-#host parasite dynamics
+# plot number of hosts (black) and parasites (grey)
 plot(Np[:,2:end], c=:grey, lw=0.4, alpha=0.4)
 plot!(Np[:,1], c=:black, lw=5, leg=false)
+
+# plot sum of all parasites in purple
 plot!(sum(Np[:,2:end]; dims=2))
 
-#strains that survive at each time step for uy
+#strains that survive at each time step
 survival = (Np.>0.0)[:,2:end]
+survived_ui = survival.*uy'
+avg_survived = sum(survived_ui; dims=2)./sum(survival; dims=2)
+
+avg_w_survived = sum(Np[:,2:end].*uy'; dims=2)./sum(Np[:,2:end]; dims=2)
+
+# plot average number of survived parasites
+#plot(avg_survived)
+
+# plot average weighted number of survived parasites (Fig2h) !!!!!
+plot(avg_w_survived)
+
+urvival = (Np.>0.0)[:,2:end]
 survived_ui = survival.*uy'
 avg_survived = sum(survived_ui; dims=2)./sum(survival; dims=2)
 
@@ -92,8 +106,6 @@ V0 = by*ux./(bx*uy_avg)
 
 R0 = H0 + V0
 
-plot(R0, leg=false)
+plot(R0, leg = false)
 
 # values of H0 and V0
-H0
-V0
