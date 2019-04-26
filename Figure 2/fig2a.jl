@@ -12,8 +12,13 @@ u1 = (uy - ux1);
 βy = 3 * u1 ./ (u1.+ 1); # augmente avec la mortalité u
 bx = 1.0;
 by = 0.1;
-#ey = bx - by
 ey = fill(0.9, n_parasites);    # constant for fig 2 part 1
+debut = 0.0
+duree = 1000.0
+fin = debut + duree
+N = zeros(Float64, (n_parasites+1, (n_parasites-1)*Int(duree)+1))
+new_U = vcat(X0, Y)
+parameters = (bx = bx, βy = βy, ey = ey, c = c, K = 80.0, ux = ux, by = by, uy = uy)
 
 Y = zeros(Float64, length(ey));
 Y[1] = 1.0;
@@ -29,14 +34,6 @@ function fonction(u, p, t)
     return vcat(dx, dy)
 end
 
-# SANDRINES TEST
-debut = 0.0
-duree = 1000.0
-fin = debut + duree
-N = zeros(Float64, (n_parasites+1, (n_parasites-1)*Int(duree)+1))
-new_U = vcat(X0, Y)
-parameters = (bx = bx, βy = βy, ey = ey, c = c, K = 80.0, ux = ux, by = by, uy = uy)
-
 # each strain introduction (1000x)
 @progress "Simulation" for i in 2:length(Y)
     # initial conditions
@@ -46,10 +43,6 @@ parameters = (bx = bx, βy = βy, ey = ey, c = c, K = 80.0, ux = ux, by = by, uy
         pop = solution.u[t]
         N[:,Int(solution.t[t]+1)] = pop
     end
-
-    # add solution to N matrix
-    #global N[i.*1000-999,i.*1000,:] = hcat(solution.u)
-    #global N[i.*5-4,i.*5,:] = hcat(solution.u)
 
     # set conditions & new parasite for next loop
     global new_U = solution[end]
@@ -64,6 +57,11 @@ end
 
 Np = N'
 
-plot(Np[:,2:end], c=:grey, lw=0.4, alpha=0.4)
-plot!(Np[:,1], c=:black, lw=5, leg=false)
-plot!(sum(Np[:,2:end]; dims=2))
+lbls = ["" for i = 1:1:99]
+lbls2 = vcat("Parasites", lbls)
+lbls2 = hcat(lbls2...)
+plot(Np[:,2:end], c=:grey, lw=0.4, alpha=0.4, title = "Number of infected and uninfected hosts", xlabel = "Time", ylabel = "Number of individuals", label = lbls2)
+plot!(Np[:,1], c=:black, lw=5, label = "hosts")
+plot!(sum(Np[:,2:end]; dims=2), label = "total parasites")
+
+label = ["Hosts", "Parasites", "Total # parasites"], lc = ["black", "grey", "violet"]
