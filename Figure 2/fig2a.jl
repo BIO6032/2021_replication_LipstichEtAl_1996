@@ -57,11 +57,13 @@ end
 
 Np = N'
 
-lbls = ["" for i = 1:1:99]
+lbls = ["" for i = 1:1:n_parasites]
 lbls2 = vcat("Parasites", lbls)
 lbls2 = hcat(lbls2...)
-plot(Np[:,2:end], c=:grey, lw=0.4, alpha=0.4, title = "Number of infected and uninfected hosts", xlabel = "Time", ylabel = "Number of individuals", label = lbls2)
+
+plot(Np[:,2:end], c=:grey, lw=0.4, alpha=0.4, title = "Number of infected and uninfected hosts",
+    xlabel = "Time", ylabel = "Number of individuals", label = lbls2)
 plot!(Np[:,1], c=:black, lw=5, label = "hosts")
 plot!(sum(Np[:,2:end]; dims=2), label = "total parasites")
 
-label = ["Hosts", "Parasites", "Total # parasites"], lc = ["black", "grey", "violet"]
+png("Figure 2/graph_2a.png")
