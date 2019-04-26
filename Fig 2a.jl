@@ -1,7 +1,7 @@
 using DifferentialEquations
 using Plots
 
-n_parasites = 200
+n_parasites = 100
 
 #Figure 2
 c = 4.0;
@@ -31,7 +31,7 @@ end
 
 # SANDRINES TEST
 debut = 0.0
-duree = 100.0
+duree = 1000.0
 fin = debut + duree
 N = zeros(Float64, (n_parasites+1, (n_parasites-1)*Int(duree)+1))
 new_U = vcat(X0, Y)
