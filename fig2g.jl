@@ -1,7 +1,7 @@
 using DifferentialEquations
 using Plots
 
-n_parasites = 1000
+n_parasites = 100
 
 #Figure 2
 c = 4.0;
@@ -82,6 +82,3 @@ function pielou(n)
     return ev
 end
 
-#plot evenness as Fig2 i
-ev = mapslices(pielou, Np[:,2:end]; dims=2)
-plot(ev)
