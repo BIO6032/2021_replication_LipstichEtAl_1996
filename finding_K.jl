@@ -31,13 +31,13 @@ end
 
 # SANDRINES TEST
 debut = 0.0
-duree = 100.0
+duree = 1000.0
 fin = debut + duree
 N = zeros(Float64, (n_parasites+1, (n_parasites-1)*Int(duree)+1))
 new_U = vcat(X0, Y)
 parameters = (bx = bx, βy = βy, ey = ey, c = c, K = 100.0, ux = ux, by = by, uy = uy)
 
-# each strain introduction (1000x)
+# each strain introduction
 @progress "Simulation" for i in 2:length(Y)
     # initial conditions
     prob = ODEProblem(fonction, new_U, (debut,fin), parameters)
@@ -46,10 +46,6 @@ parameters = (bx = bx, βy = βy, ey = ey, c = c, K = 100.0, ux = ux, by = by, u
         pop = solution.u[t]
         N[:,Int(solution.t[t]+1)] = pop
     end
-
-    # add solution to N matrix
-    #global N[i.*1000-999,i.*1000,:] = hcat(solution.u)
-    #global N[i.*5-4,i.*5,:] = hcat(solution.u)
 
     # set conditions & new parasite for next loop
     global new_U = solution[end]
