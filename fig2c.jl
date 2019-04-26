@@ -30,7 +30,7 @@ function fonction(u, p, t)
 end
 
 debut = 0.0
-duree = 100.0
+duree = 1000.0
 fin = debut + duree
 N = zeros(Float64, (n_parasites+1, (n_parasites-1)*Int(duree)+1))
 new_U = vcat(X0, Y)
