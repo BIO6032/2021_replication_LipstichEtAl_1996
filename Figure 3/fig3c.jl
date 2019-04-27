@@ -11,12 +11,12 @@ r1 = rand(0.0:1000, n_parasites)/1000;
 r2 = rand(0.0:1000, n_parasites)/1000;
 r3 = rand(0.0:1000, n_parasites)/1000;
 bx = 1.0;
-by = bx .* r1 .* (1 .- r1 .* r2);
+by = bx .* r1 .* (1 .- r1 .* r2)
+# V0 = by*ux./(bx*uy_avg)
 V0 = (by .* ux) ./ (bx .* uy)
 α = 1 .- V0
-βy = r1 .-(α.* by)/bx
+βy = r1 .-(α.* by)/bx;
 ey = bx .* (1 .- r3) .* (1 .- (r1 .* r2));
-
 Y = zeros(Float64, length(ey));
 Y[1] = 1.0;
 X0 = 10.0;
@@ -45,6 +45,11 @@ parameters = (bx = bx, βy = βy, ey = ey, c = c, K = 80.0, ux = ux, by = by, uy
     solution = solve(prob, saveat=debut:1.0:fin)
     for t in eachindex(solution.t)
         pop = solution.u[t]
+        for i in 1:100
+            if (pop.<0)[i]
+                pop[i] = 0
+            end
+        end
         N[:,Int(solution.t[t]+1)] = pop
     end
 
@@ -59,18 +64,23 @@ parameters = (bx = bx, βy = βy, ey = ey, c = c, K = 80.0, ux = ux, by = by, uy
     global fin = debut + duree
 end
 
-Np = N'
-
+Np = N';
+Np[:,2:end];
 #strains that survive at each time step for uy
-survival = (Np.>0.0)[:,2:end]
-survived_ui = survival.*uy'
-avg_survived = sum(survived_ui; dims=2)./sum(survival; dims=2)
-avg_w_survived = sum(Np[:,2:end].*uy'; dims=2)./sum(Np[:,2:end]; dims=2)
+survival = (Np.>0.0)[:,2:end];
+survived_ui = survival.*uy';
+avg_survived = sum(survived_ui; dims=2)./sum(survival; dims=2);
+avg_w_survived = sum(Np[:,2:end].*uy'; dims=2)./sum(Np[:,2:end]; dims=2);
 
 #strains that survive for βy
-survived_βy = survival.*βy'
-avg_survived_βy = sum(survived_βy; dims=2)./sum(survival; dims=2)
-βi_avg = avg_survived_βy
+survived_βy = survival.*βy';
+avg_survived_βy = sum(survived_βy; dims=2)./sum(survival; dims=2);
+βy_avg = avg_survived_βy;
+
+#mean of by
+survived_by = survival.*by';
+avg_survived_by = sum(survived_by; dims=2)./sum(survival; dims=2);
+by_avg = avg_survived_by;
 
 #avec moins de bruit (weighted)
 avg_w_survived_βy = sum(Np[:,2:end].*βy'; dims=2)./sum(Np[:,2:end]; dims=2)
@@ -79,16 +89,17 @@ avg_w_survived_βy = sum(Np[:,2:end].*βy'; dims=2)./sum(Np[:,2:end]; dims=2)
 #calculating R0
 k=1
 uy_avg = avg_w_survived
-H0 = c*βi_avg./uy_avg.*k.*(1-ux/bx)
+H0 = c*βy_avg./uy_avg.*k.*(1-ux/bx)
 
 H0_w = c*βy_avg./uy_avg.*k.*(1-ux/bx)
 
 #NEED TO CHANGE R1, R2, R3 = rand(Float64) in order to get same dimensions.
     #But then get NaN values.....
-V0_avg = (by .* ux) ./ (bx .* uy_avg)
-R0 = H0 + V0
+V0_avg = (by_avg .* ux) ./ (bx .* uy_avg)
 
-R0_w = H0_w + V0
+R0 = H0 + V0_avg
+
+R0_w = H0_w + V0_avg
 
 plot(R0, title = "Average R0 in the population", xlabel = "Time", ylabel = "Mean R0", leg = false)
 plot!(R0_w)
