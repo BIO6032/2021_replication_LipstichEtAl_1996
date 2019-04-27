@@ -4,13 +4,13 @@ using Distributions
 
 n_parasites = 100
 
-c = 4.0;
+c = 0.5;
 ux = 0.2;
 ux1 = fill(0.2, n_parasites); #le ux et uy 1000 à cause de la β # une autre façon :[0.2 for x in 1:1000]
 uy = rand(200:1000, n_parasites)/1000;
-r1 = rand(Float64)
-r2 = rand(Float64)
-r3 = rand(Uniform(0, r1), n_parasites)
+r1 = rand(Float64, n_parasites)
+r2 = rand(Float64, n_parasites)
+r3 = rand()*r1
 bx = 1.0;
 by = bx .* r1 .* (1 .- r1 .* r2);
 V0 = (by .* ux) ./ (bx .* uy)
@@ -67,32 +67,38 @@ end
 
 Np = N'
 
-#strains that survive at each time step
+#uy of the survival strains
 survival = (Np.>0.0)[:,2:end]
+survived_ui = survival.*uy'
+avg_survived = sum(survived_ui; dims=2)./sum(survival; dims=2)
+avg_w_survived = sum(Np[:,2:end].*uy'; dims=2)./sum(Np[:,2:end]; dims=2)
+uy_avg = avg_w_survived
 
-#mean β
+#strains that survive for βy
 survived_βy = survival.*βy'
 avg_survived_βy = sum(survived_βy; dims=2)./sum(survival; dims=2)
-βy_avg = avg_survived_βy
-
-#weighted β
+βi_avg = avg_survived_βy
 avg_w_survived_βy = sum(Np[:,2:end].*βy'; dims=2)./sum(Np[:,2:end]; dims=2)
-βi_avg = avg_w_survived_βy
+βy_avg = avg_w_survived_βy
 
-#mean virulence
-Vir = (1 .- (by .+ ey).*ux./(bx.*uy))
+survived_by = survival.*by'
+avg_by_survived = sum(survived_by; dims=2)./sum(survival; dims=2)
+avg_w_by = sum(Np[:,2:end].*by'; dims=2)./sum(Np[:,2:end]; dims=2)
+by_avg = avg_w_by
 
-survived_Vir = survival.*Vir'
-avg_survived_Vir = sum(survived_Vir; dims=2)./sum(survival; dims=2)
-Vir_avg = avg_survived_Vir
+#calculating R0
+k=1
+H0 = c*βi_avg./uy_avg.*k.*(1-ux/bx)
 
-#weighted virulence
-avg_w_survived_Vir = sum(Np[:,2:end].*Vir'; dims=2)./sum(Np[:,2:end]; dims=2)
-Vir_avg_w = avg_w_survived_Vir
+H0_w = c*βy_avg./uy_avg.*k.*(1-ux/bx)
 
-#plot(βy_avg, title = "Mean virulence and beta", label = "beta")
-#plot!(Vir_avg, label = "virulence")
-plot(βi_avg, title = "Mean virulence and beta", label = "beta", xlabel = "Time", ylabel = "Mean mortality (uy)")
-plot!(Vir_avg_w, label = "virulence")
+V0_w = by_avg.*ux./(bx*uy_avg)
 
-# png("Figure 4/graph_4h.png")
+R0 = H0 + V0_w
+
+R0_w = H0_w + V0_w
+
+plot(R0, title = "Average R0 in the population", xlabel = "Time", ylabel = "Mean R0", leg = false)
+plot!(R0_w)
+
+#png("Figure 4/graph_4c")

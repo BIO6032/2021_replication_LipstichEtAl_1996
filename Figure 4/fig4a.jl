@@ -46,6 +46,11 @@ parameters = (bx = bx, βy = βy, ey = ey, c = c, K = 80.0, ux = ux, by = by, uy
     solution = solve(prob, saveat=debut:1.0:fin)
     for t in eachindex(solution.t)
         pop = solution.u[t]
+        for i in 1:100
+            if (pop.<0)[i]
+                pop[i] = 0
+            end
+        end
         N[:,Int(solution.t[t]+1)] = pop
     end
 
@@ -69,6 +74,6 @@ lbls2 = hcat(lbls2...)
 plot(Np[:,2:end], c=:blue, lw=0.4, alpha=0.4, title = "Number of infected and uninfected hosts",
     xlabel = "Time", ylabel = "Number of individuals", label = lbls2)
 plot!(Np[:,1], c=:black, lw=2, label = "Hosts")
-plot!(sum(Np[:,2:end]; dims=2), label = "Total # parasites")
+# plot!(sum(Np[:,2:end]; dims=2), label = "Total # parasites")
 
-png("Figure 4/graph_4a.png")
+# png("Figure 4/graph_4a.png")
