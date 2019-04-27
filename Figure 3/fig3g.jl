@@ -3,17 +3,19 @@ using Plots
 
 n_parasites = 100
 
-#Figure 2
-c = 4.0;
+c = 0.5;
 ux = 0.2;
 ux1 = fill(0.2, n_parasites); #le ux et uy 1000 à cause de la β # une autre façon :[0.2 for x in 1:1000]
-uy = rand(200:1000, n_parasites)/1000 #doit être toujours >= à ux
-u1 = (uy - ux1);
-βy = 3 * u1 ./ (u1.+ 1); # augmente avec la mortalité u
+uy = rand(200:1000, n_parasites)/1000;
+r1 = rand(0.0:1000, n_parasites)/1000;
+r2 = rand(0.0:1000, n_parasites)/1000;
+r3 = rand(0.0:1000, n_parasites)/1000;
 bx = 1.0;
-by = 0.1;
-#ey = bx - by
-ey = fill(0.9, n_parasites);    # constant for fig 2 part 1
+by = bx .* r1 .* (1 .- r1 .* r2);
+V0 = (by .* ux) ./ (bx .* uy)
+α = 1 .- V0
+βy = r1 .-(α.* by)/bx
+ey = bx .* (1 .- r3) .* (1 .- (r1 .* r2));
 
 Y = zeros(Float64, length(ey));
 Y[1] = 1.0;
@@ -59,24 +61,20 @@ end
 
 Np = N'
 
-#host parasite dynamics
-plot(Np[:,2:end], c=:grey, lw=0.4, alpha=0.4)
-plot!(Np[:,1], c=:black, lw=5, leg=false)
-plot!(sum(Np[:,2:end]; dims=2))
-
 #strains that survive at each time step
 survival = (Np.>0.0)[:,2:end]
-survived_ui = survival.*uy'
-avg_survived = sum(survived_ui; dims=2)./sum(survival; dims=2)
-
-avg_w_survived = sum(Np[:,2:end].*uy'; dims=2)./sum(Np[:,2:end]; dims=2)
 
 #mean β
 survived_βy = survival.*βy'
 avg_survived_βy = sum(survived_βy; dims=2)./sum(survival; dims=2)
 βy_avg = avg_survived_βy
 
+#weighted β
+avg_w_survived_βy = sum(Np[:,2:end].*βy'; dims=2)./sum(Np[:,2:end]; dims=2)
+βi_avg = avg_w_survived_βy
+
 plot(βy_avg, title = "Mean virulence and beta", label = "beta")
+plot!(βi_avg, label = "weighted beta")
 
 #mean virulence
 Vir = (1 .- (by .+ ey).*ux./(bx.*uy))
@@ -85,5 +83,11 @@ survived_Vir = survival.*Vir'
 avg_survived_Vir = sum(survived_Vir; dims=2)./sum(survival; dims=2)
 Vir_avg = avg_survived_Vir
 
+#weighted virulence
+avg_w_survived_Vir = sum(Np[:,2:end].*Vir'; dims=2)./sum(Np[:,2:end]; dims=2)
+Vir_avg_w = avg_w_survived_Vir
+
 plot!(Vir_avg, label = "virulence")
-Vir_avg
+plot!(Vir_avg_w, label = "weighted virulence")
+
+png("Figure 3/graph_3g.png")
