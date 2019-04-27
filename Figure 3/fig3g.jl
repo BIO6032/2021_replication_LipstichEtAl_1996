@@ -45,6 +45,11 @@ parameters = (bx = bx, βy = βy, ey = ey, c = c, K = 80.0, ux = ux, by = by, uy
     solution = solve(prob, saveat=debut:1.0:fin)
     for t in eachindex(solution.t)
         pop = solution.u[t]
+        for i in 1:n_parasites
+            if (pop.<0)[i]
+                pop[i] = 0
+            end
+        end
         N[:,Int(solution.t[t]+1)] = pop
     end
 
@@ -86,7 +91,7 @@ Vir_avg_w = avg_w_survived_Vir
 
 #plot(βy_avg, title = "Mean virulence and beta", label = "beta")
 #plot!(Vir_avg, label = "virulence")
-plot(βi_avg, title = "Mean virulence and beta", label = "beta", xlabel = "Time", ylabel = "Mean mortality (uy)")
-plot!(Vir_avg_w, label = "virulence")
+plot(βi_avg, title = "Mean virulence and beta", label = "Beta", xlabel = "Time", ylabel = "Mean mortality (uy)")
+plot!(Vir_avg_w, label = "Virulence")
 
 png("Figure 3/graph_3g.png")
