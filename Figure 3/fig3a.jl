@@ -11,13 +11,12 @@ r1 = rand(0.0:1000, n_parasites)/1000;
 r2 = rand(0.0:1000, n_parasites)/1000;
 r3 = rand(0.0:1000, n_parasites)/1000;
 bx = 1.0;
-by = bx .* r1 .* (1 .- r1 .* r2);
+by = bx .* r1 .* (1 .- r1 .* r2)
 # V0 = by*ux./(bx*uy_avg)
 V0 = (by .* ux) ./ (bx .* uy)
 α = 1 .- V0
-βy = r1 .-(α.* by)/bx
+βy = r1 .-(α.* by)/bx;
 ey = bx .* (1 .- r3) .* (1 .- (r1 .* r2));
-
 Y = zeros(Float64, length(ey));
 Y[1] = 1.0;
 X0 = 10.0;
@@ -46,6 +45,11 @@ parameters = (bx = bx, βy = βy, ey = ey, c = c, K = 80.0, ux = ux, by = by, uy
     solution = solve(prob, saveat=debut:1.0:fin)
     for t in eachindex(solution.t)
         pop = solution.u[t]
+        for i in 1:100
+            if (pop.<0)[i]
+                pop[i] = 0
+            end
+        end
         N[:,Int(solution.t[t]+1)] = pop
     end
 
@@ -61,6 +65,7 @@ parameters = (bx = bx, βy = βy, ey = ey, c = c, K = 80.0, ux = ux, by = by, uy
 end
 
 Np = N'
+
 
 lbls = ["" for i = 1:1:n_parasites]
 lbls2 = vcat("Parasites", lbls)
