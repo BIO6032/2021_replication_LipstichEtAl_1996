@@ -61,6 +61,9 @@ Np = N'
 
 #strains that survive at each time step for uy
 survival = (Np.>0.0)[:,2:end]
+survived_ui = survival.*uy'
+avg_survived = sum(survived_ui; dims=2)./sum(survival; dims=2)
+avg_w_survived = sum(Np[:,2:end].*uy'; dims=2)./sum(Np[:,2:end]; dims=2)
 
 #strains that survive for βy
 survived_βy = survival.*βy'
