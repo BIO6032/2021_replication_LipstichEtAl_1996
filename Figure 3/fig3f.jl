@@ -4,7 +4,7 @@ using Plots
 n_parasites = 100
 
 #parameters
-c = 0.5;
+c = 4.0;
 ux = 0.2;
 ux1 = fill(0.2, n_parasites); #le ux et uy 1000 à cause de la β # une autre façon :[0.2 for x in 1:1000]
 uy = rand(200:1000, n_parasites)/1000;
@@ -85,4 +85,4 @@ by_avg = avg_w_by
 
 V0= by_avg  .*ux./(bx*uy_avg)
 plot(V0, title = "Vertical cases", xlabel = "Time", ylabel = "Mean V0", leg = false, ylims = (0.0,1.0))
-# png("Figure 3/graph_3e")
+# png("Figure 3/graph_3f")
