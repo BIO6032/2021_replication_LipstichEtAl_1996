@@ -59,40 +59,35 @@ end
 
 Np = N'
 
-#host parasite dynamics
-plot(Np[:,2:end], c=:grey, lw=0.4, alpha=0.4)
-plot!(Np[:,1], c=:black, lw=5, leg=false)
-plot!(sum(Np[:,2:end]; dims=2))
-
 #strains that survive at each time step for uy
 survival = (Np.>0.0)[:,2:end]
-survived_ui = survival.*uy'
-avg_survived = sum(survived_ui; dims=2)./sum(survival; dims=2)
-
-avg_w_survived = sum(Np[:,2:end].*uy'; dims=2)./sum(Np[:,2:end]; dims=2)
-
-plot(avg_survived)
-plot!(avg_w_survived)
 
 #strains that survive for βy
 survived_βy = survival.*βy'
 avg_survived_βy = sum(survived_βy; dims=2)./sum(survival; dims=2)
-βy_avg = avg_survived_βy
+βi_avg = avg_survived_βy
 
-#avec moins de bruit
+#avec moins de bruit (weighted)
 avg_w_survived_βy = sum(Np[:,2:end].*βy'; dims=2)./sum(Np[:,2:end]; dims=2)
 βy_avg = avg_w_survived_βy
 
 #calculating R0
 k=1
 uy_avg = avg_w_survived
-H0 = c*βy_avg./uy_avg.*k.*(1-ux/bx)
+H0 = c*βi_avg./uy_avg.*k.*(1-ux/bx)
+
+H0_w = c*βy_avg./uy_avg.*k.*(1-ux/bx)
 
 V0 = by*ux./(bx*uy_avg)
 
 R0 = H0 + V0
 
-plot(R0, leg=false)
+R0_w = H0_w + V0
+
+plot(R0, title = "Average R0 in the population", xlabel = "Time", ylabel = "Mean R0", leg = false)
+plot!(R0_w)
+
+png("Figure 2/graph_2c")
 
 # values of H0 and V0
 H0
