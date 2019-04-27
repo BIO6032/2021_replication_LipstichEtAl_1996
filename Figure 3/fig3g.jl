@@ -86,7 +86,7 @@ Vir_avg_w = avg_w_survived_Vir
 
 #plot(βy_avg, title = "Mean virulence and beta", label = "beta")
 #plot!(Vir_avg, label = "virulence")
-plot(βi_avg, title = "Mean virulence and beta", label = "weighted beta")
-plot!(Vir_avg_w, label = "weighted virulence")
+plot(βi_avg, title = "Mean virulence and beta", label = "beta", xlabel = "Time", ylabel = "Mean mortality (uy)")
+plot!(Vir_avg_w, label = "virulence")
 
 png("Figure 3/graph_3g.png")
