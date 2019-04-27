@@ -59,13 +59,6 @@ end
 
 Np = N'
 
-# plot number of hosts (black) and parasites (grey)
-plot(Np[:,2:end], c=:grey, lw=0.4, alpha=0.4)
-plot!(Np[:,1], c=:black, lw=5, leg=false)
-
-# plot sum of all parasites in purple
-plot!(sum(Np[:,2:end]; dims=2))
-
 #strains that survive at each time step
 survival = (Np.>0.0)[:,2:end]
 survived_ui = survival.*uy'
@@ -73,16 +66,8 @@ avg_survived = sum(survived_ui; dims=2)./sum(survival; dims=2)
 
 avg_w_survived = sum(Np[:,2:end].*uy'; dims=2)./sum(Np[:,2:end]; dims=2)
 
-# plot average number of survived parasites
-#plot(avg_survived)
+plot(avg_survived, title = "Average uy in the population",
+    xlabel = "Time", ylabel = "Mean mortality (uy)", leg = false)
+plot!(avg_w_survived)
 
-# plot average weighted number of survived parasites (Fig2h) !!!!!
-plot(avg_w_survived)
-
-#calculating evenness
-function pielou(n)
-    np = filter(x -> x > eps(), n)
-    p = np./sum(np)
-    ev = length(p) == 1 ? 0.0 : -sum(p.*log.(p))*(1/log(length(p)))
-    return ev
-end
+png("Figure 2/graph_2h.png")
