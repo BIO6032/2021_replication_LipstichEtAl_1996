@@ -3,7 +3,7 @@ using Plots
 
 n_parasites = 100
 
-#Figure 2
+#parameters
 c = 4.0;
 ux = 0.2;
 ux1 = fill(0.2, n_parasites); #le ux et uy 1000 à cause de la β # une autre façon :[0.2 for x in 1:1000]
@@ -43,6 +43,12 @@ parameters = (bx = bx, βy = βy, ey = ey, c = c, K = 80.0, ux = ux, by = by, uy
     solution = solve(prob, saveat=debut:1.0:fin)
     for t in eachindex(solution.t)
         pop = solution.u[t]
+        uy_avg = avg_w_survived
+        for i in 1:n_parasites
+            if (pop.<0)[i]
+                pop[i] = 0
+            end
+        end
         N[:,Int(solution.t[t]+1)] = pop
     end
 
@@ -64,6 +70,7 @@ survival = (Np.>0.0)[:,2:end]
 survived_ui = survival.*uy'
 avg_survived = sum(survived_ui; dims=2)./sum(survival; dims=2)
 avg_w_survived = sum(Np[:,2:end].*uy'; dims=2)./sum(Np[:,2:end]; dims=2)
+uy_avg = avg_w_survived
 
 #strains that survive for βy
 survived_βy = survival.*βy'
@@ -76,7 +83,6 @@ avg_w_survived_βy = sum(Np[:,2:end].*βy'; dims=2)./sum(Np[:,2:end]; dims=2)
 
 #calculating R0
 k=1
-uy_avg = avg_w_survived
 H0 = c*βi_avg./uy_avg.*k.*(1-ux/bx)
 
 H0_w = c*βy_avg./uy_avg.*k.*(1-ux/bx)
@@ -90,4 +96,8 @@ R0_w = H0_w + V0
 plot(R0, title = "Average R0 in the population", xlabel = "Time", ylabel = "Mean R0", leg = false)
 plot!(R0_w)
 
-png("Figure 2/graph_2d.png")
+png("Figure 2/graph_2d")
+
+# values of H0 and V0
+H0
+V0

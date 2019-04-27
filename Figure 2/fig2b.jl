@@ -1,8 +1,9 @@
 using DifferentialEquations
 using Plots
 
-#Figure 2
 n_parasites = 100
+
+#parameters
 c = 4.0;
 ux = 0.2;
 ux1 = fill(0.2, n_parasites); #le ux et uy 1000 à cause de la β # une autre façon :[0.2 for x in 1:1000]
@@ -11,15 +12,14 @@ u1 = (uy - ux1);
 βy = 3 * u1 ./ (u1.+ 1); # augmente avec la mortalité u
 bx = 1.0;
 by = 1.0;
-ey = fill(bx - by, n_parasites);   # constant for fig 2
+ey = fill(0.9, n_parasites);    # constant for fig 2 part 1
 debut = 0.0
-duree = 100.0
+duree = 1000.0
 fin = debut + duree
 N = zeros(Float64, (n_parasites+1, (n_parasites-1)*Int(duree)+1))
 new_U = vcat(X0, Y)
 parameters = (bx = bx, βy = βy, ey = ey, c = c, K = 80.0, ux = ux, by = by, uy = uy)
 
-# initial numbers of host and parasites
 Y = zeros(Float64, length(ey));
 Y[1] = 1.0;
 X0 = 10.0;
@@ -34,13 +34,18 @@ function fonction(u, p, t)
     return vcat(dx, dy)
 end
 
-# each strain introduction
+# each strain introduction (1000x)
 @progress "Simulation" for i in 2:length(Y)
     # initial conditions
     prob = ODEProblem(fonction, new_U, (debut,fin), parameters)
     solution = solve(prob, saveat=debut:1.0:fin)
     for t in eachindex(solution.t)
         pop = solution.u[t]
+        for i in 1:n_parasites
+            if (pop.<0)[i]
+                pop[i] = 0
+            end
+        end
         N[:,Int(solution.t[t]+1)] = pop
     end
 
@@ -57,14 +62,13 @@ end
 
 Np = N'
 
-#combine all parasites under one label for legend
 lbls = ["" for i = 1:1:n_parasites]
 lbls2 = vcat("Parasites", lbls)
 lbls2 = hcat(lbls2...)
 
-plot(Np[:,2:end], c=:grey, lw=0.4, alpha=0.4, title = "Number of infected and uninfected hosts",
+plot(Np[:,2:end], c=:blue, lw=0.4, alpha=0.4, title = "Number of infected and uninfected hosts",
     xlabel = "Time", ylabel = "Number of individuals", label = lbls2)
-plot!(Np[:,1], c=:black, lw=5, label = "Hosts")
-plot!(sum(Np[:,2:end]; dims=2), label = "Total parasites")
+plot!(Np[:,1], c=:black, lw=2, label = "Hosts")
+#plot!(sum(Np[:,2:end]; dims=2), label = "total parasites")
 
 png("Figure 2/graph_2b.png")
