@@ -1,5 +1,5 @@
 #Figure 2-i
-include("fig2a.jl")
+include("fig2b.jl")
 
 #calculating evenness
 function pielou(n)
@@ -11,4 +11,4 @@ end
 ev = mapslices(pielou, Np[:,2:end]; dims=2)
 plot(ev, title = "Evenness", xlabel = "Time", ylabel = "Relative abundance (log)", leg = false)
 
-png("Figure 2/graph_2i.png")
+png("Figure 2/graph_2j.png")
