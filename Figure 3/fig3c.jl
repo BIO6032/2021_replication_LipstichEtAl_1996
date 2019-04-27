@@ -63,6 +63,9 @@ Np = N'
 
 #strains that survive at each time step for uy
 survival = (Np.>0.0)[:,2:end]
+survived_ui = survival.*uy'
+avg_survived = sum(survived_ui; dims=2)./sum(survival; dims=2)
+avg_w_survived = sum(Np[:,2:end].*uy'; dims=2)./sum(Np[:,2:end]; dims=2)
 
 #strains that survive for βy
 survived_βy = survival.*βy'
@@ -80,6 +83,9 @@ H0 = c*βi_avg./uy_avg.*k.*(1-ux/bx)
 
 H0_w = c*βy_avg./uy_avg.*k.*(1-ux/bx)
 
+#NEED TO CHANGE R1, R2, R3 = rand(Float64) in order to get same dimensions.
+    #But then get NaN values.....
+V0_avg = (by .* ux) ./ (bx .* uy_avg)
 R0 = H0 + V0
 
 R0_w = H0_w + V0
