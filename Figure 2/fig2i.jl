@@ -1,5 +1,6 @@
 #Figure 2-i
 
+#calculating evenness
 function pielou(n)
     np = filter(x -> x > eps(), n)
     p = np./sum(np)
@@ -7,4 +8,6 @@ function pielou(n)
     return ev
 end
 ev = mapslices(pielou, Np[:,2:end]; dims=2)
-plot(ev,leg=false)
+plot(ev, title = "Evenness", xlabel = "Time", ylabel = "Relative abundance (log)", leg = false)
+
+png("Figure 2/graph_2i.png")
