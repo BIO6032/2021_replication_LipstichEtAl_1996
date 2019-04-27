@@ -73,9 +73,6 @@ avg_survived_βy = sum(survived_βy; dims=2)./sum(survival; dims=2)
 avg_w_survived_βy = sum(Np[:,2:end].*βy'; dims=2)./sum(Np[:,2:end]; dims=2)
 βi_avg = avg_w_survived_βy
 
-plot(βy_avg, title = "Mean virulence and beta", label = "beta")
-plot!(βi_avg, label = "weighted beta")
-
 #mean virulence
 Vir = (1 .- (by .+ ey).*ux./(bx.*uy))
 
@@ -87,7 +84,9 @@ Vir_avg = avg_survived_Vir
 avg_w_survived_Vir = sum(Np[:,2:end].*Vir'; dims=2)./sum(Np[:,2:end]; dims=2)
 Vir_avg_w = avg_w_survived_Vir
 
-plot!(Vir_avg, label = "virulence")
+#plot(βy_avg, title = "Mean virulence and beta", label = "beta")
+#plot!(Vir_avg, label = "virulence")
+plot(βi_avg, title = "Mean virulence and beta", label = "weighted beta")
 plot!(Vir_avg_w, label = "weighted virulence")
 
 png("Figure 3/graph_3g.png")
