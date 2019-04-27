@@ -84,7 +84,7 @@ avg_w_survived_βy = sum(Np[:,2:end].*βy'; dims=2)./sum(Np[:,2:end]; dims=2)
 
 survived_by = survival.*by'
 avg_by_survived = sum(survived_by; dims=2)./sum(survival; dims=2)
-avg_w_by = sum(Np[:,2:end].*uy'; dims=2)./sum(Np[:,2:end]; dims=2)
+avg_w_by = sum(Np[:,2:end].*by'; dims=2)./sum(Np[:,2:end]; dims=2)
 by_avg = avg_w_by
 
 #calculating R0
