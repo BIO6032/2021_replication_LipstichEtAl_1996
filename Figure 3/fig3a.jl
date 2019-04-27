@@ -73,7 +73,7 @@ lbls2 = hcat(lbls2...)
 
 plot(Np[:,2:end], c=:grey, lw=0.4, alpha=0.4, title = "Number of infected and uninfected hosts",
     xlabel = "Time", ylabel = "Number of individuals", label = lbls2)
-plot!(Np[:,1], c=:black, lw=5, label = "Hosts")
-plot!(sum(Np[:,2:end]; dims=2), label = "Total # parasites")
+plot!(Np[:,1], c=:black, lw=2, label = "Hosts")
+# plot!(sum(Np[:,2:end]; dims=2), label = "Total # parasites")
 
-png("Figure 3/graph_3a.png")
+# png("Figure 3/graph_3a.png")
