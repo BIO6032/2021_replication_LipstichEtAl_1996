@@ -3,18 +3,6 @@ using Plots
 
 n_parasites = 100
 
-#Figure 2
-# c = 4.0;
-# ux = 0.2;
-# ux1 = fill(0.2, n_parasites); #le ux et uy 1000 à cause de la β # une autre façon :[0.2 for x in 1:1000]
-# uy = rand(200:1000, n_parasites)/1000 #doit être toujours >= à ux
-# u1 = (uy - ux1);
-# βy = 3 * u1 ./ (u1.+ 1)
-# bx = 1.0;
-# by = 0.1;
-#ey = bx - by
-# ey = fill(0.9, n_parasites);    # constant for fig 2 part 1
-
 c = 0.5;
 ux = 0.2;
 ux1 = fill(0.2, n_parasites); #le ux et uy 1000 à cause de la β # une autre façon :[0.2 for x in 1:1000]
@@ -44,7 +32,6 @@ function fonction(u, p, t)
     return vcat(dx, dy)
 end
 
-# SANDRINES TEST
 debut = 0.0
 duree = 1000.0
 fin = debut + duree
@@ -62,10 +49,6 @@ parameters = (bx = bx, βy = βy, ey = ey, c = c, K = 80.0, ux = ux, by = by, uy
         N[:,Int(solution.t[t]+1)] = pop
     end
 
-    # add solution to N matrix
-    #global N[i.*1000-999,i.*1000,:] = hcat(solution.u)
-    #global N[i.*5-4,i.*5,:] = hcat(solution.u)
-
     # set conditions & new parasite for next loop
     global new_U = solution[end]
     new_y = findfirst(x -> x == 0.0, new_U)
@@ -79,6 +62,13 @@ end
 
 Np = N'
 
-plot(Np[:,2:end], c=:grey, lw=0.4, alpha=0.4)
-plot!(Np[:,1], c=:black, lw=5, leg=false)
-# plot!(sum(Np[:,2:end]; dims=2))
+lbls = ["" for i = 1:1:n_parasites]
+lbls2 = vcat("Parasites", lbls)
+lbls2 = hcat(lbls2...)
+
+plot(Np[:,2:end], c=:grey, lw=0.4, alpha=0.4, title = "Number of infected and uninfected hosts",
+    xlabel = "Time", ylabel = "Number of individuals", label = lbls2)
+plot!(Np[:,1], c=:black, lw=5, label = "Hosts")
+plot!(sum(Np[:,2:end]; dims=2), label = "Total # parasites")
+
+png("Figure 3/graph_3a.png")
