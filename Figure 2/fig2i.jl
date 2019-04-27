@@ -1,4 +1,5 @@
 #Figure 2-i
+include("fig2a.jl")
 
 #calculating evenness
 function pielou(n)
