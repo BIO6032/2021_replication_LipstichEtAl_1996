@@ -43,7 +43,7 @@ end
         pop = solution.u[t]
         N[:,Int(solution.t[t]+1)] = pop
     end
-    
+
     # set conditions & new parasite for next loop
     global new_U = solution[end]
     new_y = findfirst(x -> x == 0.0, new_U)
@@ -57,6 +57,14 @@ end
 
 Np = N'
 
-plot(Np[:,2:end], c=:grey, lw=0.4, alpha=0.4)
-plot!(Np[:,1], c=:black, lw=5, leg=false)
-plot!(sum(Np[:,2:end]; dims=2))
+#combine all parasites under one label for legend
+lbls = ["" for i = 1:1:n_parasites]
+lbls2 = vcat("Parasites", lbls)
+lbls2 = hcat(lbls2...)
+
+plot(Np[:,2:end], c=:grey, lw=0.4, alpha=0.4, title = "Number of infected and uninfected hosts",
+    xlabel = "Time", ylabel = "Number of individuals", label = lbls2)
+plot!(Np[:,1], c=:black, lw=5, label = "Hosts")
+plot!(sum(Np[:,2:end]; dims=2), label = "Total parasites")
+
+png("Figure 2/graph_2b.png")
