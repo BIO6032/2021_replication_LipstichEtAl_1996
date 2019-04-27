@@ -9,17 +9,10 @@ ux = 0.2;
 ux1 = fill(0.2, n_parasites); #le ux et uy 1000 à cause de la β # une autre façon :[0.2 for x in 1:1000]
 uy = rand(200:1000, n_parasites)/1000;
 r1 = rand(Float64, n_parasites)
-
-
 r2 = rand(Float64, n_parasites)
-para_0 = fill(0.0, n_parasites)
 r3 = rand()*r1
-
-
-
 bx = 1.0;
 by = bx .* r1 .* (1 .- r1 .* r2);
-# V0 = by*ux./(bx*uy_avg)
 V0 = (by .* ux) ./ (bx .* uy)
 α = 1 .- V0
 βy = r1 .-(α.* by)/bx
