@@ -3,7 +3,7 @@ using Plots
 
 n_parasites = 100
 
-#Figure 2
+#parameters
 c = 4.0;
 ux = 0.2;
 ux1 = fill(0.2, n_parasites); #le ux et uy 1000 à cause de la β # une autre façon :[0.2 for x in 1:1000]
@@ -41,6 +41,11 @@ end
     solution = solve(prob, saveat=debut:1.0:fin)
     for t in eachindex(solution.t)
         pop = solution.u[t]
+        for i in 1:n_parasites
+            if (pop.<0)[i]
+                pop[i] = 0
+            end
+        end
         N[:,Int(solution.t[t]+1)] = pop
     end
 
@@ -61,9 +66,9 @@ lbls = ["" for i = 1:1:n_parasites]
 lbls2 = vcat("Parasites", lbls)
 lbls2 = hcat(lbls2...)
 
-plot(Np[:,2:end], c=:grey, lw=0.4, alpha=0.4, title = "Number of infected and uninfected hosts",
+plot(Np[:,2:end], c=:blue, lw=0.4, alpha=0.4, title = "Number of infected and uninfected hosts",
     xlabel = "Time", ylabel = "Number of individuals", label = lbls2)
-plot!(Np[:,1], c=:black, lw=5, label = "hosts")
-plot!(sum(Np[:,2:end]; dims=2), label = "total parasites")
+plot!(Np[:,1], c=:black, lw=2, label = "Hosts")
+#plot!(sum(Np[:,2:end]; dims=2), label = "total parasites")
 
 png("Figure 2/graph_2a.png")
