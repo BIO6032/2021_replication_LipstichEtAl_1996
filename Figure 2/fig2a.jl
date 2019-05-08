@@ -71,7 +71,7 @@ lbls2 = vcat("Parasites", lbls);
 lbls2 = hcat(lbls2...);
 
 plot(Np[:,2:end], c=:blue, lw=0.4, alpha=0.4, title = "Number of infected and uninfected hosts",
-    xlabel = "Time", ylabel = "Number of individuals", label = lbls2)
+    xlabel = "Time", ylabel = "Number of individuals", label = lbls2, ylims =(0,70))
 plot!(Np[:,1], c=:black, lw=0.4, label = "Hosts")
 #plot!(sum(Np[:,2:end]; dims=2), label = "total parasites")
 
