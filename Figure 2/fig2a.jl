@@ -1,28 +1,32 @@
 using DifferentialEquations
 using Plots
+import Random
 
-n_parasites = 100
+
+n_parasites = 100;
 
 #parameters
 c = 4.0;
 ux = 0.2;
 ux1 = fill(0.2, n_parasites); #le ux et uy 1000 à cause de la β # une autre façon :[0.2 for x in 1:1000]
-uy = rand(200:1000, n_parasites)/1000 #doit être toujours >= à ux
+Random.seed!(1234);
+uy = rand(200:1000, n_parasites)/1000; #always >= ux
 u1 = (uy - ux1);
 βy = 3 * u1 ./ (u1.+ 1); # augmente avec la mortalité u
 bx = 1.0;
 by = 0.1;
 ey = fill(0.9, n_parasites);    # constant for fig 2 part 1
-debut = 0.0
-duree = 1000.0
-fin = debut + duree
-N = zeros(Float64, (n_parasites+1, (n_parasites-1)*Int(duree)+1))
-new_U = vcat(X0, Y)
-parameters = (bx = bx, βy = βy, ey = ey, c = c, K = 80.0, ux = ux, by = by, uy = uy)
+debut = 0.0;
+duree = 1000.0;
+fin = debut + duree;
+N = zeros(Float64, (n_parasites+1, (n_parasites-1)*Int(duree)+1));
+parameters = (bx = bx, βy = βy, ey = ey, c = c, K = 80.0, ux = ux, by = by, uy = uy);
 
 Y = zeros(Float64, length(ey));
-Y[1] = 1.0;
 X0 = 10.0;
+new_U = vcat(X0, Y);
+Y[1] = 1.0;
+
 
 # differential equations formula for finding densities of each pop at next time step
 function fonction(u, p, t)
@@ -60,15 +64,15 @@ end
     global fin = debut + duree
 end
 
-Np = N'
+Np = N';
 
-lbls = ["" for i = 1:1:n_parasites]
-lbls2 = vcat("Parasites", lbls)
-lbls2 = hcat(lbls2...)
+lbls = ["" for i = 1:1:n_parasites];
+lbls2 = vcat("Parasites", lbls);
+lbls2 = hcat(lbls2...);
 
 plot(Np[:,2:end], c=:blue, lw=0.4, alpha=0.4, title = "Number of infected and uninfected hosts",
     xlabel = "Time", ylabel = "Number of individuals", label = lbls2)
-plot!(Np[:,1], c=:black, lw=2, label = "Hosts")
+plot!(Np[:,1], c=:black, lw=0.4, label = "Hosts")
 #plot!(sum(Np[:,2:end]; dims=2), label = "total parasites")
 
-png("Figure 2/graph_2a.png")
+# png("Figure 2/graph_2a.png")

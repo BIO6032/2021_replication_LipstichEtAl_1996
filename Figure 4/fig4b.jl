@@ -7,7 +7,8 @@ n_parasites = 100
 c = 4.0;
 ux = 0.2;
 ux1 = fill(0.2, n_parasites); #le ux et uy 1000 à cause de la β # une autre façon :[0.2 for x in 1:1000]
-uy = rand(200:1000, n_parasites)/1000;
+Random.seed!(1234)
+uy = rand(200:1000, n_parasites)/1000
 r1 = rand(Float64, n_parasites)
 r2 = rand(Float64, n_parasites)
 r3 = rand()*r1
