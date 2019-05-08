@@ -1,7 +1,7 @@
 #figure 2-f pour by = 1.0
 
 Vertical_case2 = fill(1.0, 100001)
-plot(Vertical_case2, ylims=(0,1),leg=false, title = "Fraction of all new cases acquired vertically",
+plot(Vertical_case2,c=:black, ylims=(0,1),leg=false, title = "Fraction of all new cases acquired vertically",
 xlabel = "Time", ylabel = "Vertical cases")
 
 png("Figure 2/graph_2f.png")

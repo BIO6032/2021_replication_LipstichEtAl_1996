@@ -51,7 +51,6 @@ parameters = (bx = bx, βy = βy, ey = ey, c = c, K = 80.0, ux = ux, by = by, uy
     solution = solve(prob, saveat=debut:1.0:fin)
     for t in eachindex(solution.t)
         pop = solution.u[t]
-        uy_avg = avg_w_survived
         for i in 1:n_parasites
             if (pop.<0)[i]
                 pop[i] = 0
