@@ -81,4 +81,4 @@ plot(Np[:,2:end], c=:blue, lw=0.4, alpha=0.4, title = "Number of infected and un
 plot!(Np[:,1], c=:black, lw=0.4, label = "Hosts")
 # plot!(sum(Np[:,2:end]; dims=2), label = "Total # parasites")
 
-png("Figure 3/graph_3a.png")
+# png("Figure 3/graph_3a.png")
