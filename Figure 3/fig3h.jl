@@ -8,13 +8,12 @@ ux = 0.2;
 ux1 = fill(0.2, n_parasites); #le ux et uy 1000 à cause de la β # une autre façon :[0.2 for x in 1:1000]
 Random.seed!(1234);
 uy = rand(200:1000, n_parasites)/1000;
-Random.seed!(1050);
-r1 = rand(0.0:1000, n_parasites)/1000;
-Random.seed!(1005);
-r2 = rand(0.0:1000, n_parasites)/1000;
-Random.seed!(1342);
+Random.seed!(1235);
+r1 = rand(Float64, n_parasites)
+Random.seed!(1236);
+r2 = rand(Float64, n_parasites)
+Random.seed!(1237);
 r3 = rand(0.0:1000, n_parasites)/1000;
-
 bx = 1.0;
 by = bx .* r1 .* (1 .- r1 .* r2);
 V0 = (by .* ux) ./ (bx .* uy);
