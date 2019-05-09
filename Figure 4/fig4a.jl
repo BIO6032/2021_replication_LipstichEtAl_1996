@@ -11,9 +11,9 @@ ux1 = fill(0.2, n_parasites); #le ux et uy 1000 à cause de la β # une autre fa
 Random.seed!(1234);
 uy = rand(200:1000, n_parasites)/1000;
 Random.seed!(1235);
-r1 = rand(Float64, n_parasites)
+r1 = rand(Float64, n_parasites);
 Random.seed!(1236);
-r2 = rand(Float64, n_parasites)
+r2 = rand(Float64, n_parasites);
 Random.seed!(1237);
 r3 = rand()*r1
 bx = 1.0;

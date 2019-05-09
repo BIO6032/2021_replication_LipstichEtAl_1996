@@ -7,15 +7,19 @@ n_parasites = 100
 c = 4.0;
 ux = 0.2;
 ux1 = fill(0.2, n_parasites); #le ux et uy 1000 à cause de la β # une autre façon :[0.2 for x in 1:1000]
+Random.seed!(1234);
 uy = rand(200:1000, n_parasites)/1000;
-r1 = rand(Float64)
-r2 = rand(Float64)
-r3 = rand(Uniform(0, r1), n_parasites)
+Random.seed!(1235);
+r1 = rand(Float64, n_parasites);
+Random.seed!(1236);
+r2 = rand(Float64, n_parasites);
+Random.seed!(1237);
+r3 = rand()*r1;
 bx = 1.0;
 by = bx .* r1 .* (1 .- r1 .* r2);
-V0 = (by .* ux) ./ (bx .* uy)
-α = 1 .- V0
-βy = r1 .-(α.* by)/bx
+V0 = (by .* ux) ./ (bx .* uy);
+α = 1 .- V0;
+βy = r1 .-(α.* by)/bx;
 ey = bx .* (1 .- r3) .* (1 .- (r1 .* r2));
 
 Y = zeros(Float64, length(ey));
@@ -32,12 +36,12 @@ function fonction(u, p, t)
     return vcat(dx, dy)
 end
 
-debut = 0.0
-duree = 1000.0
-fin = debut + duree
-N = zeros(Float64, (n_parasites+1, (n_parasites-1)*Int(duree)+1))
-new_U = vcat(X0, Y)
-parameters = (bx = bx, βy = βy, ey = ey, c = c, K = 80.0, ux = ux, by = by, uy = uy)
+debut = 0.0;
+duree = 1000.0;
+fin = debut + duree;
+N = zeros(Float64, (n_parasites+1, (n_parasites-1)*Int(duree)+1));
+new_U = vcat(X0, Y);
+parameters = (bx = bx, βy = βy, ey = ey, c = c, K = 80.0, ux = ux, by = by, uy = uy);
 
 # each strain introduction (1000x)
 @progress "Simulation" for i in 2:length(Y)
@@ -65,34 +69,34 @@ parameters = (bx = bx, βy = βy, ey = ey, c = c, K = 80.0, ux = ux, by = by, uy
     global fin = debut + duree
 end
 
-Np = N'
+Np = N';
 
 #strains that survive at each time step
-survival = (Np.>0.0)[:,2:end]
+survival = (Np.>0.0)[:,2:end];
 
 #mean β
-survived_βy = survival.*βy'
-avg_survived_βy = sum(survived_βy; dims=2)./sum(survival; dims=2)
-βy_avg = avg_survived_βy
+survived_βy = survival.*βy';
+avg_survived_βy = sum(survived_βy; dims=2)./sum(survival; dims=2);
+βy_avg = avg_survived_βy;
 
 #weighted β
-avg_w_survived_βy = sum(Np[:,2:end].*βy'; dims=2)./sum(Np[:,2:end]; dims=2)
-βi_avg = avg_w_survived_βy
+avg_w_survived_βy = sum(Np[:,2:end].*βy'; dims=2)./sum(Np[:,2:end]; dims=2);
+βi_avg = avg_w_survived_βy;
 
 #mean virulence
-Vir = (1 .- (by .+ ey).*ux./(bx.*uy))
+Vir = (1 .- (by .+ ey).*ux./(bx.*uy));
 
-survived_Vir = survival.*Vir'
-avg_survived_Vir = sum(survived_Vir; dims=2)./sum(survival; dims=2)
-Vir_avg = avg_survived_Vir
+survived_Vir = survival.*Vir';
+avg_survived_Vir = sum(survived_Vir; dims=2)./sum(survival; dims=2);
+Vir_avg = avg_survived_Vir;
 
 #weighted virulence
-avg_w_survived_Vir = sum(Np[:,2:end].*Vir'; dims=2)./sum(Np[:,2:end]; dims=2)
-Vir_avg_w = avg_w_survived_Vir
+avg_w_survived_Vir = sum(Np[:,2:end].*Vir'; dims=2)./sum(Np[:,2:end]; dims=2);
+Vir_avg_w = avg_w_survived_Vir;
 
 #plot(βy_avg, title = "Mean virulence and beta", label = "beta")
 #plot!(Vir_avg, label = "virulence")
-plot(βi_avg, title = "Mean virulence and beta", label = "beta", xlabel = "Time", ylabel = "Mean mortality (uy)")
-plot!(Vir_avg_w, label = "virulence")
+plot(βi_avg,c=:black, title = "Virulence and beta", label = "Beta", xlabel = "Time", ylabel = "Mean virulence & \n Mean Beta", ylims = (0,1))
+plot!(Vir_avg_w,c=:blue, label = "Virulence")
 
 # png("Figure 4/graph_4h.png")
