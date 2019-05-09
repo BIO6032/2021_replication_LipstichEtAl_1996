@@ -94,7 +94,7 @@ R0 = H0 + V0;
 
 R0_w = H0_w + V0;
 
-# plot(R0, title = "Average R0 in the population", xlabel = "Time", ylabel = "Mean R0", leg = false)
-plot(R0_w,c=:black, title = "Average R0 in the population", xlabel = "Time", ylabel = "Mean R0", leg = false, ylims=(0,7))
+# plot(R0, title = "Average R0 in the population", xlabel = "Time", ylabel = "Mean R0", leg = false, ylims=(0,))
+plot(V0,c=:black, title = "Average R0 in the population", xlabel = "Time", ylabel = "Mean R0", leg = false, ylims=(0,1))
 
-# png("Figure 2/graph_2c")
+# png("Figure 2/graph_2d")
