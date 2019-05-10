@@ -1,6 +1,7 @@
 using DifferentialEquations
 using Plots
 using Distributions
+import Random
 
 n_parasites = 100;
 

@@ -73,9 +73,9 @@ avg_survived = sum(survived_ui; dims=2)./sum(survival; dims=2);
 
 avg_w_survived = sum(Np[:,2:end].*uy'; dims=2)./sum(Np[:,2:end]; dims=2);
 
-# plot(avg_survived, title = "Average uy in the population",xlabel = "Time", ylabel = "Mean mortality (uy)", leg = false)
-plot(avg_w_survived, c=:black,title = "Average uy in the population",
-    xlabel = "Time", ylabel = "Mean mortality (uy)", leg = false, ylims =(0,1))
+# plot(avg_survived, title = "Average uy in the population",xlabel = "Time", ylabel = "Mean mortality (ui)", leg = false)
+plot(avg_w_survived, c=:black,title = "Average ui in the population",
+    xlabel = "Time", ylabel = "Mean mortality (ui)", leg = false, ylims =(0,1))
 
 
 # png("Figure 2/graph_2h.png")
