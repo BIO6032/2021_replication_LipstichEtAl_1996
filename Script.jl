@@ -1,10 +1,10 @@
 
 # functions for host and parasites dynamic
 struct Para
-    bx::Float64
+    bx::Float64 #maximal per capita birth rate of uninfected hosts
     b1::Float64
     b2::Float64
-    ux::Float64
+    ux::Float64 #mortality rate of uninfected hosts (lifespan: 1/ux)
     u1::Float64
     u2::Float64
     β1::Float64
@@ -68,14 +68,35 @@ end
 using Plots
 
 #paramètres
-p = Para(0.01, 0.01, 0.01, 0.02, 0.02, 0.02, 0.0, 0.0,4)
+bx = 0.01
+b1 = 0.01
+b2 = 0.01
+ux = 0.02
+u1 = 0.02
+u2 = 0.02
+β1 = 0.0
+β2 = 0.0
+c = 4.0
+
+p = Para(bx, b1, b2, ux, u1, u2, β1, β2, c)
+
 #modèle
-N = parasites(p, 0.6, 0.1, 0.3, timesteps = 50, iter = 1)
+X0 = 0.6
+Y10 = 0.1
+Y20 = 0.3
+
+N = parasites(p, X0, Y10, Y20, timesteps = 50, iter = 1)
+
 #représentation graphique
 plot(N, xaxis="Time", yaxis="Hosts", title="Figure 3 a)")
 fon(p, 100.0, 100.0, timesteps = 50, iter = 100)
 
 #Vertical cases
-pa = VCparameters(0.1 ,1.0 ,0.2 ,0.2)
+bi = 0.1
+bx = 1.0
+ux = 0.2
+ui = 0.2
+
+pa = VCparameters(bi, bx, ux, ui)
 N2 = Vcase(pa ,0.1 ,timesteps = 50, iter = 10)
 plot(N2, xaxis="Time", yaxis="Vertical cases", title="")

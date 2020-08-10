@@ -1,14 +1,14 @@
 struct para_Y
     uy::Float64
-    by::Float64
-    ey::Float64
-    βy::Float64
+    by::Float64 #per capita birth rate of offsprings infected with strain ​i per unit time
+    ey::Float64 #per capita birth rate of uninfected hosts by hosts infected with strain ​i
+    βy::Float64 #horizontal transmission rate of strain ​i
 end
 
 struct host_X
-    ux::Float64
-    bx::Float64
-    ex::Float64
+    ux::Float64 #mortality rate of uninfected hosts (lifespan: 1/ux)
+    bx::Float64 #maximal per capita birth rate of uninfected hosts
+    ex::Float64 #per capita birth rate of uninfected hosts by hosts infected with strain ​i
 end
 
 function new_X()
