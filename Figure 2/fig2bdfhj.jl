@@ -1,5 +1,6 @@
-include("fig2params.jl")
 by = 1.0;
+include("fig2params.jl")
+
 
 include("../Functions.jl")
 run_simulation()
@@ -32,7 +33,7 @@ avg_w_survived = sum(Np[:,2:end].*uy'; dims=2)./sum(Np[:,2:end]; dims=2);
 uy_avg = avg_w_survived;
 
 # plot(avg_survived, title = "Average uy in the population",xlabel = "Time", ylabel = "Mean mortality (ui)", leg = false)
-plot(avg_w_survived, c=:black,title = "Average ui in the population",
+plot(avg_w_survived, c=:black,title = "Average mortality in the population",
     xlabel = "Time", ylabel = "Mean mortality (ui)", leg = false, ylims =(0,1))
 
 # png("Figure 2/graph_2h.png")
@@ -57,7 +58,7 @@ H0_w = c*βy_avg./uy_avg.*k.*(1-ux/bx);
 
 V0 = by*ux./(bx*uy_avg);
 
-plot(V0,c=:black, title = "Average V0 in the population", xlabel = "Time", ylabel = "Mean V0", leg = false, ylims=(0,1))
+plot(V0,c=:black, title = "Average vertical transmission in the population", xlabel = "Time", ylabel = "Mean V0", leg = false, ylims=(0,1))
 
 # png("Figure 2/graph_2f")
 
