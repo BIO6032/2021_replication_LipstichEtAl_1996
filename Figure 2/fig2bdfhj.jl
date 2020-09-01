@@ -1,12 +1,12 @@
 
-include("fig3params.jl")
+include("fig2params.jl")
 c = 4.0
 
 include("../Functions.jl")
 run_simulation()
 
 
-########### Figure 3b ###########
+########### Figure 2b ###########
 
 Np = N'
 
@@ -21,10 +21,10 @@ plot(Np[:,2:end], c=:blue, lw=0.4, alpha=0.4, title = "Number of infected and un
 plot!(Np[:,1], c=:black, lw=0.4, label = "Uninfected")
 # plot!(sum(Np[:,2:end]; dims=2), label = "Total # parasites")
 
-# png("Figure 3/graph_3b.png")
+# png("Figure 2/graph_2b.png")
 
 
-######## Figure 3d #########
+######## Figure 2d #########
 
 #strains that survive at each time step for uy
 survival = (Np.>0.0)[:,2:end];
@@ -60,12 +60,12 @@ R0 = H0 + V0_w;
 R0_w = H0_w + V0_w;
 
 # plot(R0, title = "Average R0 in the population", xlabel = "Time", ylabel = "Mean R0", leg = false)
-plot(R0_w,c=:black, title = "Average R0 in the population", xlabel = "Time", ylabel = "Mean R0", leg = false, ylims=(0,7))
+plot(R0_w,c=:black, title = "Average R0 in the population \nwith R0 = V0 +H0", xlabel = "Time", ylabel = "Mean R0", leg = false, ylims=(0,7))
 
-# png("Figure 3/graph_3d")
+# png("Figure 2/graph_2d")
 
 
-####### Figure 3f #########
+####### Figure 2f #########
 
 V0= by_avg.*ux./(bx*uy_avg);
 
@@ -73,7 +73,7 @@ plot(V0,c=:black, title = "Vertical cases", xlabel = "Time", ylabel = "Mean V0",
 # png("Figure 3/graph_3f")
 
 
-####### Figure 3h ########
+####### Figure 2h ########
 
 #mean virulence
 Vir = (1 .- (by .+ ey).*ux./(bx.*uy));
@@ -94,7 +94,7 @@ plot!(Vir_avg_w,c=:blue, label = "Virulence")
 # png("Figure 3/graph_3h.png")
 
 
-######### Figure 3j ############
+######### Figure 2j ############
 
 function pielou(n)
     np = filter(x -> x > eps(), n)
@@ -105,4 +105,4 @@ end
 ev = mapslices(pielou, Np[:,2:end]; dims=2);
 plot(ev,c=:black, title = "Evenness", xlabel = "Time", ylabel = "Relative abundance (log)", leg = false,ylims = (0,1))
 
-# png("Figure 3/graph_3j.png")
+# png("Figure 2/graph_2j.png")
