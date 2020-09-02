@@ -20,7 +20,7 @@ debut = 0.0;
 duree = 1000.0;
 fin = debut + duree;
 N = zeros(Float64, (n_parasites+1, (n_parasites-1)*Int(duree)+1));
-parameters = (bx = bx, βy = βy, ei = ei, c = c, K = 99, ux = ux, by = by, ui = ui);
+parameters = (bx = bx, βy = βy, ei = ei, c = c, K = 99, ux = ux, bi = bi, ui = ui);
 
 Y = zeros(Float64, length(ei));
 X0 = 10.0;

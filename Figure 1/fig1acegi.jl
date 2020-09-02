@@ -1,4 +1,4 @@
-by = 0.1;
+bi = 0.1;
 include("fig1params.jl")
 
 
@@ -13,7 +13,7 @@ lbls = ["" for i = 1:1:n_parasites];
 lbls2 = vcat("Infected", lbls);
 lbls2 = hcat(lbls2...);
 
-plot(Np[:,2:end], c=:blue, lw=0.4, alpha=0.4, title = "Number of infected and uninfected hosts",
+plot(Np[:,2:end], c=:blue, lw=0.4, alpha=0.4, title = "by=0.1\n \nNumber of infected and uninfected hosts",
     xlabel = "Time", ylabel = "Number of individuals", label = lbls2, ylims =(0,100))
 plot!(Np[:,1], c=:black, lw=0.4, label = "Uninfected")
 #plot!(sum(Np[:,2:end]; dims=2), label = "total parasites")
@@ -54,9 +54,9 @@ H0 = c*βi_avg./ui_avg.*k.*(1-ux/bx);
 
 H0_w = c*βy_avg./ui_avg.*k.*(1-ux/bx);
 
-V0 = by*ux./(bx*ui_avg);
+V0 = bi*ux./(bx*ui_avg);
 
-plot(V0, c=:black, title = "Average vertical transmission in the population", xlabel = "Time", ylabel = "Mean R0", leg = false, ylims=(0,1))
+plot(V0, c=:black, title = "Average vertical cases in the population", xlabel = "Time", ylabel = "Mean V0", leg = false, ylims=(0,1))
 
 # png("Figure 1/graph_1e")
 
@@ -69,7 +69,8 @@ R0 = H0 + V0;
 
 R0_w = H0_w + V0;
 
-plot(R0_w, c=:black, title = "Average R0 in the population \nwith R0 = V0 +H0", xlabel = "Time", ylabel = "Mean R0", leg = false, ylims=(0,7))
+plot(R0_w, c=:black, title = "Average R0 in the population", xlabel = "Time", ylabel = "Mean R0", leg = false, ylims=(0,7))
+
 # png("Figure 1/graph_1c")
 
 

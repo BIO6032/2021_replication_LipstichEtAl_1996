@@ -15,11 +15,11 @@ r2 = rand(Float64, n_parasites)
 Random.seed!(1237);
 r3 = rand(0.0:1000, n_parasites)/1000
 bx = 1.0;
-by = bx .* r1 .* (1 .- r1 .* r2);
-# V0 = by*ux./(bx*ui_avg)
-V0 = (by .* ux) ./ (bx .* ui);
+bi = bx .* r1 .* (1 .- r1 .* r2);
+# V0 = bi*ux./(bx*ui_avg)
+V0 = (bi .* ux) ./ (bx .* ui);
 α = 1 .- V0;
-βy = r1 .-(α.* by)/bx
+βy = r1 .-(α.* bi)/bx
 ei = bx .* (1 .- r3) .* (1 .- (r1 .* r2))
 
 Y = zeros(Float64, length(ei));
@@ -32,4 +32,4 @@ duree = 1000.0;
 fin = debut + duree;
 N = zeros(Float64, (n_parasites+1, (n_parasites-1)*Int(duree)+1));
 new_U = vcat(X0, Y);
-parameters = (bx = bx, βy = βy, ei = ei, c = c, K = 100.0, ux = ux, by = by, ui = ui);
+parameters = (bx = bx, βy = βy, ei = ei, c = c, K = 100.0, ux = ux, bi = bi, ui = ui);

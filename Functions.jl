@@ -4,7 +4,7 @@ function fonction(u, p, t)
     y = u[2:end]
     regul = (1-(sum(u))/(p.K))
     dx = (p.bx*x + sum(p.ei.*y))*regul - p.ux*x-p.c*sum(p.βy.*y)*x
-    dy = p.by .* y .* regul .- p.ui .* y .+ p.c .* p.βy .* x .* y
+    dy = p.bi .* y .* regul .- p.ui .* y .+ p.c .* p.βy .* x .* y
     return vcat(dx, dy)
 end
 
