@@ -65,7 +65,7 @@ plot(R0_w,c=:black, title = "Average R0 in the population", xlabel = "Time", yla
 ######## Figure 3f ###########
 
 V0= bi_avg  .*ux./(bx*ui_avg);
-plot(V0,c=:black, title = "Vertical cases", xlabel = "Time", ylabel = "Mean V0", leg = false, ylims = (0.0,1.0))
+plot(V0,c=:black, title = "Average V0 in the population", xlabel = "Time", ylabel = "Mean V0", leg = false, ylims = (0.0,1.0))
 
  png("Figure 3/graph_3f.png")
 
