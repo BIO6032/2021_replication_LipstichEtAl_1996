@@ -5,8 +5,8 @@ library(grid)
 library(gridExtra)
 library(ggplot2)
 
-########################## FIGURE 1 ###########################
-setwd("/Users/sandrinesoeharjono/Documents/2019_replication_LipstichEtAl_1996/Figure 1")
+####################### FIGURE 1 ########################
+setwd("2019_replication_LipstichEtAl_1996/Figure 1")
 
 plot1a <- readPNG('graph_1a.png')
 plot1b <- readPNG('graph_1b.png')
@@ -31,8 +31,8 @@ grid.arrange(rasterGrob(plot1a),
              rasterGrob(plot1j),
              ncol=2)
 
-########################## FIGURE 2 ###########################
-setwd("/Users/sandrinesoeharjono/Documents/2019_replication_LipstichEtAl_1996/Figure 2")
+####################### FIGURE 2 ########################
+setwd("2019_replication_LipstichEtAl_1996/Figure 2")
 
 plot2a <- readPNG('graph_2a.png')
 plot2b <- readPNG('graph_2b.png')
@@ -57,8 +57,8 @@ grid.arrange(rasterGrob(plot2a),
              rasterGrob(plot2j),
              ncol=2)
 
-########################## FIGURE 3 ###########################
-setwd("/Users/sandrinesoeharjono/Documents/2019_replication_LipstichEtAl_1996/Figure 3")
+####################### FIGURE 3 ########################
+setwd("2019_replication_LipstichEtAl_1996/Figure 3")
 
 plot3a <- readPNG('graph_3a.png')
 plot3b <- readPNG('graph_3b.png')
