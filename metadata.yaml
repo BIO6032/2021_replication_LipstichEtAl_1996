@@ -1,0 +1,124 @@
+# To be filled by the author(s) at the time of submission
+# -------------------------------------------------------
+
+# Title of the article:
+#  - For a successful replication, it should be prefixed with "[Re]"
+#  - For a failed replication, it should be prefixed with "[¬Re]"
+#  - For other article types, no instruction (but please, not too long)
+title: "[Re] The Evolution of Virulence in Pathogens with Vertical and Horizontal Transmission"
+
+# List of authors with name, orcid number, email and affiliation
+# Affiliation "*" means contact author (required even for single-authored papers)
+authors:
+  - name: Fares Dhane
+    orcid: ???
+    email: fares.dhane@umontreal.ca
+    affiliations: 1
+
+  - name: Sandrine Soeharjono
+    orcid: 0000-0003-0885-3414
+    email: sandrine.soeharjono@umontreal.ca
+    affiliations: 1
+
+  - name: Kiri Stern
+    orcid: 0000-0002-5720-2581
+    email: kiri.stern@umontreal.ca
+    affiliations: 1
+
+  - name: Andrew MacDonald
+    orcid: 0000-0003-1162-169X
+    email: andrew.macdonald@umontreal.ca
+    affiliations: 1,*        # * is for contact author
+
+# List of affiliations with code (corresponding to author affiliations), name
+# and address. You can also use these affiliations to add text such as "Equal
+# contributions" as name (with no address).
+affiliations:
+  - code:    1
+    name:    Department of Biology, Université de Montréal
+    address: 90 Vincent-d'Indy, Montréal (QC), H2V 2S9, Canada
+
+# List of keywords (adding the programming language might be a good idea)
+keywords: Epidemiology, horizontal transmission, vertical transmission, pathogenicity, virulence, Julia
+
+# Code URL and DOI/SWH (url is mandatory for replication, doi after acceptance)
+# You can get a DOI for your code from Zenodo, or an SWH identifier from
+# Software Heritage.
+#   see https://guides.github.com/activities/citable-code/
+code:
+  - url: [https://github.com/rescience-c/template]???
+  - doi: ???
+  - swh: ???
+
+# Data URL and DOI (optional if no data)
+data:
+  - url: ???
+  - doi: ???
+
+# Information about the original article that has been replicated
+replication:
+ - cite: Lipsitch, M., Siller, S., Nowak, M.A., 1996. THE EVOLUTION OF VIRULENCE
+         IN PATHOGENS WITH VERTICAL AND HORIZONTAL TRANSMISSION. Evolution 50,
+         1729–1741. ​https://doi.org/10.1111/j.1558-5646.1996.tb03560.x # Full textual citation
+ - bib:  ??? # Bibtex key (if any) in your bibliography file
+ - url:  https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1558-5646.1996.tb03560.x # URL to the PDF, try to link to a non-paywall version
+ - doi:  10.1111/j.1558-5646.1996.tb03560.x # Regular digital object identifier
+
+# Don't forget to surround abstract with double quotes
+abstract: "blabla
+           blabla."
+
+# Bibliography file (yours)
+bibliography: bibliography.bib
+
+# Type of the article
+# Type can be:
+#  * Editorial
+#  * Letter
+#  * Replication
+type: Replication
+
+# Scientific domain of the article (e.g. Computational Neuroscience)
+#  (one domain only & try to be not overly specific)
+domain: Evolution
+
+# Coding language (main one only if several)
+language: Julia Lang
+
+
+# To be filled by the author(s) after acceptance
+# -----------------------------------------------------------------------------
+
+# For example, the URL of the GitHub issue where review actually occured
+review:
+  - url:
+
+contributors:
+  - name:
+    orcid:
+    role: editor
+  - name:
+    orcid:
+    role: reviewer
+  - name:
+    orcid:
+    role: reviewer
+
+# This information will be provided by the editor
+dates:
+  - received:  November 1, 2018
+  - accepted:
+  - published:
+
+# This information will be provided by the editor
+article:
+  - number: # Article number will be automatically assigned during publication
+  - doi:    # DOI from Zenodo
+  - url:    # Final PDF URL (Zenodo or rescience website?)
+
+# This information will be provided by the editor
+journal:
+  - name:   "ReScience C"
+  - issn:   2430-3658
+  - volume: 4
+  - issue:  1
