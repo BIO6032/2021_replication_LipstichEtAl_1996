@@ -13,9 +13,9 @@ lbls = ["" for i = 1:1:n_parasites];
 lbls2 = vcat("Infected", lbls);
 lbls2 = hcat(lbls2...);
 
-plot(Np[:,2:end], c=:blue, lw=0.4, alpha=0.4, title = "c=0.5\n \nNumber of infected and uninfected hosts",
+plot(Np[:,2:end], c=:blue, lw=1.5, alpha=0.4, title = "c=0.5\n \nNumber of infected and uninfected hosts",
     xlabel = "Time", ylabel = "Number of individuals", label = lbls2, ylims = (0,100))
-plot!(Np[:,1], c=:black, lw=0.4, label = "Uninfected")
+plot!(Np[:,1], c=:black, lw=1.5, label = "Uninfected")
 # plot!(sum(Np[:,2:end]; dims=2), label = "Total # parasites")
 
  png("Figure 3/graph_3a.png")
@@ -57,7 +57,7 @@ R0 = H0 + V0_w;
 R0_w = H0_w + V0_w;
 
 # plot(R0, title = "Average R0 in the population", xlabel = "Time", ylabel = "Mean R0", leg = false)
-plot(R0_w,c=:black, title = "Average R0 in the population", xlabel = "Time", ylabel = "Mean R0", leg = false, ylims=(0,7))
+plot(R0_w,c=:black, lw=1.5, title = "Average R0 in the population", xlabel = "Time", ylabel = "Mean R0", leg = false, ylims=(0,7))
 
  png("Figure 3/graph_3c")
 
@@ -66,7 +66,7 @@ plot(R0_w,c=:black, title = "Average R0 in the population", xlabel = "Time", yla
 ######### Figure 3e #########
 
 V0= bi_avg  .*ux./(bx*ui_avg);
-plot(V0,c=:black, title = "Average V0 in the population", xlabel = "Time", ylabel = "Mean V0", leg = false, ylims = (0.0,1.0))
+plot(V0,c=:black, lw=1.5, title = "Average V0 in the population", xlabel = "Time", ylabel = "Mean V0", leg = false, ylims = (0.0,1.0))
 
  png("Figure 3/graph_3e.png")
 
@@ -87,7 +87,7 @@ Vir_avg_w = avg_w_survived_Vir;
 #plot(βy_avg, title = "Mean virulence and beta", label = "beta")
 #plot!(Vir_avg, label = "virulence")
 plot(βi_avg,c=:black, title = "Virulence and beta", label = "Beta", xlabel = "Time", ylabel = "Mean virulence & \n Mean Beta", ylims = (0,1))
-plot!(Vir_avg_w,c=:blue, label = "Virulence")
+plot!(Vir_avg_w, lw=1.5,c=:blue, label = "Virulence")
 
  png("Figure 3/graph_3g.png")
 
@@ -102,6 +102,6 @@ function pielou(n)
     return ev
 end
 ev = mapslices(pielou, Np[:,2:end]; dims=2);
-plot(ev,c=:black, title = "Evenness", xlabel = "Time", ylabel = "Relative abundance (log)", leg = false,ylims = (0,1))
+plot(ev,c=:black, lw=1.5, title = "Evenness", xlabel = "Time", ylabel = "Relative abundance (log)", leg = false,ylims = (0,1))
 
  png("Figure 3/graph_3i.png")
