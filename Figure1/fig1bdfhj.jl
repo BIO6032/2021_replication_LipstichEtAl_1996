@@ -6,7 +6,7 @@ include("../Functions.jl")
 run_simulation()
 
 
-############ Figure 1b ############
+############ Figure1b ############
 
 Np = N';
 
@@ -19,10 +19,10 @@ plot(Np[:,2:end], c=:blue, lw=1.5, alpha=0.4, title = "by=1.0\n \nNumber of infe
 plot!(Np[:,1], c=:black, lw=1.5, label = "Uninfected")
 #plot!(sum(Np[:,2:end]; dims=2), label = "total parasites")
 
- png("Figure 1/graph_1b.png")
+ png("Figure1/graph_1b.png")
 
 
-########### Figure 1h #############
+########### Figure1h #############
 
 #strains that survive at each time step for ui
 survival = (Np.>0.0)[:,2:end];
@@ -36,7 +36,7 @@ ui_avg = avg_w_survived;
 plot(avg_w_survived, c=:black, lw=1.5, title = "Average mortality in the population",
     xlabel = "Time", ylabel = "Mean mortality (ui)", leg = false, ylims =(0,1))
 
- png("Figure 1/graph_1h.png")
+ png("Figure1/graph_1h.png")
 
 
 ############ Figure 2f ##############
@@ -60,10 +60,10 @@ V0 = bi*ux./(bx*ui_avg);
 
 plot(V0,c=:black, lw=1.5, title = "Average vertical cases in the population", xlabel = "Time", ylabel = "Mean V0", leg = false, ylims=(0,1))
 
- png("Figure 1/graph_1f")
+ png("Figure1/graph_1f")
 
 
-######## Figure 1d ##########
+######## Figure1d ##########
 
 R0 = H0 + V0;
 
@@ -72,11 +72,11 @@ R0_w = H0_w + V0;
 # plot(R0, title = "Average R0 in the population", xlabel = "Time", ylabel = "Mean R0", leg = false, ylims=(0,))
 plot(R0_w,c=:black, lw=1.5, title = "Average R0 in the population", xlabel = "Time", ylabel = "Mean R0", leg = false, ylims=(0,7))
 
- png("Figure 1/graph_1d")
+ png("Figure1/graph_1d")
 
 
 
-########## Figure 1j ###########
+########## Figure1j ###########
 
 #calculating evenness
 function pielou(n)
@@ -88,4 +88,4 @@ end;
 ev = mapslices(pielou, Np[:,2:end]; dims=2);
 plot(ev, c=:black, lw=1.5, title = "Evenness", xlabel = "Time", ylabel = "Relative abundance (log)", leg = false, ylims = (0,1))
 
- png("Figure 1/graph_1j.png")
+ png("Figure1/graph_1j.png")
