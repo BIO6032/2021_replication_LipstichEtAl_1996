@@ -6,7 +6,7 @@ include("../Functions.jl")
 run_simulation()
 
 
-########## Figure 2a ##########
+########## Figure2a ##########
 Np = N';
 
 lbls = ["" for i = 1:1:n_parasites];
