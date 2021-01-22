@@ -1,8 +1,8 @@
 
-include("fig2params.jl")
+include("../Model_scripts/fig2params.jl")
 c = 4.0
 
-include("../Functions.jl")
+include("../Model_scripts/Functions.jl")
 run_simulation()
 
 

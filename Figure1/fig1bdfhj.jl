@@ -1,8 +1,8 @@
 bi = 1.0;
-include("fig1params.jl")
+include("../Model_scripts/fig1params.jl")
 
 
-include("../Functions.jl")
+include("../Model_scripts/Functions.jl")
 run_simulation()
 
 

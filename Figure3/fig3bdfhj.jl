@@ -1,7 +1,7 @@
 c = 4.0;
-include("fig3params.jl");
+include("../Model_scripts/fig3params.jl");
 
-include("../Functions.jl");
+include("../Model_scripts/Functions.jl");
 run_simulation();
 
 

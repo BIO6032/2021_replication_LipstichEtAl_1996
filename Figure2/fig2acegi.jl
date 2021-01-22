@@ -1,8 +1,8 @@
 c = 0.5;
-include("fig2params.jl");
+include("../Model_scripts/fig2params.jl");
 
 
-include("../Functions.jl")
+include("../Model_scripts/Functions.jl")
 run_simulation()
 
 
