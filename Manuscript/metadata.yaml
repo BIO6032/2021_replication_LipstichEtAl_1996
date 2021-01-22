@@ -48,27 +48,33 @@ keywords: Epidemiology, horizontal transmission, vertical transmission, pathogen
 # Software Heritage.
 #   see https://guides.github.com/activities/citable-code/
 code:
-  - url: [https://github.com/rescience-c/template]???
-  - doi: ???
-  - swh: ???
-
-# Data URL and DOI (optional if no data)
-data:
-  - url: ???
-  - doi: ???
+  - url: https://github.com/BIO6032/2019_replication_LipstichEtAl_1996
+  - doi: 
 
 # Information about the original article that has been replicated
 replication:
  - cite: Lipsitch, M., Siller, S., Nowak, M.A., 1996. THE EVOLUTION OF VIRULENCE
          IN PATHOGENS WITH VERTICAL AND HORIZONTAL TRANSMISSION. Evolution 50,
          1729–1741. ​https://doi.org/10.1111/j.1558-5646.1996.tb03560.x # Full textual citation
- - bib:  ??? # Bibtex key (if any) in your bibliography file
  - url:  https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1558-5646.1996.tb03560.x # URL to the PDF, try to link to a non-paywall version
  - doi:  10.1111/j.1558-5646.1996.tb03560.x # Regular digital object identifier
 
 # Don't forget to surround abstract with double quotes
-abstract: "blabla
-           blabla."
+abstract: "The population dynamics of vertical and horizontal transmission allow
+          for the study of the evolution of virulence. Here, we replicate an
+          epidemiological model by Lipsitch et al. (1996) analyzing the
+          trade-offs between both types. The population dynamics between one
+          host and 100 pathogen strains added individually every 1,000 timesteps
+          in the presence of both mechanisms support that increased vertical
+          transmission rates select for lower evolutionary stable levels of
+          virulence. However, virulent vertically-transmitted pathogens can
+          persist when they provide protection against even more virulent
+          horizontally-transmitted strains. Furthermore, increasing horizontal
+          transmission opportunities favour less virulent strains that are good
+          at vertical transmission because of selection for greater host fitness.
+          Finally, we present simulations allowing both transmission rates to
+          evolve, and show that strains exhibiting high levels of vertical
+          transmission can only be successful in contexts of low virulence."
 
 # Bibliography file (yours)
 bibliography: bibliography.bib
@@ -108,7 +114,7 @@ contributors:
 
 # This information will be provided by the editor
 dates:
-  - received:  November 1, 2018
+  - received:
   - accepted:
   - published:
 
