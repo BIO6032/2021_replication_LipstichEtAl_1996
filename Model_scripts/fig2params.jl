@@ -15,7 +15,7 @@ r2 = rand(Float64, n_parasites)
 Random.seed!(1237);
 r3 = rand(0.0:1000, n_parasites)/1000
 bx = 1.0;
-bi = bx .* r1 .* (1 .- r1 .* r2);
+bi = bx .* r3 .* (1 .- r1 .* r2);
 # V0 = bi*ux./(bx*ui_avg)
 V0 = (bi .* ux) ./ (bx .* ui);
 α = 1 .- V0;
