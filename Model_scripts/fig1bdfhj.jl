@@ -1,14 +1,13 @@
 bi = 1.0;
-include("../Model_scripts/fig1params.jl")
 
+include("../Model_scripts/fig1params.jl")
 
 include("../Model_scripts/Functions.jl")
 run_simulation()
 
+Np = N';
 
 ############ Figure1b ############
-
-Np = N';
 
 lbls = ["" for i = 1:1:n_parasites];
 lbls2 = vcat("Infected", lbls);
@@ -32,14 +31,13 @@ avg_survived = sum(survived_ui; dims=2)./sum(survival; dims=2);
 avg_w_survived = sum(Np[:,2:end].*ui'; dims=2)./sum(Np[:,2:end]; dims=2);
 ui_avg = avg_w_survived;
 
-# plot(avg_survived, title = "Average ui in the population",xlabel = "Time", ylabel = "Mean mortality (ui)", leg = false)
 plot(avg_w_survived, c=:black, lw=1.5, title = "Average mortality in the population",
     xlabel = "Time", ylabel = "Mean mortality (ui)", leg = false, ylims =(0,1))
 
  png("Figure1/graph_1h.png")
 
 
-############ Figure 2f ##############
+############ Figure 1f ##############
 
 #strains that survive for βy
 survived_βy = survival.*βy';
