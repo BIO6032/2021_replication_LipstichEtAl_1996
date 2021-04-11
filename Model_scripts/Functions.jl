@@ -1,10 +1,18 @@
-# differential equations formula for finding densities of each pop at next time step
-function fonction(u, p, t)
-    x = u[1]
-    y = u[2:end]
-    regul = (1-(sum(u))/(p.K))
-    dx = (p.bx*x + sum(p.ei.*y))*regul - p.ux*x-p.c*sum(p.βy.*y)*x
-    dy = p.bi .* y .* regul .- p.ui .* y .+ p.c .* p.βy .* x .* y
+
+function comp_densities(indiv, range, params)
+    #=
+    differential equations formula for finding densities of each pop at next time step
+    indiv: vector of number of individuals of each group (first idx is uninfected hosts; 2:end to each strain)
+    range: window for each time step
+    params: model parameters
+    
+    returns: differential eqn to solve
+    =#
+    x = indiv[1]
+    y = indiv[2:end]
+    regul = (1-(sum(indiv))/(range.K))
+    dx = (range.bx*x + sum(range.ei.*y))*regul - range.ux*x-range.c*sum(range.βy.*y)*x
+    dy = range.bi .* y .* regul .- range.ui .* y .+ range.c .* range.βy .* x .* y
     return vcat(dx, dy)
 end
 
@@ -12,7 +20,7 @@ function run_simulation()
     # each strain introduction (1000x)
     @progress "Simulation" for i in 2:length(Y)
         # initial conditions
-        prob = ODEProblem(fonction, new_U, (debut,fin), parameters)
+        prob = ODEProblem(comp_densities, new_U, (debut,fin), parameters)
         solution = solve(prob, saveat=debut:1.0:fin)
         for t in eachindex(solution.t)
             pop = solution.u[t]
