@@ -2,25 +2,35 @@ using DifferentialEquations
 using Plots
 import Random
 
-n_parasites = 200;
+########### Defines the model parameters for Figure 1 ###########
 
-#parameters
-c = 4.0;
-ux = 0.2;
+n_parasites = 200; # number of parasites
+
+c = 4.0; # host contact rate
+
+ux = 0.2; # mortality rate of uninfected hosts
+
+# mortality rate of infected hosts
 Random.seed!(4040);
-ui = rand(200:1000, n_parasites)/1000; #always >= ux
-βy = 3 * (ui .- ux) ./ (ui .- ux .+ 1) # augmente avec la mortalité u
-bx = 1.0
-ei = fill(bx .- bi, n_parasites)
+ui = rand(200:1000, n_parasites) / 1000; # always >= ux
 
+βy = 3 * (ui .- ux) ./ (ui .- ux .+ 1) # horizontal transmission rate
 
-debut = 0.0;
-duree = 1000.0;
-fin = debut + duree;
-N = zeros(Float64, (n_parasites+1, (n_parasites-1)*Int(duree)+1));
-parameters = (bx = bx, βy = βy, ei = ei, c = c, K = 100, ux = ux, bi = bi, ui = ui);
+bx = 1.0 # birth rate of uninfected individuals
 
-Y = zeros(Float64, n_parasites);
-X0 = 10.0;
-new_U = vcat(X0, Y);
-Y[1] = 1.0;
+ei = fill(bx .- bi, n_parasites) # number of infected offspring from an infected host
+
+# setup the model parameters
+parameters = (bx = bx, βy = βy, ei = ei, c = c, K = 100.0, ux = ux, bi = bi, ui = ui);
+
+# define the numbers of individuals in each category
+Y = zeros(Float64, n_parasites); # number of parasites of each strain
+Y[1] = 1.0; # start with one initial parasite
+X0 = 10.0; # number of initial uninfected hosts
+new_U = vcat(X0, Y); # merge both together into one array
+
+# define the limits of the simulation
+start = 0.0;
+length = 1000.0;
+length = start + length;
+N = zeros(Float64, (n_parasites + 1, (n_parasites - 1) * Int(length) + 1));

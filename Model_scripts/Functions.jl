@@ -1,30 +1,39 @@
+# Defines the functions used to process the model parameters
 
-function comp_densities(indiv, range, params)
+function comp_densities(indiv, range, parameters)
     #=
-    differential equations formula for finding densities of each pop at next time step
-    indiv: vector of number of individuals of each group (first idx is uninfected hosts; 2:end to each strain)
-    range: window for each time step
-    params: model parameters
-    
-    returns: differential eqn to solve
+    Differential equations formula for finding densities of each pop at next step
+    :param indiv: vector of number of individuals of each group
+        (first idx is uninfected hosts; 2:end to each strain)
+    :param range: window for each time step
+    :param parameters: model parameters
+
+    :returns: differential eqn to solve
     =#
-    x = indiv[1]
-    y = indiv[2:end]
-    regul = (1-(sum(indiv))/(range.K))
-    dx = (range.bx*x + sum(range.ei.*y))*regul - range.ux*x-range.c*sum(range.βy.*y)*x
+    x = indiv[1] # number of uninfected hosts
+    y = indiv[2:end] # number of hosts infected with each strain
+
+    regul = (1 - (sum(indiv)) / (range.K))
+    dx = (range.bx * x + sum(range.ei .* y)) * regul - range.ux * x - range.c * sum(range.βy .* y) * x
     dy = range.bi .* y .* regul .- range.ui .* y .+ range.c .* range.βy .* x .* y
     return vcat(dx, dy)
 end
 
 function run_simulation()
-    # each strain introduction (1000x)
+    #=
+    Runs the ODE simulation of a population-dynamical model given a set of parameters
+    This is done for each strain introduction
+    =#
+
     @progress "Simulation" for i in 2:length(Y)
-        # initial conditions
-        prob = ODEProblem(comp_densities, new_U, (debut,fin), parameters)
-        solution = solve(prob, saveat=debut:1.0:fin)
+        # solve ODE using initial conditions
+        prob = ODEProblem(comp_densities, new_U, (start,length), parameters)
+        solution = solve(prob, saveat=start:1.0:length)
+
+        # set values to 0 if negative
         for t in eachindex(solution.t)
             pop = solution.u[t]
-            for i in 1:100
+            for i in 1:200
                 if (pop.<0)[i]
                     pop[i] = 0
                 end
@@ -32,14 +41,24 @@ function run_simulation()
             N[:,Int(solution.t[t]+1)] = pop
         end
 
-        # set conditions & new parasite for next loop
+        # setup conditions & new parasite for next loop
         global new_U = solution[end]
         new_y = findfirst(x -> x == 0.0, new_U)
         new_U[new_y] = 1.0
 
         # set limits for next loop
-        global debut = fin
-        #global fin = Float64((i+1).* 1000.0)
-        global fin = debut + duree
+        global start = length
+        global length = start + length
     end
+end
+
+function calculate_evenness(n)
+    #= calculates the evenness of an array (shoutout to Pielou)
+    :param n: array
+    :returns: evenness values through time
+    =#
+    np = filter(x -> x > eps(), n)
+    p = np./sum(np)
+    ev = length(p) == 1 ? 0.0 : -sum(p.*log.(p))*(1/log(length(p)))
+    return ev
 end

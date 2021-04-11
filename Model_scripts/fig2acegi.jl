@@ -1,105 +1,161 @@
-c = 0.5;
+########### Defines the parameters & plot for Fig 2 a,c,e,g,i ###########
+
+c = 0.5; # set the host contact rate as a constant 0.5
+
+# import required variables/modules common to all simulations
 include("../Model_scripts/fig2params.jl");
-
-
 include("../Model_scripts/Functions.jl")
-run_simulation()
 
+# now that we have all the requirements, let's run the simulation
+run_simulation();
 
-########## Figure2a ##########
 Np = N';
 
-lbls = ["" for i = 1:1:n_parasites];
-lbls2 = vcat("Infected", lbls);
-lbls2 = hcat(lbls2...);
+########### Figure 2a ###########
 
-plot(Np[:,2:end], c=:blue, lw=1.5, alpha=0.4, title = "c=0.5\n \nNumber of infected and uninfected hosts",
-    xlabel = "Time", ylabel = "Number of individuals", label = lbls2, ylims=(0,100))
-plot!(Np[:,1], c=:black, lw=1.5, label = "Uninfected")
-# plot!(sum(Np[:,2:end]; dims=2), label = "Total # parasites")
+labels = ["" for i = 1:1:n_parasites];
+labels2 = vcat("Infected", labels);
+labels2 = hcat(labels2...);
 
- png("Figure2/graph_2a.png")
+# plot the number of infected hosts
+plot(
+    Np[:,2:end],
+    c=:blue,
+    lw=1.5,
+    alpha=0.4,
+    title="c=0.5\n \nNumber of infected and uninfected hosts",
+    xlabel="Time",
+    ylabel="Number of individuals",
+    label=labels2,
+    ylims=(0,100)
+)
 
+# add the number of uninfected hosts
+plot!(
+    Np[:,1],
+    c=:black,
+    lw=1.5,
+    label = "Uninfected"
+)
+#plot!(sum(Np[:,2:end]; dims=2), label = "Total # parasites")
 
-######### Figure2e ##########
-
-#strains that survive at each time step for ui
-survival = (Np.>0.0)[:,2:end];
-survived_ui = survival.*ui';
-avg_survived = sum(survived_ui; dims=2)./sum(survival; dims=2);
-avg_w_survived = sum(Np[:,2:end].*ui'; dims=2)./sum(Np[:,2:end]; dims=2);
-ui_avg = avg_w_survived;
-
-#strains that survive for βy
-survived_βy = survival.*βy';
-avg_survived_βy = sum(survived_βy; dims=2)./sum(survival; dims=2);
-βi_avg = avg_survived_βy;
-
-#weighted β
-avg_w_survived_βy = sum(Np[:,2:end].*βy'; dims=2)./sum(Np[:,2:end]; dims=2);
-βy_avg = avg_w_survived_βy;
-
-survived_bi = survival.*bi';
-avg_bi_survived = sum(survived_bi; dims=2)./sum(survival; dims=2);;
-avg_w_bi = sum(Np[:,2:end].*bi'; dims=2)./sum(Np[:,2:end]; dims=2)
-bi_avg = avg_w_bi;
-
-V0= bi_avg.*ux./(bx*ui_avg);
-plot(V0,c=:black, lw=1.5, title = "Average V0 in the population", xlabel = "Time", ylabel = "Mean V0", leg = false, ylims = (0.0,1.0))
- png("Figure2/graph_2e")
+# save figure as a PNG
+png("Figure2/graph_2a.png")
 
 
-########## Figure2c ############
+########### Figure 2e ###########
 
-#calculating R0
-k=1;
-H0 = c*βi_avg./ui_avg.*k.*(1-ux/bx);
+# strains that survive at each time step for ui
+survival = (Np .> 0.0)[:,2:end];
+ui_w_avg = sum(Np[:,2:end] .* ui'; dims=2) ./ sum(Np[:,2:end]; dims=2);
 
-H0_w = c*βy_avg./ui_avg.*k.*(1-ux/bx);
+# strains that survive for βy
+survived_βy = survival .* βy';
+βy_avg = sum(survived_βy; dims=2) ./ sum(survival; dims=2);
 
-V0_w = bi_avg.*ux./(bx*ui_avg);
+# weighted β
+βy_w_avg = sum(Np[:,2:end] .* βy'; dims=2) ./ sum(Np[:,2:end]; dims=2);
 
-R0 = H0 + V0_w;
+# calculating V0
+bi_avg = sum(Np[:,2:end] .* bi'; dims=2) ./ sum(Np[:,2:end]; dims=2)
+V0 = bi_avg .* ux ./ (bx * ui_w_avg);
+V0_w = bi_avg .* ux ./ (bx * ui_w_avg);
 
+# plot the average V0 (TODO: non-weighted????)
+plot(
+    V0,
+    c=:black,
+    lw=1.5,
+    title="Average V0 in the population",
+    xlabel="Time",
+    ylabel="Mean V0",
+    leg=false,
+    ylims=(0.0,1.0)
+)
+
+# save figure as a PNG
+png("Figure2/graph_2e")
+
+
+########### Figure 2c ###########
+
+# calculating H0
+k = 1;
+H0 = c * βy_avg ./ ui_w_avg .* k .* (1 - ux / bx);
+H0_w = c * βy_w_avg ./ ui_w_avg .* k .* (1 - ux / bx);
+
+# calculating R0
+R0 = H0 + V0;
 R0_w = H0_w + V0_w;
 
-# plot(R0, title = "Average R0 in the population", xlabel = "Time", ylabel = "Mean R0", leg = false)
-plot(R0_w,c=:black, lw=1.5, title = "Average R0 in the population", xlabel = "Time", ylabel = "Mean R0", leg = false, ylims=(0,7))
+# plot average weighted R0
+plot(
+    R0_w,
+    c=:black,
+    lw=1.5,
+    title="Average R0 in the population",
+    xlabel="Time",
+    ylabel="Mean R0",
+    leg=false,
+    ylims=(0,7)
+)
+#plot(R0, title = "Average R0 in the population", xlabel = "Time", ylabel = "Mean R0", leg = false)
 
- png("Figure2/graph_2c")
-
-
-
-######### Figure2g ###########
-
-#mean virulence
-Vir = (1 .- (bi .+ ei).*ux./(bx.*ui));
-
-survived_Vir = survival.*Vir';
-avg_survived_Vir = sum(survived_Vir; dims=2)./sum(survival; dims=2);
-Vir_avg = avg_survived_Vir;
-
-#weighted virulence
-avg_w_survived_Vir = sum(Np[:,2:end].*Vir'; dims=2)./sum(Np[:,2:end]; dims=2);
-Vir_avg_w = avg_w_survived_Vir;
-
-#plot(βy_avg, title = "Mean virulence and beta", label = "beta")
-#plot!(Vir_avg, label = "virulence")
-plot(βi_avg,c=:black, title = "Virulence and beta", label = "Beta", xlabel = "Time", ylabel = "Mean virulence & \n Mean Beta", ylims = (0,1))
-plot!(Vir_avg_w,c=:blue, lw=1.5, label = "Virulence")
-
- png("Figure2/graph_2g.png")
+# save figure as a PNG
+png("Figure2/graph_2c")
 
 
-########## Figure2i ##########
+########### Figure 2g ###########
 
-function pielou(n)
-    np = filter(x -> x > eps(), n)
-    p = np./sum(np)
-    ev = length(p) == 1 ? 0.0 : -sum(p.*log.(p))*(1/log(length(p)))
-    return ev
-end
-ev = mapslices(pielou, Np[:,2:end]; dims=2);
-plot(ev,c=:black, lw=1.5, title = "Evenness", xlabel = "Time", ylabel = "Relative abundance (log)", leg = false,ylims = (0,1))
+# mean virulence
+vir = (1 .- (bi .+ ei) .* ux ./ (bx .* ui));
+survived_vir = survival .* vir';
+#vir_avg = sum(survived_vir; dims=2) ./ sum(survival; dims=2);
 
- png("Figure2/graph_2i.png")
+# weighted virulence
+vir_w_avg = sum(Np[:,2:end] .* vir'; dims=2) ./ sum(Np[:,2:end]; dims=2);
+
+# plot the average horizontal transmission (TODO: not weighted???)
+plot(
+    βy_avg,
+    c=:black,
+    title="ulence and beta",
+    label="Beta",
+    xlabel="Time",
+    ylabel="Mean virulence & \n Mean Beta",
+    ylims=(0,1)
+)
+#plot(βy_w_avg, title = "Mean virulence and beta", label = "beta")
+
+# add the average weighted virulence to the plot
+plot!(
+    vir_w_avg,
+    c=:blue,
+    lw=1.5,
+    label="Virulence"
+)
+#plot!(vir_avg, label = "virulence")
+
+# save figure as a PNG
+png("Figure2/graph_2g.png")
+
+
+########### Figure 2i ###########
+
+# use the function in Functions.jl to calculate the evenness
+evenness_data = mapslices(calculate_evenness, Np[:,2:end]; dims=2);
+
+# plot the evenness through time
+plot(
+    evenness_data,
+    c=:black,
+    lw=1.5,
+    title="Evenness",
+    xlabel="Time",
+    ylabel="Relative abundance (log)",
+    leg=false,
+    ylims=(0,1)
+)
+
+# save figure as a PNG
+png("Figure2/graph_2i.png")
