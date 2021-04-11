@@ -3,7 +3,7 @@ using Plots
 using Distributions
 import Random
 
-n_parasites = 100;
+n_parasites = 200;
 
 ux = 0.2;
 ux1 = fill(0.2, n_parasites); #le ux et ui 1000 à cause de la β # une autre façon :[0.2 for x in 1:1000]
