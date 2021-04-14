@@ -27,13 +27,13 @@ function run_simulation()
 
     @progress "Simulation" for i in 2:length(Y)
         # solve ODE using initial conditions
-        prob = ODEProblem(comp_densities, new_U, (start,length), parameters)
-        solution = solve(prob, saveat=start:1.0:length)
+        prob = ODEProblem(comp_densities, new_U, (start,windowsize), parameters)
+        solution = solve(prob, saveat=start:1.0:windowsize)
 
         # set values to 0 if negative
         for t in eachindex(solution.t)
             pop = solution.u[t]
-            for i in 1:200
+            for i in 1:length(n_parasites)
                 if (pop.<0)[i]
                     pop[i] = 0
                 end
@@ -47,8 +47,8 @@ function run_simulation()
         new_U[new_y] = 1.0
 
         # set limits for next loop
-        global start = length
-        global length = start + length
+        global start = windowsize
+        global windowsize = start + windowsize
     end
 end
 
