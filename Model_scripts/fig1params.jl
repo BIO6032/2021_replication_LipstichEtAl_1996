@@ -4,7 +4,7 @@ import Random
 
 ########### Defines the model parameters for Figure 1 ###########
 
-n_parasites = 200; # number of parasites
+n_parasites = 100; # number of parasites
 
 c = 4.0; # host contact rate
 
@@ -31,6 +31,6 @@ new_U = vcat(X0, Y); # merge both together into one array
 
 # define the limits of the simulation
 start = 0.0;
-length = 1000.0;
-length = start + length;
-N = zeros(Float64, (n_parasites + 1, (n_parasites - 1) * Int(length) + 1));
+windowsize = 1000.0;
+windowsize = start + windowsize;
+N = zeros(Float64, (n_parasites + 1, (n_parasites - 1) * Int(windowsize) + 1));
