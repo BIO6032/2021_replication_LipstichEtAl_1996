@@ -37,7 +37,13 @@ plot!(
     lw=1.5,
     label="Uninfected"
 )
-#plot!(sum(Np[:,2:end]; dims=2), label = "total parasites")
+
+# add the total number of parasites
+plot!(
+    sum(Np[:,2:end]; dims=2),
+    c=:red,
+    label = "Total parasites"
+)
 
 # save figure as a PNG
 png("Figure1/graph_1a.png")
@@ -48,7 +54,6 @@ png("Figure1/graph_1a.png")
 # ui of the survival strains
 survival = (Np .> 0.0)[:,2:end];
 survived_ui = survival .* ui';
-#avg_survived = sum(survived_ui; dims=2) ./ sum(survival; dims=2);
 ui_avg = sum(Np[:,2:end] .* ui'; dims=2) ./ sum(Np[:,2:end]; dims=2);
 
 # plot the average mortality through time
@@ -62,7 +67,6 @@ plot(
     leg=false,
     ylims=(0,1)
 )
-# plot(avg_survived, title = "Average ui in the population",xlabel = "Time", ylabel = "Mean mortality (ui)", leg = false)
 
 # save figure as a PNG
 png("Figure1/graph_1g.png")
@@ -77,21 +81,18 @@ survived_βy = survival .* βy';
 
 # calculating H0
 k = 1;
-H0 = c * βy_avg ./ ui_avg .* k .* (1 - ux / bx);
 H0_w = c * βy_w_avg ./ ui_avg .* k .* (1 - ux / bx);
 
 # calculating V0
 bi_avg = sum(Np[:,2:end] .* bi'; dims=2) ./ sum(Np[:,2:end]; dims=2);
-V0 = bi * ux ./ (bx * ui_avg);
 V0_w = bi_avg .* ux ./ (bx * ui_avg);
 
 # calculating R0
-#R0 = H0 + V0;
-R0_w = H0_w + V0;
+R0_w = H0_w + V0_w;
 
-# plot the average V0 (TODO: non-weighted????)
+# plot the average V0
 plot(
-    V0,
+    V0_w,
     c=:black,
     lw=1.5,
     title="Average vertical cases in the population",
