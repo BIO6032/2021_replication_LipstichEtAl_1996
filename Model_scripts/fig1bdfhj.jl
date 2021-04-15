@@ -37,7 +37,13 @@ plot!(
     lw=1.5,
     label = "Uninfected"
 )
-#plot!(sum(Np[:,2:end]; dims=2), label = "total parasites")
+
+# add the total number of parasites
+plot!(
+    sum(Np[:,2:end]; dims=2),
+    c=:red,
+    label = "Total parasites"
+)
 
 # save figure as a PNG
 png("Figure1/graph_1b.png")
@@ -76,19 +82,17 @@ survived_βy = survival .* βy';
 # weighted (for noise reduction)
 βy_w_avg = sum(Np[:,2:end] .* βy'; dims=2) ./ sum(Np[:,2:end]; dims=2);
 
-# calculating H0
+# calculating weighted H0
 k = 1;
-#H0 = c * βy_avg ./ ui_avg .* k .* (1 - ux / bx);
 H0_w = c * βy_w_avg ./ ui_avg .* k .* (1 - ux / bx);
 
-# calculating V0
+# calculating weighted V0
 bi_avg = sum(Np[:,2:end] .* bi'; dims=2) ./ sum(Np[:,2:end]; dims=2);
-V0 = bi * ux ./ (bx * ui_avg);
 V0_w = bi_avg .* ux ./ (bx * ui_avg);
 
-# plot the average V0 (TODO: non-weighted????)
+# plot the average weighted V0
 plot(
-    V0,
+    V0_w,
     c=:black,
     lw=1.5,
     title="Average vertical cases in the population",
@@ -104,9 +108,8 @@ png("Figure1/graph_1f")
 
 ########### Figure 1d ###########
 
-# calculating R0
-#R0 = H0 + V0;
-R0_w = H0_w + V0;
+# calculating weighted R0
+R0_w = H0_w + V0_w;
 
 # plot the average weighted R0
 plot(
@@ -119,7 +122,6 @@ plot(
     leg=false,
     ylims=(0,7)
 )
-#plot(R0, title = "Average R0 in the population", xlabel = "Time", ylabel = "Mean R0", leg = false, ylims=(0,))
 
 # save figure as a PNG
 png("Figure1/graph_1d")
