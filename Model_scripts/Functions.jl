@@ -27,8 +27,8 @@ function run_simulation()
 
     @progress "Simulation" for i in 2:length(Y)
         # solve ODE using initial conditions
-        prob = ODEProblem(comp_densities, new_U, (start,windowsize), parameters)
-        solution = solve(prob, saveat=start:1.0:windowsize)
+        prob = ODEProblem(comp_densities, new_U, (windowstart,windowend), parameters)
+        solution = solve(prob, saveat=windowstart:1.0:windowend)
 
         # set values to 0 if negative
         for t in eachindex(solution.t)
@@ -47,8 +47,8 @@ function run_simulation()
         new_U[new_y] = 1.0
 
         # set limits for next loop
-        global start = windowsize
-        global windowsize = start + windowsize
+        global windowstart = windowend
+        global windowend = windowstart + windowsize
     end
 end
 
