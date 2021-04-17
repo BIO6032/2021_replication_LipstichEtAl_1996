@@ -9,7 +9,7 @@ include("../Model_scripts/Functions.jl");
 # now that we have all the requirements, let's run the simulation
 run_simulation();
 
-Np = N';
+Np = N'
 
 ########### Figure 3a ###########
 
@@ -42,7 +42,7 @@ plot!(
 plot!(
     sum(Np[:,2:end]; dims=2),
     c=:red,
-    label = "Total # parasites"
+    label = "Total parasites"
 )
 
 # save figure as a PNG
@@ -80,7 +80,7 @@ plot(R0_w,
     xlabel = "Time",
     ylabel = "Mean R0",
     leg = false,
-    ylims=(0,7)
+    ylims=(0,15)
 )
 
 # save figure as a PNG

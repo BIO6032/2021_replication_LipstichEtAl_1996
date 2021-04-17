@@ -13,8 +13,9 @@ function comp_densities(indiv, range, parameters)
     x = indiv[1] # number of uninfected hosts
     y = indiv[2:end] # number of hosts infected with each strain
 
-    regul = (1 - (sum(indiv)) / (range.K))
-    dx = (range.bx * x + sum(range.ei .* y)) * regul - range.ux * x - range.c * sum(range.βy .* y) * x
+    regul = (1 .- (sum(indiv)) ./ (range.K))
+    #dx = (range.bx * x + sum(range.ei .* y)) * regul - range.ux * x - range.c * sum(range.βy .* y) * x
+    dx = (range.bx .* x .+ sum(range.ei .* y)) .* regul .- range.ux .* x .- range.c .* sum(range.βy .* y) .* x
     dy = range.bi .* y .* regul .- range.ui .* y .+ range.c .* range.βy .* x .* y
     return vcat(dx, dy)
 end

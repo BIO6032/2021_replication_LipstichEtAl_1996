@@ -28,7 +28,7 @@ plot(
     xlabel="Time",
     ylabel="Number of individuals",
     label=labels2,
-    ylims=(0,70)
+    ylims=(0,100)
 )
 
 # add the number of uninfected hosts
@@ -38,7 +38,9 @@ plot!(
     lw=1.5,
     label="Uninfected"
 )
-#plot!(sum(Np[:,2:end]; dims=2), label = "Total # parasites")
+plot!(sum(Np[:,2:end]; dims=2),
+    c=:red,
+    label = "Total parasites")
 
 # save figure as a PNG
 png("Figure2/graph_2b.png")
@@ -54,25 +56,20 @@ ui_avg = sum(Np[:,2:end].*ui'; dims=2)./sum(Np[:,2:end]; dims=2);
 
 # strains that survive for βy
 survived_βy = survival .* βy';
-βy_avg = sum(survived_βy; dims=2) ./ sum(survival; dims=2);
 
 # weighted β (for noise reduction)
 βy_w_avg = sum(Np[:,2:end] .* βy'; dims=2) ./ sum(Np[:,2:end]; dims=2);
 
 # calculating H0
 k = 1;
-#H0 = c * βy_avg ./ ui_avg .* k .* (1 - ux / bx);
 H0_w = c * βy_w_avg ./ ui_avg .* k .* (1 - ux / bx);
 
 # calculating V0
 bi_avg = sum(Np[:,2:end].*bi'; dims=2) ./ sum(Np[:,2:end]; dims=2);
-V0 = bi_avg .* ux ./ (bx * ui_avg);
 V0_w = bi_avg .* ux ./ (bx * ui_avg);
 
 # calculating R0
 R0_w = H0_w + V0_w;
-#R0 = H0 + V0;
-#plot(R0, title = "Average R0 in the population", xlabel = "Time", ylabel = "Mean R0", leg = false)
 
 # plot the weighted R0
 plot(
@@ -83,7 +80,7 @@ plot(
     xlabel="Time",
     ylabel="Mean R0",
     leg=false,
-    ylims=(0,7)
+    ylims=(0,15)
 )
 
 # save figure as a PNG
@@ -92,9 +89,9 @@ png("Figure2/graph_2d")
 
 ########### Figure 2f ###########
 
-# plot average V0 (TODO: non-weighted?)
+# plot average V0
 plot(
-    V0,
+    V0_w,
     c=:black,
     lw=1.5,
     title="Average V0 in the population",
@@ -113,16 +110,12 @@ png("Figure2/graph_2f")
 # mean virulence
 vir_avg = (1 .- (bi .+ ei) .* ux ./ (bx .* ui));
 
-#survived_vir = survival .* vir_avg';
-#vir_avg = sum(survived_vir; dims=2) ./ sum(survival; dims=2);
-#plot!(vir_avg, label = "virulence")
-
 # weighted virulence (for noise reduction)
 vir_w_avg = sum(Np[:,2:end] .* vir_avg'; dims=2) ./ sum(Np[:,2:end]; dims=2);
 
 # plot the average horizontal transmission (TODO: NON-WEIGHTED???????????????)
 plot(
-    βy_avg,
+    βy_w_avg,
     c=:black,
     title="Virulence and beta",
     label="Beta",
@@ -130,7 +123,6 @@ plot(
     ylabel="Mean virulence & \n Mean Beta",
     ylims=(0,1)
 )
-#plot(βy_w_avg, title = "Mean virulence and beta", label = "beta") <- weighted
 
 # add the average weighted virulence to the plot
 plot!(

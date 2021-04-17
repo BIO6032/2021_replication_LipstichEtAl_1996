@@ -10,18 +10,18 @@ n_parasites = 200; # number of parasites
 ux = 0.2; # mortality rate of uninfected hosts
 
 # mortality rate of infected hosts
-Random.seed!(1234);
+Random.seed!(1834);
 ui = rand(200:1000, n_parasites) / 1000;
 
 # define 3 random constraints per strain: r1, r2, r3
    # r1 = virulence of the strain
    # r2 = fraction of virulence attributable to fecundity loss
    # r3 = fraction of offspring of infected hosts whichare infected
-Random.seed!(1235);
+Random.seed!(1735);
 r1 = rand(Float64, n_parasites)
-Random.seed!(1236);
+Random.seed!(1436);
 r2 = rand(Float64, n_parasites)
-Random.seed!(1237);
+Random.seed!(1837);
 r3 = rand(Float64, n_parasites)
 
 bx = 1.0; # birth rate of uninfected individuals

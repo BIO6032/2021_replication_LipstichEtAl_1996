@@ -120,7 +120,7 @@ plot(
     xlabel="Time",
     ylabel="Mean R0",
     leg=false,
-    ylims=(0,7)
+    ylims=(0,15)
 )
 
 # save figure as a PNG

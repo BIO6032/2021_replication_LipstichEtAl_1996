@@ -43,7 +43,7 @@ plot!(
 plot!(
     sum(Np[:,2:end]; dims=2),
     c=:red,
-    label = "Total # parasites"
+    label = "Total parasites"
 )
 
 # save figure as a PNG
@@ -82,7 +82,7 @@ plot(
     xlabel="Time",
     ylabel="Mean R0",
     leg=false,
-    ylims=(0,7)
+    ylims=(0,15)
 )
 
 # save figure as a PNG
