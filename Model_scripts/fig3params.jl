@@ -7,6 +7,8 @@ import Random
 
 n_parasites =  100; # number of parasites
 
+K = 100
+
 ux = 0.2; # mortality rate of uninfected hosts
 
 # mortality rate of infected hosts
@@ -39,12 +41,12 @@ end
 ei = bx .* (1 .- r3) .* (1 .- (r1 .* r2)); # number of infected offspring from an infected host
 
 # setup the model parameters
-parameters = (bx = bx, βy = βy, ei = ei, c = c, K = 100.0, ux = ux, bi = bi, ui = ui);
+parameters = (bx = bx, βy = βy, ei = ei, c = c, K = K, ux = ux, bi = bi, ui = ui);
 
 # define the numbers of individuals in each category
 Y = zeros(Float64, n_parasites); # number of parasites of each strain
 Y[1] = 1.0; # start with one initial parasite
-X0 = 10.0; # number of initial uninfected hosts
+X0 = 80.0; # number of initial uninfected hosts
 new_U = vcat(X0, Y); # merge both together into one array
 
 # define the limits of the simulation

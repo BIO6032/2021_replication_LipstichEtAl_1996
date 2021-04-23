@@ -40,7 +40,7 @@ plot!(
 plot!(
     sum(Np[:,2:end]; dims=2),
     c=:red,
-    label = "Total # parasites")
+    label = "Total parasites")
 
 # save figure as a PNG
 png("Figure2/graph_2a.png")
@@ -81,7 +81,7 @@ png("Figure2/graph_2e")
 ########### Figure 2c ###########
 
 # calculating H0
-k = 1;
+k=1
 H0_w = c * βy_w_avg ./ ui_w_avg .* k .* (1 - ux / bx);
 
 # calculating R0

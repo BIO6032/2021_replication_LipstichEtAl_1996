@@ -7,6 +7,8 @@ import Random
 
 n_parasites = 100; # number of parasites
 
+K = 100
+
 ux = 0.2; # mortality rate of uninfected hosts
 
 # mortality rate of infected hosts
@@ -39,7 +41,7 @@ end
 ei = bx .* (1 .- r3) .* (1 .- (r1 .* r2)) # number of infected offspring from an infected host
 
 # setup the model parameters
-parameters = (bx = bx, βy = βy, ei = ei, c = c, K = 100.0, ux = ux, bi = bi, ui = ui);
+parameters = (bx = bx, βy = βy, ei = ei, c = c, K = K, ux = ux, bi = bi, ui = ui);
 
 # define the numbers of individuals in each category
 Y = zeros(Float64, n_parasites); # number of parasites of each strain

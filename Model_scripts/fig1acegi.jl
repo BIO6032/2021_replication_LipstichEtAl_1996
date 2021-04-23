@@ -53,12 +53,13 @@ png("Figure1/graph_1a.png")
 
 # ui of the survival strains
 survival = (Np .> 0.0)[:,2:end];
-survived_ui = survival .* ui';
-ui_avg = sum(Np[:,2:end] .* ui'; dims=2) ./ sum(Np[:,2:end]; dims=2);
+
+# weighted average mortality (for noise reduction)
+ui_w_avg = sum(Np[:,2:end] .* ui'; dims=2) ./ sum(Np[:,2:end]; dims=2);
 
 # plot the average mortality through time
 plot(
-    ui_avg,
+    ui_w_avg,
     c=:black,
     lw=1.5,
     title="Average mortality in the population",
@@ -80,7 +81,7 @@ survived_βy = survival .* βy';
 βy_w_avg = sum(Np[:,2:end] .* βy'; dims=2) ./ sum(Np[:,2:end]; dims=2);
 
 # calculating weighted H0
-k = 1;
+k=1
 H0_w = c * βy_w_avg ./ ui_avg .* k .* (1 - ux / bx);
 
 # calculating weighted V0
@@ -117,7 +118,7 @@ plot(
     xlabel="Time",
     ylabel="Mean R0",
     leg=false,
-    ylims=(0,15)
+    ylims=(0,6)
 )
 
 # save figure as a PNG
@@ -133,7 +134,7 @@ evenness_data = mapslices(calculate_evenness, Np[:,2:end]; dims=2);
 plot(
     evenness_data,
     c=:black,
-    lw=1.5,
+    lw=0.5,
     title="Evenness",
     xlabel="Time",
     ylabel="Relative abundance (log)",

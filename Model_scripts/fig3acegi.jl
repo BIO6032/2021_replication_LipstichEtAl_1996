@@ -62,7 +62,7 @@ survived_βy = survival .* βy';
 βy_w_avg = sum(Np[:,2:end] .* βy'; dims=2) ./ sum(Np[:,2:end]; dims=2);
 
 # calculating weighted H0
-k = 1;
+k=1
 H0_w = c * βy_w_avg ./ ui_avg .* k .* (1 - ux / bx);
 
 # calculating weighted V0
@@ -80,7 +80,7 @@ plot(R0_w,
     xlabel = "Time",
     ylabel = "Mean R0",
     leg = false,
-    ylims=(0,15)
+    ylims=(0,5)
 )
 
 # save figure as a PNG
