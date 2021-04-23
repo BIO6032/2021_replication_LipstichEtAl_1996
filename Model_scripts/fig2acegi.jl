@@ -35,12 +35,14 @@ plot!(
     Np[:,1],
     c=:black,
     lw=1.5,
-    label = "Uninfected"
+    label="Uninfected"
 )
+
+# add the total number of parasites
 plot!(
     sum(Np[:,2:end]; dims=2),
     c=:red,
-    label = "Total parasites")
+    label="Total parasites")
 
 # save figure as a PNG
 png("Figure2/graph_2a.png")
@@ -48,17 +50,10 @@ png("Figure2/graph_2a.png")
 
 ########### Figure 2e ###########
 
-# strains that survive at each time step for ui
-survival = (Np .> 0.0)[:,2:end];
+# weighted average mortality (for noise reduction)
 ui_w_avg = sum(Np[:,2:end] .* ui'; dims=2) ./ sum(Np[:,2:end]; dims=2);
 
-# strains that survive for βy
-survived_βy = survival .* βy';
-
-# weighted β
-βy_w_avg = sum(Np[:,2:end] .* βy'; dims=2) ./ sum(Np[:,2:end]; dims=2);
-
-# calculating V0
+# calculate weighted V0
 bi_avg = sum(Np[:,2:end] .* bi'; dims=2) ./ sum(Np[:,2:end]; dims=2)
 V0_w = bi_avg .* ux ./ (bx * ui_w_avg);
 
@@ -75,16 +70,19 @@ plot(
 )
 
 # save figure as a PNG
-png("Figure2/graph_2e")
+png("Figure2/graph_2e.png")
 
 
 ########### Figure 2c ###########
 
-# calculating H0
-k=1
+# calculate weighted average β (for noise reduction)
+βy_w_avg = sum(Np[:,2:end] .* βy'; dims=2) ./ sum(Np[:,2:end]; dims=2);
+
+# calculate weighted H0
+k = 1
 H0_w = c * βy_w_avg ./ ui_w_avg .* k .* (1 - ux / bx);
 
-# calculating R0
+# calculate weighted R0
 R0_w = H0_w + V0_w;
 
 # plot average weighted R0
@@ -100,19 +98,18 @@ plot(
 )
 
 # save figure as a PNG
-png("Figure2/graph_2c")
+png("Figure2/graph_2c.png")
 
 
 ########### Figure 2g ###########
 
 # mean virulence
-vir = (1 .- (bi .+ ei) .* ux ./ (bx .* ui));
-survived_vir = survival .* vir';
+vir_avg = (1 .- (bi .+ ei) .* ux ./ (bx .* ui));
 
-# weighted virulence
-vir_w_avg = sum(Np[:,2:end] .* vir'; dims=2) ./ sum(Np[:,2:end]; dims=2);
+# weighted virulence (for noise reduction)
+vir_w_avg = sum(Np[:,2:end] .* vir_avg'; dims=2) ./ sum(Np[:,2:end]; dims=2);
 
-# plot the average horizontal transmission (TODO: not weighted???)
+# plot the average weighted horizontal transmission
 plot(
     βy_w_avg,
     c=:black,
@@ -137,7 +134,7 @@ png("Figure2/graph_2g.png")
 
 ########### Figure 2i ###########
 
-# use the function in Functions.jl to calculate the evenness
+# calculate the evenness through time
 evenness_data = mapslices(calculate_evenness, Np[:,2:end]; dims=2);
 
 # plot the evenness through time

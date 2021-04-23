@@ -7,11 +7,11 @@ import Random
 
 n_parasites =  100; # number of parasites
 
-K = 100
+K = 100; # carrying capacity
 
 ux = 0.2; # mortality rate of uninfected hosts
 
-# mortality rate of infected hosts
+# mortality rate of infected hosts (always >= ux)
 Random.seed!(6376);
 ui = rand(200:1000, n_parasites) / 1000;
 
@@ -40,7 +40,7 @@ end
 
 ei = bx .* (1 .- r3) .* (1 .- (r1 .* r2)); # number of infected offspring from an infected host
 
-# setup the model parameters
+# set up the model parameters
 parameters = (bx = bx, βy = βy, ei = ei, c = c, K = K, ux = ux, bi = bi, ui = ui);
 
 # define the numbers of individuals in each category

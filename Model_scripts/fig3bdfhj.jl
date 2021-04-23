@@ -43,7 +43,7 @@ plot!(
 plot!(
     sum(Np[:,2:end]; dims=2),
     c=:red,
-    label = "Total parasites"
+    label="Total parasites"
 )
 
 # save figure as a PNG
@@ -52,25 +52,21 @@ png("Figure3/graph_3b.png")
 
 ########### Figure 3d ###########
 
-# ui of the survival strains
-survival = (Np.>0.0)[:,2:end];
-ui_avg = sum(Np[:,2:end] .* ui'; dims=2) ./ sum(Np[:,2:end]; dims=2);
+# weighted average mortality (for noise reduction)
+ui_w_avg = sum(Np[:,2:end] .* ui'; dims=2) ./ sum(Np[:,2:end]; dims=2);
 
-# strains that survive for βy
-survived_βy = survival .* βy';
-
-# weighted β
+# calculate weighted average β (for noise reduction)
 βy_w_avg = sum(Np[:,2:end] .* βy'; dims=2) ./ sum(Np[:,2:end]; dims=2);
 
-# calculating weighted H0
-k=1
-H0_w = c * βy_w_avg ./ ui_avg .* k .* (1 - ux / bx);
+# calculated weighted H0
+k = 1
+H0_w = c * βy_w_avg ./ ui_w_avg .* k .* (1 - ux / bx);
 
-# calculating weighted V0
+# calculate weighted V0
 bi_avg = sum(Np[:,2:end] .* bi'; dims=2) ./ sum(Np[:,2:end]; dims=2);
-V0_w = bi_avg .* ux ./ (bx * ui_avg);
+V0_w = bi_avg .* ux ./ (bx * ui_w_avg);
 
-# calculating weighted R0
+# calculate weighted R0
 R0_w = H0_w + V0_w;
 
 # plot the average weighted R0
@@ -86,7 +82,7 @@ plot(
 )
 
 # save figure as a PNG
-png("Figure3/graph_3d")
+png("Figure3/graph_3d.png")
 
 
 ########### Figure 3f ###########
@@ -110,25 +106,25 @@ png("Figure3/graph_3f.png")
 ########### Figure 3h ###########
 
 # mean virulence
-vir = (1 .- (bi .+ ei) .* ux ./ (bx .* ui));
+vir_avg = (1 .- (bi .+ ei) .* ux ./ (bx .* ui));
 
-# weighted virulence
-avg_w_virulence = sum(Np[:,2:end] .* vir'; dims=2) ./ sum(Np[:,2:end]; dims=2);
+# weighted virulence (for noise reduction)
+vir_w_avg = sum(Np[:,2:end] .* vir_avg'; dims=2) ./ sum(Np[:,2:end]; dims=2);
 
 # plot the average horizontal transmission
 plot(
     βy_w_avg,
     c=:black,
-    title = "Virulence and beta",
-    label = "Beta",
-    xlabel = "Time",
-    ylabel = "Mean virulence & \n Mean Beta",
-    ylims = (0,1)
+    title="Virulence and beta",
+    label="Beta",
+    xlabel="Time",
+    ylabel="Mean virulence & \n Mean Beta",
+    ylims=(0,1)
 )
 
 # add the average weighted virulence to the plot
 plot!(
-    avg_w_virulence,
+    vir_w_avg,
     c=:blue,
     lw=1.5,
     label="Virulence"
@@ -140,7 +136,7 @@ png("Figure3/graph_3h.png")
 
 ########### Figure 3j ###########
 
-# use the function in Functions.jl to calculate the evenness
+# calculate the evenness through time
 evenness_data = mapslices(calculate_evenness, Np[:,2:end]; dims=2);
 
 # plot the evenness through time

@@ -6,15 +6,15 @@ import Random
 
 n_parasites = 100; # number of parasites
 
-K = 100;
+K = 100; # carrying capacity
 
 c = 4.0; # host contact rate
 
 ux = 0.2; # mortality rate of uninfected hosts
 
-# mortality rate of infected hosts
+# mortality rate of infected hosts (always >= ux)
 Random.seed!(1479);
-ui = rand(200:1000, n_parasites) / 1000; # always >= ux
+ui = rand(200:1000, n_parasites) / 1000;
 
 βy = 3 * (ui .- ux) ./ (ui .- ux .+ 1) # horizontal transmission rate
 
@@ -22,7 +22,7 @@ bx = 1.0 # birth rate of uninfected individuals
 
 ei = fill(bx .- bi, n_parasites) # number of infected offspring from an infected host
 
-# setup the model parameters
+# set up the model parameters
 parameters = (bx = bx, βy = βy, ei = ei, c = c, K = K, ux = ux, bi = bi, ui = ui);
 
 # define the numbers of individuals in each category

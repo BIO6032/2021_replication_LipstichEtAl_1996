@@ -23,11 +23,11 @@ plot(
     c=:blue,
     lw=1.5,
     alpha=0.4,
-    title = "by=1.0\n \nNumber of infected and uninfected hosts",
-    xlabel = "Time",
-    ylabel = "Number of individuals",
-    label = labels2,
-    ylims =(0,100)
+    title="by=1.0\n \nNumber of infected and uninfected hosts",
+    xlabel="Time",
+    ylabel="Number of individuals",
+    label=labels2,
+    ylims=(0,100)
 )
 
 # add the number of uninfected hosts
@@ -35,14 +35,14 @@ plot!(
     Np[:,1],
     c=:black,
     lw=1.5,
-    label = "Uninfected"
+    label="Uninfected"
 )
 
 # add the total number of parasites
 plot!(
     sum(Np[:,2:end]; dims=2),
     c=:red,
-    label = "Total parasites"
+    label="Total parasites"
 )
 
 # save figure as a PNG
@@ -57,7 +57,7 @@ survival = (Np .> 0.0)[:,2:end];
 # weighted average mortality (for noise reduction)
 ui_w_avg = sum(Np[:,2:end] .* ui'; dims=2) ./ sum(Np[:,2:end]; dims=2);
 
-# plot the weighted average mortality rate
+# plot the weighted average mortality rate through time
 plot(
     ui_w_avg,
     c=:black,
@@ -77,16 +77,15 @@ png("Figure1/graph_1h.png")
 
 # strains that survive for βy
 survived_βy = survival .* βy';
-βy_avg = sum(survived_βy; dims=2) ./ sum(survival; dims=2);
 
-# weighted (for noise reduction)
+# calculate weighted average β (for noise reduction)
 βy_w_avg = sum(Np[:,2:end] .* βy'; dims=2) ./ sum(Np[:,2:end]; dims=2);
 
-# calculating weighted H0
-k=1
+# calculate weighted H0
+k = 1
 H0_w = c * βy_w_avg ./ ui_avg .* k .* (1 - ux / bx);
 
-# calculating weighted V0
+# calculate weighted V0
 bi_avg = sum(Np[:,2:end] .* bi'; dims=2) ./ sum(Np[:,2:end]; dims=2);
 V0_w = bi_avg .* ux ./ (bx * ui_avg);
 
@@ -103,12 +102,12 @@ plot(
 )
 
 # save figure as a PNG
-png("Figure1/graph_1f")
+png("Figure1/graph_1f.png")
 
 
 ########### Figure 1d ###########
 
-# calculating weighted R0
+# calculate weighted R0
 R0_w = H0_w + V0_w;
 
 # plot the average weighted R0
@@ -124,12 +123,12 @@ plot(
 )
 
 # save figure as a PNG
-png("Figure1/graph_1d")
+png("Figure1/graph_1d.png")
 
 
 ########### Figure 1j ###########
 
-# use the function in Functions.jl to calculate the evenness
+# calculate the evenness through time
 evenness_data = mapslices(calculate_evenness, Np[:,2:end]; dims=2);
 
 # plot the evenness through time

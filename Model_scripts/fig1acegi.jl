@@ -42,7 +42,7 @@ plot!(
 plot!(
     sum(Np[:,2:end]; dims=2),
     c=:red,
-    label = "Total parasites"
+    label="Total parasites"
 )
 
 # save figure as a PNG
@@ -51,13 +51,13 @@ png("Figure1/graph_1a.png")
 
 ########### Figure 1g ###########
 
-# ui of the survival strains
+# strains that survive at each time step for ui
 survival = (Np .> 0.0)[:,2:end];
 
 # weighted average mortality (for noise reduction)
 ui_w_avg = sum(Np[:,2:end] .* ui'; dims=2) ./ sum(Np[:,2:end]; dims=2);
 
-# plot the average mortality through time
+# plot the weighted average mortality rate through time
 plot(
     ui_w_avg,
     c=:black,
@@ -77,21 +77,19 @@ png("Figure1/graph_1g.png")
 
 # strains that survive for βy
 survived_βy = survival .* βy';
-βy_avg = sum(survived_βy; dims=2) ./ sum(survival; dims=2);
+
+# calculate weighted average β (for noise reduction)
 βy_w_avg = sum(Np[:,2:end] .* βy'; dims=2) ./ sum(Np[:,2:end]; dims=2);
 
-# calculating weighted H0
-k=1
+# calculate weighted H0
+k = 1
 H0_w = c * βy_w_avg ./ ui_avg .* k .* (1 - ux / bx);
 
-# calculating weighted V0
+# calculate weighted V0
 bi_avg = sum(Np[:,2:end] .* bi'; dims=2) ./ sum(Np[:,2:end]; dims=2);
 V0_w = bi_avg .* ux ./ (bx * ui_avg);
 
-# calculating weighted R0
-R0_w = H0_w + V0_w;
-
-# plot the average V0
+# plot the average weighted V0
 plot(
     V0_w,
     c=:black,
@@ -104,10 +102,13 @@ plot(
 )
 
 # save figure as a PNG
-png("Figure1/graph_1e")
+png("Figure1/graph_1e.png")
 
 
 ########### Figure 1c ###########
+
+# calculating weighted R0
+R0_w = H0_w + V0_w;
 
 # plot the average weighted R0
 plot(
@@ -122,12 +123,12 @@ plot(
 )
 
 # save figure as a PNG
-png("Figure1/graph_1c")
+png("Figure1/graph_1c.png")
 
 
 ########### Figure 1i ###########
 
-# use the function in Functions.jl to calculate the evenness
+# calculate the evenness through time
 evenness_data = mapslices(calculate_evenness, Np[:,2:end]; dims=2);
 
 # plot the evenness through time
