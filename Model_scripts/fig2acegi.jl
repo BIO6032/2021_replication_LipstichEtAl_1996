@@ -96,7 +96,7 @@ plot(
     xlabel="Time",
     ylabel="Mean R0",
     leg=false,
-    ylims=(0,15)
+    ylims=(0,5)
 )
 
 # save figure as a PNG
@@ -116,7 +116,7 @@ vir_w_avg = sum(Np[:,2:end] .* vir'; dims=2) ./ sum(Np[:,2:end]; dims=2);
 plot(
     βy_w_avg,
     c=:black,
-    title="ulence and beta",
+    title="Virulence and beta",
     label="Beta",
     xlabel="Time",
     ylabel="Mean virulence & \n Mean Beta",
@@ -144,10 +144,11 @@ evenness_data = mapslices(calculate_evenness, Np[:,2:end]; dims=2);
 plot(
     evenness_data,
     c=:black,
-    lw=1.5,
+    lw=0.5,
     title="Evenness",
     xlabel="Time",
     ylabel="Relative abundance (log)",
+    label=false,
     leg=false,
     ylims=(0,1)
 )

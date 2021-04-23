@@ -113,7 +113,7 @@ png("Figure3/graph_3f.png")
 vir = (1 .- (bi .+ ei) .* ux ./ (bx .* ui));
 
 # weighted virulence
-vir_avg_w = sum(Np[:,2:end] .* vir'; dims=2) ./ sum(Np[:,2:end]; dims=2);
+avg_w_virulence = sum(Np[:,2:end] .* vir'; dims=2) ./ sum(Np[:,2:end]; dims=2);
 
 # plot the average horizontal transmission
 plot(
@@ -128,7 +128,7 @@ plot(
 
 # add the average weighted virulence to the plot
 plot!(
-    vir_avg_w,
+    avg_w_virulence,
     c=:blue,
     lw=1.5,
     label="Virulence"
@@ -147,10 +147,11 @@ evenness_data = mapslices(calculate_evenness, Np[:,2:end]; dims=2);
 plot(
     evenness_data,
     c=:black,
-    lw=1.5,
+    lw=0.5,
     title="Evenness",
     xlabel="Time",
     ylabel="Relative abundance (log)",
+    label=false,
     leg=false,
     ylims=(0,1)
 )

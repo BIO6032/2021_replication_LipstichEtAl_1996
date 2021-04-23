@@ -7,7 +7,6 @@ function comp_densities(indiv, range, parameters)
         (first idx is uninfected hosts; 2:end to each strain)
     :param range: window for each time step
     :param parameters: model parameters
-
     :returns: differential eqn to solve
     =#
     x = indiv[1] # number of uninfected hosts
@@ -34,7 +33,7 @@ function run_simulation()
         # set values to 0 if negative
         for t in eachindex(solution.t)
             pop = solution.u[t]
-            for i in 1:length(n_parasites)
+            for i in 1:n_parasites
                 if (pop.<0)[i]
                     pop[i] = 0
                 end

@@ -143,10 +143,11 @@ evenness_data = mapslices(calculate_evenness, Np[:,2:end]; dims=2);
 # plot the evenness through time
 plot(evenness_data,
     c=:black,
-    lw=1.5,
+    lw=0.5,
     title="Evenness",
     xlabel="Time",
     ylabel="Relative abundance (log)",
+    label=false,
     leg=false,
     ylims=(0,1)
 )
