@@ -13,3 +13,12 @@ The original article can be found in the file "Lipsitch_1996.pdf".
 Julia Lang scripts defining model parameters (as found in the original study) are available in the folder "Model_scripts".
 
 All figures produced in the replication study are found in their respective folders.
+
+Once cloned, checkout to master branch.
+
+``` julia
+] activate .
+] instantiate
+```
+
+Run 00run_project.jl file
