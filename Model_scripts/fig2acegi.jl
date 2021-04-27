@@ -103,11 +103,8 @@ png("Figure2/graph_2c.png")
 
 ########### Figure 2g ###########
 
-# mean virulence
-vir_avg = (1 .- (bi .+ ei) .* ux ./ (bx .* ui));
-
 # weighted virulence (for noise reduction)
-vir_w_avg = sum(Np[:,2:end] .* vir_avg'; dims=2) ./ sum(Np[:,2:end]; dims=2);
+vir_w_avg = sum(Np[:,2:end] .* r1'; dims=2) ./ sum(Np[:,2:end]; dims=2);
 
 # plot the average weighted horizontal transmission
 plot(
