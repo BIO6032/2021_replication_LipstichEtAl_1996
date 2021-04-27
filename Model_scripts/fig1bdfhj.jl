@@ -83,11 +83,11 @@ survived_βy = survival .* βy';
 
 # calculate weighted H0
 k = 1
-H0_w = c * βy_w_avg ./ ui_avg .* k .* (1 - ux / bx);
+H0_w = c * βy_w_avg ./ ui_w_avg .* k .* (1 - ux / bx);
 
 # calculate weighted V0
 bi_avg = sum(Np[:,2:end] .* bi'; dims=2) ./ sum(Np[:,2:end]; dims=2);
-V0_w = bi_avg .* ux ./ (bx * ui_avg);
+V0_w = bi_avg .* ux ./ (bx * ui_w_avg);
 
 # plot the average weighted V0
 plot(
