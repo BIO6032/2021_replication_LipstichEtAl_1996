@@ -14,11 +14,11 @@ Julia Lang scripts defining model parameters (as found in the original study) ar
 
 All figures produced in the replication study are found in their respective folders.
 
-Once cloned, checkout to master branch.
+To run our replication code, clone our repository to your computer, checkout to the master branch, and run the following lines:
 
 ``` julia
 ] activate .
 ] instantiate
 ```
 
-Run 00run_project.jl file
+Finally, run 00run_project.jl file
