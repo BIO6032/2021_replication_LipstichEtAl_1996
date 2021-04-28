@@ -21,4 +21,4 @@ To run our replication code, clone our repository to your computer, checkout to 
 ] instantiate
 ```
 
-Finally, run 00run_project.jl file
+Finally, run the 00run_project.jl file in the Model_scripts/ folder.
