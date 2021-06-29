@@ -2,7 +2,7 @@
 c = 0.5; # set the host contact rate as a constant 0.5
 # import required variables/modules common to all simulations
 include("../Model_scripts/fig2params.jl");
-include("../Model_scripts/Functions.jl")
+include("../Model_scripts/Functions.jl");
 # now that we have all the requirements, let's run the simulation
 run_simulation();
 Np = N';

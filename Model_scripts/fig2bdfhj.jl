@@ -1,8 +1,8 @@
 ########### Defines the parameters & plot for Fig 2 b,d,f,h,j ###########
 c = 4.0 # set the host contact rate as a constant 4.0
 # import required variables/modules common to all simulations
-include("../Model_scripts/fig2params.jl")
-include("../Model_scripts/Functions.jl")
+include("../Model_scripts/fig2params.jl");
+include("../Model_scripts/Functions.jl");
 # now that we have all the requirements, let's run the simulation
 run_simulation();
 Np = N'
@@ -31,9 +31,11 @@ plot!(
     label="Uninfected"
 )
 # add the total number of parasites
-plot!(sum(Np[:,2:end]; dims=2),
+plot!(
+    sum(Np[:,2:end]; dims=2),
     c=:red,
-    label="Total parasites")
+    label="Total parasites"
+)
 # save figure as a PNG
 png("Figure2/graph_2b.png")
 ########### Figure 2d ###########
@@ -95,7 +97,7 @@ plot!(
     c=:blue,
     lw=1.5,
     label = "Virulence"
-    )
+)
 # save figure as a PNG
 png("Figure2/graph_2h.png")
 ########### Figure 2j ###########
