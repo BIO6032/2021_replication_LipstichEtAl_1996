@@ -1,13 +1,13 @@
 # Defines the functions used to process the model parameters
-"""
-Differential equations formula for finding densities of each pop at next step
-:param indiv: vector of number of individuals of each group
-    (first idx is uninfected hosts; 2:end to each strain)
-:param range: window for each time step
-:param parameters: model parameters
-:returns: differential eqn to solve
-"""
 function comp_densities(indiv, range, parameters)
+    """
+    Differential equations formula for finding densities of each pop at next step
+    :param indiv: vector of number of individuals of each group
+    (first idx is uninfected hosts; 2:end to each strain)
+    :param range: window for each time step
+    :param parameters: model parameters
+    :returns: differential eqn to solve
+    """
     x = indiv[1] # number of uninfected hosts
     y = indiv[2:end] # number of hosts infected with each strain
     regul = (1 .- (sum(indiv)) ./ (range.K))
@@ -16,8 +16,8 @@ function comp_densities(indiv, range, parameters)
     dy = range.bi .* y .* regul .- range.ui .* y .+ range.c .* range.βy .* x .* y
     return vcat(dx, dy)
 end
-"Runs the ODE simulation of a population-dynamical model given a set of parameters. This is done for each strain introduction"
 function run_simulation()
+    "Runs the ODE simulation of a population-dynamical model given a set of parameters. This is done for each strain introduction"
     @progress "Simulation" for i in 2:length(Y)
         # solve ODE using initial conditions
         prob = ODEProblem(comp_densities, new_U, (windowstart,windowend), parameters)
@@ -41,13 +41,27 @@ function run_simulation()
         global windowend = windowstart + windowsize
     end
 end
-"""calculates the evenness of an array (shoutout to Pielou)
+function calculate_evenness(n)
+    """calculates the evenness of an array (shoutout to Pielou)
     :param n: array
     :returns: evenness values through time
-"""
-function calculate_evenness(n)
+    """
     np = filter(x -> x > eps(), n)
     p = np./sum(np)
     ev = length(p) == 1 ? 0.0 : -sum(p.*log.(p))*(1/log(length(p)))
     return ev
+end
+function plot_evenness(data)
+    """plots evenness data with regards to time"""
+    plot(
+        data,
+        c=:black,
+        lw=0.5,
+        title="Evenness",
+        xlabel="Time",
+        ylabel="Relative abundance (log)",
+        label=false,
+        leg=false,
+        ylims=(0,1)
+    )
 end

@@ -104,16 +104,6 @@ png("Figure2/graph_2h.png")
 # calculate the evenness through time
 evenness_data = mapslices(calculate_evenness, Np[:,2:end]; dims=2);
 # plot the evenness through time
-plot(
-    evenness_data,
-    c=:black,
-    lw=0.5,
-    title="Evenness",
-    xlabel="Time",
-    ylabel="Relative abundance (log)",
-    label=false,
-    eg=false,
-    ylims=(0,1)
-)
+plot_evenness(data=evenness_data)
 # save figure as a PNG
 png("Figure2/graph_2j.png")
