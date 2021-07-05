@@ -1,7 +1,7 @@
 using DifferentialEquations
 using Plots
 using Distributions
-import Random
+using Random: Random
 ########### Defines the model parameters for Figure 2 ###########
 n_parasites = 100; # number of parasites
 K = 100; # carrying capacity
@@ -22,13 +22,13 @@ bi = bx .* r3 .* (1 .- r1 .* r2); # birth rate of infected individuals
 βy = r1 .- (α .* bi) ./ bx; # horizontal transmission rate
 # ensure no values in βy are negative by setting them to 0
 for (index, value) in enumerate(βy)
-   if value < 0
-       βy[index] = 0
-   end
+    if value < 0
+        βy[index] = 0
+    end
 end
 ei = bx .* (1 .- r3) .* (1 .- (r1 .* r2)) # number of infected offspring from an infected host
 # set up the model parameters
-parameters = (bx = bx, βy = βy, ei = ei, c = c, K = K, ux = ux, bi = bi, ui = ui);
+parameters = (bx=bx, βy=βy, ei=ei, c=c, K=K, ux=ux, bi=bi, ui=ui);
 # define the numbers of individuals in each category
 Y = zeros(Float64, n_parasites); # number of parasites of each strain
 Y[1] = 1.0; # start with one initial parasite
