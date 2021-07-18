@@ -13,7 +13,7 @@ plot_population_numbers(
     population_matrix=Np,
     labels=hcat(labels...),
     plot_title="c=0.5\n \nNumber of infected and uninfected hosts",
-    png_path="Figure3/graph_3a.png"
+    png_path="$figure_directory/graph_3a.png"
 )
 ########### Figure 3c ###########
 # calculate the weighted average mortality
@@ -28,11 +28,14 @@ V0_w = calculate_V0(population_matrix=Np, bi=bi, bx=bx, ux=ux, ui_w_avg=ui_w_avg
 plot_reproductive_rate(
     data=H0_w + V0_w,
     upper_y_limit=5,
-    png_path="Figure3/graph_3c.png"
+    png_path="$figure_directory/graph_3c.png"
 )
 ########### Figure 3e ###########
 # plot the average V0
-plot_vertical_reproductive_ratio(data=V0_w, png_path="Figure3/graph_3e.png")
+plot_vertical_reproductive_ratio(
+    data=V0_w,
+    png_path="$figure_directory/graph_3e.png"
+)
 ########### Figure 3g ###########
 # calculate the weighted virulence (for noise reduction)
 vir_w_avg = calculate_average_virulence(population_matrix=Np, r1=r1)
@@ -40,8 +43,8 @@ vir_w_avg = calculate_average_virulence(population_matrix=Np, r1=r1)
 plot_horizontal_and_virulence(
     βy_data=βy_w_avg,
     vir_data=vir_w_avg,
-    png_path="Figure3/graph_3g.png"
+    png_path="$figure_directory/graph_3g.png"
 )
 ########### Figure 3i ###########
 # calculate & plot the population evenness through time
-plot_evenness(data=Np, png_path="Figure3/graph_3i.png")
+plot_evenness(data=Np, png_path="$figure_directory/graph_3i.png")
