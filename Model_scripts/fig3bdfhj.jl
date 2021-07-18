@@ -7,99 +7,41 @@ include("../Model_scripts/Functions.jl");
 run_simulation();
 Np = N';
 ########### Figure 3b ###########
-# define labels
-labels = ["" for i in 1:1:n_parasites];
-labels2 = vcat("Infected", labels);
-labels2 = hcat(labels2...);
-# plot the number of infected hosts
-plot(
-    Np[:, 2:end];
-    c=:blue,
-    lw=1.5,
-    alpha=0.4,
-    title="c=4.0\n \nNumber of infected and uninfected hosts",
-    xlabel="Time",
-    ylabel="Number of individuals",
-    label=labels2,
-    ylims=(0, 100),
+# plot the number of infected/uninfected hosts
+labels = vcat("Infected", ["" for i in 1:1:n_parasites]);
+plot_population_numbers(
+    population_matrix=Np,
+    labels=hcat(labels...),
+    plot_title="c=4.0\n \nNumber of infected and uninfected hosts",
+    png_path="Figure3/graph_3b.png"
 )
-# add the number of uninfected hosts
-plot!(Np[:, 1]; c=:black, lw=1.5, label="Uninfected")
-# add total number of parasites
-plot!(sum(Np[:, 2:end]; dims=2); c=:red, label="Total parasites")
-# save figure as a PNG
-png("Figure3/graph_3b.png")
 ########### Figure 3d ###########
-# weighted average mortality (for noise reduction)
-ui_w_avg = sum(Np[:, 2:end] .* ui'; dims=2) ./ sum(Np[:, 2:end]; dims=2);
-# calculate weighted average β (for noise reduction)
-βy_w_avg = sum(Np[:, 2:end] .* βy'; dims=2) ./ sum(Np[:, 2:end]; dims=2);
-# calculated weighted H0
-k = 1
-H0_w = c * βy_w_avg ./ ui_w_avg .* k .* (1 - ux / bx);
-# calculate weighted V0
-bi_avg = sum(Np[:, 2:end] .* bi'; dims=2) ./ sum(Np[:, 2:end]; dims=2);
-V0_w = bi_avg .* ux ./ (bx * ui_w_avg);
-# calculate weighted R0
-R0_w = H0_w + V0_w;
+# calculate the weighted average mortality
+ui_w_avg = calculate_mortality(population_matrix=Np, ui=ui)
+# calculate the weighted average β
+βy_w_avg = calculate_horizontal_transmission(population_matrix=Np, βy=βy)
+# calculated the weighted H0
+H0_w = calculate_H0(c=c, βy_w_avg=βy_w_avg, ui_w_avg=ui_w_avg, ux=ux, bx=bx)
+# calculate the weighted V0
+V0_w = calculate_V0(population_matrix=Np, bi=bi, bx=bx, ux=ux, ui_w_avg=ui_w_avg)
 # plot the average weighted R0
-plot(
-    R0_w;
-    c=:black,
-    lw=1.5,
-    title="Average R0 in the population",
-    xlabel="Time",
-    ylabel="Mean R0",
-    leg=false,
-    ylims=(0, 5),
+plot_reproductive_rate(
+    data=H0_w + V0_w,
+    upper_y_limit=5,
+    png_path="Figure3/graph_3d.png"
 )
-# save figure as a PNG
-png("Figure3/graph_3d.png")
 ########### Figure 3f ###########
 # plot the average V0
-plot(
-    V0_w;
-    c=:black,
-    lw=1.5,
-    title="Average V0 in the population",
-    xlabel="Time",
-    ylabel="Mean V0",
-    leg=false,
-    ylims=(0.0, 1.0),
-)
-# save figure as a PNG
-png("Figure3/graph_3f.png")
+plot_vertical_reproductive_ratio(data=V0_w, png_path="Figure3/graph_3f.png")
 ########### Figure 3h ###########
-# weighted virulence (for noise reduction)
-vir_w_avg = sum(Np[:, 2:end] .* r1'; dims=2) ./ sum(Np[:, 2:end]; dims=2);
-# plot the average horizontal transmission
-plot(
-    βy_w_avg;
-    c=:black,
-    title="Virulence and beta",
-    label="Beta",
-    xlabel="Time",
-    ylabel="Mean virulence & \n Mean Beta",
-    ylims=(0, 1),
+# calculate the average virulence
+vir_w_avg = calculate_average_virulence(population_matrix=Np, r1=r1)
+# plot the average horizontal transmission & weighted virulence
+plot_horizontal_and_virulence(
+    βy_data=βy_w_avg,
+    vir_data=vir_w_avg,
+    png_path="Figure3/graph_3h.png"
 )
-# add the average weighted virulence to the plot
-plot!(vir_w_avg; c=:blue, lw=1.5, label="Virulence")
-# save figure as a PNG
-png("Figure3/graph_3h.png")
 ########### Figure 3j ###########
-# calculate the evenness through time
-evenness_data = mapslices(calculate_evenness, Np[:, 2:end]; dims=2);
-# plot the evenness through time
-plot(
-    evenness_data;
-    c=:black,
-    lw=0.5,
-    title="Evenness",
-    xlabel="Time",
-    ylabel="Relative abundance (log)",
-    label=false,
-    leg=false,
-    ylims=(0, 1),
-)
-# save figure as a PNG
-png("Figure3/graph_3j.png")
+# calculate & plot the population evenness through time
+plot_evenness(data=Np, png_path="Figure3/graph_3j.png")

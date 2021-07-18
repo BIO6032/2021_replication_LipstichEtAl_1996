@@ -7,98 +7,35 @@ include("../Model_scripts/Functions.jl")
 run_simulation();
 Np = N';
 ########### Figure 1a ###########
-labels = ["" for i in 1:1:n_parasites];
-labels2 = vcat("Infected", labels);
-labels2 = hcat(labels2...);
-# plot the number of infected hosts
-plot(
-    Np[:, 2:end];
-    c=:blue,
-    lw=1.5,
-    alpha=0.4,
-    title="by=0.1\n \nNumber of infected and uninfected hosts",
-    xlabel="Time",
-    ylabel="Number of individuals",
-    label=labels2,
-    ylims=(0, 100),
+# plot the number of infected/uninfected hosts
+labels = vcat("Infected", ["" for i in 1:1:n_parasites]);
+plot_population_numbers(
+    population_matrix=Np,
+    labels=hcat(labels...),
+    plot_title="by=0.1\n \nNumber of infected and uninfected hosts",
+    png_path="Figure1/graph_1a.png"
 )
-# add the number of uninfected hosts
-plot!(Np[:, 1]; c=:black, lw=1.5, label="Uninfected")
-# add the total number of parasites
-plot!(sum(Np[:, 2:end]; dims=2); c=:red, label="Total parasites")
-# save figure as a PNG
-png("Figure1/graph_1a.png")
 ########### Figure 1g ###########
-# strains that survive at each time step for ui
-survival = (Np .> 0.0)[:, 2:end];
-# weighted average mortality (for noise reduction)
-ui_w_avg = sum(Np[:, 2:end] .* ui'; dims=2) ./ sum(Np[:, 2:end]; dims=2);
+# calculate the weighted average mortality
+ui_w_avg = calculate_mortality(population_matrix=Np, ui=ui)
 # plot the weighted average mortality rate through time
-plot(
-    ui_w_avg;
-    c=:black,
-    lw=1.5,
-    title="Average mortality in the population",
-    xlabel="Time",
-    ylabel="Mean mortality (ui)",
-    leg=false,
-    ylims=(0, 1),
-)
-# save figure as a PNG
-png("Figure1/graph_1g.png")
+plot_mortality(data=ui_w_avg, png_path="Figure1/graph_1g.png")
 ########### Figure 1e ###########
-# strains that survive for βy
-survived_βy = survival .* βy';
-# calculate weighted average β (for noise reduction)
-βy_w_avg = sum(Np[:, 2:end] .* βy'; dims=2) ./ sum(Np[:, 2:end]; dims=2);
+# calculate the weighted average β
+βy_w_avg = calculate_horizontal_transmission(population_matrix=Np, βy=βy)
 # calculate weighted H0
-k = 1
-H0_w = c * βy_w_avg ./ ui_w_avg .* k .* (1 - ux / bx);
+H0_w = calculate_H0(c=c, βy_w_avg=βy_w_avg, ui_w_avg=ui_w_avg, ux=ux, bx=bx)
 # calculate weighted V0
-bi_avg = sum(Np[:, 2:end] .* bi'; dims=2) ./ sum(Np[:, 2:end]; dims=2);
-V0_w = bi_avg .* ux ./ (bx * ui_w_avg);
+V0_w = calculate_V0(population_matrix=Np, bi=bi, bx=bx, ux=ux, ui_w_avg=ui_w_avg)
 # plot the average weighted V0
-plot(
-    V0_w;
-    c=:black,
-    lw=1.5,
-    title="Average vertical cases in the population",
-    xlabel="Time",
-    ylabel="Mean V0",
-    leg=false,
-    ylims=(0, 1),
-)
-# save figure as a PNG
-png("Figure1/graph_1e.png")
+plot_vertical_reproductive_ratio(data=V0_w, png_path="Figure1/graph_1e.png")
 ########### Figure 1c ###########
-# calculating weighted R0
-R0_w = H0_w + V0_w;
 # plot the average weighted R0
-plot(
-    R0_w;
-    c=:black,
-    lw=1.5,
-    title="Average R0 in the population",
-    xlabel="Time",
-    ylabel="Mean R0",
-    leg=false,
-    ylims=(0, 6),
+plot_reproductive_rate(
+    data=H0_w + V0_w,
+    upper_y_limit=6,
+    png_path="Figure1/graph_1c.png"
 )
-# save figure as a PNG
-png("Figure1/graph_1c.png")
 ########### Figure 1i ###########
-# calculate the evenness through time
-evenness_data = mapslices(calculate_evenness, Np[:, 2:end]; dims=2);
-# plot the evenness through time
-plot(
-    evenness_data;
-    c=:black,
-    lw=0.5,
-    title="Evenness",
-    xlabel="Time",
-    ylabel="Relative abundance (log)",
-    leg=false,
-    ylims=(0, 1),
-)
-# save figure as a PNG
-png("Figure1/graph_1i.png")
+# calculate & plot the population evenness through time
+plot_evenness(data=Np, png_path="Figure1/graph_1i.png")
