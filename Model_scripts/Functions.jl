@@ -155,9 +155,7 @@ function plot_population_numbers(
     png(png_path)
 end
 
-function plot_mortality(
-    png_path::String
-)
+function plot_mortality(png_path::String)
     """
     Plots mortality data with regards to time.
         :param png_path: path (as str) to write a PNG version of the plot
@@ -176,10 +174,7 @@ function plot_mortality(
     png(png_path)
 end
 
-function plot_reproductive_rate(
-    upper_y_limit::Int,
-    png_path::String
-)
+function plot_reproductive_rate(upper_y_limit::Int, png_path::String)
     """
     Plots the average reproductive rate (R0) with regards to time.
         :param upper_y_limit: upper limit for the y-axis
@@ -199,9 +194,7 @@ function plot_reproductive_rate(
     png(png_path)
 end
 
-function plot_vertical_reproductive_ratio(
-    png_path::String
-)
+function plot_vertical_reproductive_ratio(png_path::String)
     """
     Plots the vertical basic reproductive ratio (V0) with regards to time.
         :param png_path: path (as str) to write a PNG version of the plot
@@ -220,9 +213,7 @@ function plot_vertical_reproductive_ratio(
     png(png_path)
 end
 
-function plot_horizontal_and_virulence(
-    png_path::String
-)
+function plot_horizontal_and_virulence(png_path::String)
     """
     Plots average horizontal transmission and virulence with regards to time.
         :param png_path: path (as str) to write a PNG version of the plot
@@ -248,9 +239,7 @@ function plot_horizontal_and_virulence(
     png(png_path)
 end
 
-function plot_evenness(
-    png_path::String
-)
+function plot_evenness(png_path::String)
     """
     Calculates population evenness through its matrix.
     Plots evenness data with regards to time.
