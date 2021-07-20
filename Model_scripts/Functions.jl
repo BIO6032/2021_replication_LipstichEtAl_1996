@@ -1,15 +1,15 @@
 # Defines the functions used to process the model parameters
 
 # Statistical functions ######################################################
+"""
+Differential eqn formula for finding densities of each pop at next step
+    :param indiv: vector of number of individuals of each group
+    (first idx is uninfected hosts; 2:end to each strain)
+    :param range: window for each time step
+    :param parameters: model parameters
+    :returns: differential eqn to solve
+"""
 function comp_densities(indiv, range, parameters)
-    """
-    Differential eqn formula for finding densities of each pop at next step
-        :param indiv: vector of number of individuals of each group
-        (first idx is uninfected hosts; 2:end to each strain)
-        :param range: window for each time step
-        :param parameters: model parameters
-        :returns: differential eqn to solve
-    """
     x = indiv[1] # number of uninfected hosts
     y = indiv[2:end] # number of hosts infected with each strain
     regul = (1 .- (sum(indiv)) ./ (range.K))
@@ -20,11 +20,11 @@ function comp_densities(indiv, range, parameters)
     return vcat(dx, dy)
 end
 
+"""
+Runs the ODE simulation of a population-dynamical model given a set of
+parameters. This is done for each strain introduction.
+"""
 function run_simulation()
-    """
-    Runs the ODE simulation of a population-dynamical model given a set of
-    parameters. This is done for each strain introduction.
-    """
     @showprogress for i in 2:length(Y)
         # solve ODE using initial conditions
         prob = ODEProblem(
@@ -54,59 +54,59 @@ function run_simulation()
     end
 end
 
+"""
+Calculates the average mortality across the population
+(weighted for noise reduction)
+    :returns: vector of mortality values through time
+"""
 function calculate_mortality()
-    """
-    Calculates the average mortality across the population
-    (weighted for noise reduction)
-        :returns: vector of mortality values through time
-    """
     return sum(Np[:, 2:end] .* ui'; dims=2) ./ sum(Np[:, 2:end]; dims=2);
 end
 
+"""
+Calculates the average horizontal transmission (βy) across the population
+(weighted for noise reduction)
+    :returns: vector of βy values through time
+"""
 function calculate_horizontal_transmission()
-    """
-    Calculates the average horizontal transmission (βy) across the population
-    (weighted for noise reduction)
-        :returns: vector of βy values through time
-    """
     return sum(Np[:, 2:end] .* βy'; dims=2) ./ sum(Np[:, 2:end]; dims=2);
 end
 
+"""
+Calculates the average the number of new horizontally-acquired cases from a
+single infected host before the primary host dies (H0) across the population
+(weighted for noise reduction)
+    :returns: vector of H0 values through time
+"""
 function calculate_H0()
-    """
-    Calculates the average the number of new horizontally-acquired cases from a
-    single infected host before the primary host dies (H0) across the population
-    (weighted for noise reduction)
-        :returns: vector of H0 values through time
-    """
     k = 1
     return c * βy_w_avg ./ ui_w_avg .* k .* (1 - ux / bx);
 end
 
+"""
+Calculates the vertical basic reproductive ratio (V0) across the population
+(weighted for noise reduction)
+    :returns: vector of H0 values through time
+"""
 function calculate_V0()
-    """
-    Calculates the vertical basic reproductive ratio (V0) across the population
-    (weighted for noise reduction)
-        :returns: vector of H0 values through time
-    """
     bi_avg = sum(Np[:, 2:end] .* bi'; dims=2) ./ sum(Np[:, 2:end]; dims=2);
     return bi_avg .* ux ./ (bx * ui_w_avg)
 end
 
+"""
+Calculates the virulence across the population (weighted for noise reduction)
+    :returns: vector of virulence values through time
+"""
 function calculate_average_virulence()
-    """
-    Calculates the virulence across the population (weighted for noise reduction)
-        :returns: vector of virulence values through time
-    """
     return sum(Np[:, 2:end] .* r1'; dims=2) ./ sum(Np[:, 2:end]; dims=2)
 end
 
+"""
+Calculates the evenness of an Vector (shoutout to Pielou)
+    :param n: vector
+    :returns: evenness values through time
+"""
 function calculate_evenness(n)
-    """
-    Calculates the evenness of an Vector (shoutout to Pielou)
-        :param n: vector
-        :returns: evenness values through time
-    """
     np = filter(x -> x > eps(), n)
     p = np ./ sum(np)
     ev = length(p) == 1 ? 0.0 : -sum(p .* log.(p)) * (1 / log(length(p)))
@@ -114,18 +114,18 @@ function calculate_evenness(n)
 end
 
 # Plotting functions #########################################################
+"""
+Plots the numbers of individuals from each strain, comparing infected
+and uninfected hosts as well as the total number of parasites.
+    :param labels: vector of labels for each host
+    :param plot_title: string of plot title
+    :param png_path: path (as str) to write a PNG version of the plot
+"""
 function plot_population_numbers(
     labels::Array{String},
     plot_title::String,
     png_path::String
 )
-    """
-    Plots the numbers of individuals from each strain, comparing infected
-    and uninfected hosts as well as the total number of parasites.
-        :param labels: vector of labels for each host
-        :param plot_title: string of plot title
-        :param png_path: path (as str) to write a PNG version of the plot
-    """
     # plot the number of infected hosts
     plot(
         Np[:, 2:end];
@@ -155,11 +155,11 @@ function plot_population_numbers(
     png(png_path)
 end
 
+"""
+Plots mortality data with regards to time.
+    :param png_path: path (as str) to write a PNG version of the plot
+"""
 function plot_mortality(png_path::String)
-    """
-    Plots mortality data with regards to time.
-        :param png_path: path (as str) to write a PNG version of the plot
-    """
     plot(
         ui_w_avg;
         c=:black,
@@ -174,12 +174,12 @@ function plot_mortality(png_path::String)
     png(png_path)
 end
 
+"""
+Plots the average reproductive rate (R0) with regards to time.
+    :param upper_y_limit: upper limit for the y-axis
+    :param png_path: path (as str) to write a PNG version of the plot
+"""
 function plot_reproductive_rate(upper_y_limit::Int, png_path::String)
-    """
-    Plots the average reproductive rate (R0) with regards to time.
-        :param upper_y_limit: upper limit for the y-axis
-        :param png_path: path (as str) to write a PNG version of the plot
-    """
     plot(
         H0_w + V0_w;
         c=:black,
@@ -194,11 +194,11 @@ function plot_reproductive_rate(upper_y_limit::Int, png_path::String)
     png(png_path)
 end
 
+"""
+Plots the vertical basic reproductive ratio (V0) with regards to time.
+    :param png_path: path (as str) to write a PNG version of the plot
+"""
 function plot_vertical_reproductive_ratio(png_path::String)
-    """
-    Plots the vertical basic reproductive ratio (V0) with regards to time.
-        :param png_path: path (as str) to write a PNG version of the plot
-    """
     plot(
         V0_w;
         c=:black,
@@ -213,11 +213,11 @@ function plot_vertical_reproductive_ratio(png_path::String)
     png(png_path)
 end
 
+"""
+Plots average horizontal transmission and virulence with regards to time.
+    :param png_path: path (as str) to write a PNG version of the plot
+"""
 function plot_horizontal_and_virulence(png_path::String)
-    """
-    Plots average horizontal transmission and virulence with regards to time.
-        :param png_path: path (as str) to write a PNG version of the plot
-    """
     # plot the horizontal transmission
     plot(
         βy_data;
@@ -239,12 +239,12 @@ function plot_horizontal_and_virulence(png_path::String)
     png(png_path)
 end
 
+"""
+Calculates population evenness through its matrix.
+Plots evenness data with regards to time.
+    :param png_path: path (as str) to write a PNG version of the plot
+"""
 function plot_evenness(png_path::String)
-    """
-    Calculates population evenness through its matrix.
-    Plots evenness data with regards to time.
-        :param png_path: path (as str) to write a PNG version of the plot
-    """
     # calculate the evenness through time
     evenness_data = mapslices(
         calculate_evenness,
