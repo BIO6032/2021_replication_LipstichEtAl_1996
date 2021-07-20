@@ -24,3 +24,4 @@ windowstart = 0.0;
 windowsize = 1000.0;
 windowend = windowstart + windowsize;
 N = zeros(Float64, (n_parasites + 1, (n_parasites - 1) * Int(windowsize) + 1));
+figure_directory = "Figure1" # output folder for subplots of Figure 1
