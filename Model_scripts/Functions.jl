@@ -55,7 +55,7 @@ function run_simulation()
 end
 
 function calculate_mortality(
-    population_matrix::Array{Float64},
+    population_matrix::Matrix{Float64},
     ui::Array{Float64}
 )
     """
@@ -69,7 +69,7 @@ function calculate_mortality(
 end
 
 function calculate_horizontal_transmission(
-    population_matrix::Array{Float64},
+    population_matrix::Matrix{Float64},
     βy::Array{Float64}
 )
     """
@@ -106,7 +106,7 @@ function calculate_H0(
 end
 
 function calculate_V0(
-    population_matrix::Array{Float64},
+    population_matrix::Matrix{Float64},
     bi::Array{Float64},
     bx::Float64,
     ux::Float64,
@@ -128,7 +128,7 @@ function calculate_V0(
 end
 
 function calculate_average_virulence(
-    population_matrix::Array{Float64},
+    population_matrix::Matrix{Float64},
     r1::Array{Float64},
 )
     """
@@ -155,7 +155,7 @@ end
 
 # Plotting functions #########################################################
 function plot_population_numbers(
-    population_matrix::Array{Float64},
+    population_matrix::Matrix{Float64},
     labels::Array{String},
     plot_title::String,
     png_path::String
@@ -301,7 +301,7 @@ function plot_horizontal_and_virulence(
 end
 
 function plot_evenness(
-    population_matrix::Array{Float64},
+    population_matrix::Matrix{Float64},
     png_path::String
 )
     """
