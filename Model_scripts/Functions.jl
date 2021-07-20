@@ -220,7 +220,7 @@ Plots average horizontal transmission and virulence with regards to time.
 function plot_horizontal_and_virulence(png_path::String)
     # plot the horizontal transmission
     plot(
-        βy_data;
+        βy_w_avg;
         c=:black,
         title="Virulence and beta",
         label="Beta",
