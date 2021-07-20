@@ -115,7 +115,7 @@ end
 
 # Plotting functions #########################################################
 function plot_population_numbers(
-    labels::Vector{String},
+    labels::Array{String},
     plot_title::String,
     png_path::String
 )
