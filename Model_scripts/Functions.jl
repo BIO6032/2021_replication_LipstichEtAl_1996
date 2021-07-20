@@ -54,97 +54,57 @@ function run_simulation()
     end
 end
 
-function calculate_mortality(
-    population_matrix::Matrix{Float64},
-    ui::Array{Float64}
-)
+function calculate_mortality()
     """
     Calculates the average mortality across the population
     (weighted for noise reduction)
-        :param population_matrix: MxN abundance matrix of M hosts over N steps
-        :param ui: array of mortality rate of infected hosts
-        :returns: array of mortality values through time
+        :returns: vector of mortality values through time
     """
-    return sum(population_matrix[:, 2:end] .* ui'; dims=2) ./ sum(population_matrix[:, 2:end]; dims=2);
+    return sum(Np[:, 2:end] .* ui'; dims=2) ./ sum(Np[:, 2:end]; dims=2);
 end
 
-function calculate_horizontal_transmission(
-    population_matrix::Matrix{Float64},
-    βy::Array{Float64}
-)
+function calculate_horizontal_transmission()
     """
     Calculates the average horizontal transmission (βy) across the population
     (weighted for noise reduction)
-        :param population_matrix: MxN abundance matrix of M hosts over N steps
-        :param βy: array of horizontal transmission rates of infected hosts
-        :returns: array of βy values through time
+        :returns: vector of βy values through time
     """
-    return sum(population_matrix[:, 2:end] .* βy'; dims=2) ./ sum(population_matrix[:, 2:end]; dims=2);
+    return sum(Np[:, 2:end] .* βy'; dims=2) ./ sum(Np[:, 2:end]; dims=2);
 end
 
-function calculate_H0(
-    c::Float64,
-    βy_w_avg::Array{Float64},
-    ui_w_avg::Array{Float64},
-    ux::Float64,
-    bx::Float64,
-)
+function calculate_H0()
     """
     Calculates the average the number of new horizontally-acquired cases from a
     single infected host before the primary host dies (H0) across the population
     (weighted for noise reduction)
-        :param c: host contact rate
-        :param βy_w_avg: array of weighted average horizontal transmission rates
-        :param ui_w_avg: array of weighted average mortality
-        :param ux: mortality rate of uninfected hosts
-        :param bx: birth rate of uninfected hosts
-
-        :returns: array of H0 values through time
+        :returns: vector of H0 values through time
     """
     k = 1
     return c * βy_w_avg ./ ui_w_avg .* k .* (1 - ux / bx);
 end
 
-function calculate_V0(
-    population_matrix::Matrix{Float64},
-    bi::Array{Float64},
-    bx::Float64,
-    ux::Float64,
-    ui_w_avg::Array{Float64},
-)
+function calculate_V0()
     """
     Calculates the vertical basic reproductive ratio (V0) across the population
     (weighted for noise reduction)
-        :param population_matrix: MxN abundance matrix of M hosts over N steps
-        :param bi: per capita birth rate of offspring infected with strain i
-        :param bx: birth rate of uninfected hosts
-        :param ux: mortality rate of uninfected hosts
-        :param ui_w_avg: array of weighted average mortality
-
-        :returns: array of H0 values through time
+        :returns: vector of H0 values through time
     """
-    bi_avg = sum(population_matrix[:, 2:end] .* bi'; dims=2) ./ sum(population_matrix[:, 2:end]; dims=2);
+    bi_avg = sum(Np[:, 2:end] .* bi'; dims=2) ./ sum(Np[:, 2:end]; dims=2);
     return bi_avg .* ux ./ (bx * ui_w_avg)
 end
 
-function calculate_average_virulence(
-    population_matrix::Matrix{Float64},
-    r1::Array{Float64},
-)
+function calculate_average_virulence()
     """
     Calculates the virulence across the population (weighted for noise reduction)
-        :param population_matrix: MxN abundance matrix of M hosts over N steps
-        :param r1: virulence of the strain
-
-        :returns: array of virulence values through time
+        :returns: vector of virulence values through time
     """
     return sum(Np[:, 2:end] .* r1'; dims=2) ./ sum(Np[:, 2:end]; dims=2)
 end
 
 function calculate_evenness(n)
     """
-    Calculates the evenness of an array (shoutout to Pielou)
-        :param n: array
+    Calculates the evenness of an Vector (shoutout to Pielou)
+        :param n: vector
         :returns: evenness values through time
     """
     np = filter(x -> x > eps(), n)
@@ -155,22 +115,20 @@ end
 
 # Plotting functions #########################################################
 function plot_population_numbers(
-    population_matrix::Matrix{Float64},
-    labels::Array{String},
+    labels::Vector{String},
     plot_title::String,
     png_path::String
 )
     """
     Plots the numbers of individuals from each strain, comparing infected
     and uninfected hosts as well as the total number of parasites.
-        :param population_matrix: MxN abundance matrix of M hosts over N steps
-        :param labels: array of labels for each host
+        :param labels: vector of labels for each host
         :param plot_title: string of plot title
         :param png_path: path (as str) to write a PNG version of the plot
     """
     # plot the number of infected hosts
     plot(
-        population_matrix[:, 2:end];
+        Np[:, 2:end];
         c=:blue,
         lw=1.5,
         alpha=0.4,
@@ -182,14 +140,14 @@ function plot_population_numbers(
     )
     # add the number of uninfected hosts
     plot!(
-        population_matrix[:, 1];
+        Np[:, 1];
         c=:black,
         lw=1.5,
         label="Uninfected"
     )
     # add the total number of parasites
     plot!(
-        sum(population_matrix[:, 2:end]; dims=2);
+        sum(Np[:, 2:end]; dims=2);
         c=:red,
         label="Total parasites"
     )
@@ -198,16 +156,14 @@ function plot_population_numbers(
 end
 
 function plot_mortality(
-    data::Array{Float64},
     png_path::String
 )
     """
     Plots mortality data with regards to time.
-        :param data: array of average mortality data through time
         :param png_path: path (as str) to write a PNG version of the plot
     """
     plot(
-        data;
+        ui_w_avg;
         c=:black,
         lw=1.5,
         title="Average mortality in the population",
@@ -221,18 +177,16 @@ function plot_mortality(
 end
 
 function plot_reproductive_rate(
-    data::Array{Float64},
     upper_y_limit::Int,
     png_path::String
 )
     """
     Plots the average reproductive rate (R0) with regards to time.
-        :param data: array of average R0 data through time
         :param upper_y_limit: upper limit for the y-axis
         :param png_path: path (as str) to write a PNG version of the plot
     """
     plot(
-        data;
+        H0_w + V0_w;
         c=:black,
         lw=1.5,
         title="Average R0 in the population",
@@ -246,16 +200,14 @@ function plot_reproductive_rate(
 end
 
 function plot_vertical_reproductive_ratio(
-    data::Array{Float64},
     png_path::String
 )
     """
     Plots the vertical basic reproductive ratio (V0) with regards to time.
-        :param data: array of average V0 data through time
         :param png_path: path (as str) to write a PNG version of the plot
     """
     plot(
-        data;
+        V0_w;
         c=:black,
         lw=1.5,
         title="Average vertical cases in the population",
@@ -269,14 +221,10 @@ function plot_vertical_reproductive_ratio(
 end
 
 function plot_horizontal_and_virulence(
-    βy_data::Array{Float64},
-    vir_data::Array{Float64},
     png_path::String
 )
     """
     Plots average horizontal transmission and virulence with regards to time.
-        :param βy_data: array of horizontal transmission data through time
-        :param vir_data: array of virulence data through time
         :param png_path: path (as str) to write a PNG version of the plot
     """
     # plot the horizontal transmission
@@ -301,25 +249,23 @@ function plot_horizontal_and_virulence(
 end
 
 function plot_evenness(
-    population_matrix::Matrix{Float64},
     png_path::String
 )
     """
     Calculates population evenness through its matrix.
     Plots evenness data with regards to time.
-        :param population_matrix: MxN abundance matrix of M hosts over N steps
         :param png_path: path (as str) to write a PNG version of the plot
     """
     # calculate the evenness through time
     evenness_data = mapslices(
         calculate_evenness,
-        population_matrix[:, 2:end];
+        Np[:, 2:end];
         dims=2
     );
 
     # plots the evenness data
     plot(
-        data,
+        evenness_data,
         c=:black,
         lw=0.5,
         title="Evenness",

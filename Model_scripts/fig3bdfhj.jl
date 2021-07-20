@@ -10,41 +10,29 @@ Np = N';
 # plot the number of infected/uninfected hosts
 labels = vcat("Infected", ["" for i in 1:1:n_parasites]);
 plot_population_numbers(
-    population_matrix=Np,
-    labels=hcat(labels...),
-    plot_title="c=4.0\n \nNumber of infected and uninfected hosts",
-    png_path="$figure_directory/graph_3b.png"
+    hcat(labels...),
+    "c=4.0\n \nNumber of infected and uninfected hosts",
+    "$figure_directory/graph_3b.png"
 )
 ########### Figure 3d ###########
 # calculate the weighted average mortality
-ui_w_avg = calculate_mortality(population_matrix=Np, ui=ui)
+ui_w_avg = calculate_mortality()
 # calculate the weighted average β
-βy_w_avg = calculate_horizontal_transmission(population_matrix=Np, βy=βy)
+βy_w_avg = calculate_horizontal_transmission()
 # calculated the weighted H0
-H0_w = calculate_H0(c=c, βy_w_avg=βy_w_avg, ui_w_avg=ui_w_avg, ux=ux, bx=bx)
+H0_w = calculate_H0()
 # calculate the weighted V0
-V0_w = calculate_V0(population_matrix=Np, bi=bi, bx=bx, ux=ux, ui_w_avg=ui_w_avg)
+V0_w = calculate_V0()
 # plot the average weighted R0
-plot_reproductive_rate(
-    data=H0_w + V0_w,
-    upper_y_limit=5,
-    png_path="$figure_directory/graph_3d.png"
-)
+plot_reproductive_rate(5, "$figure_directory/graph_3d.png")
 ########### Figure 3f ###########
 # plot the average V0
-plot_vertical_reproductive_ratio(
-    data=V0_w,
-    png_path="$figure_directory/graph_3f.png"
-)
+plot_vertical_reproductive_ratio("$figure_directory/graph_3f.png")
 ########### Figure 3h ###########
 # calculate the average virulence
-vir_w_avg = calculate_average_virulence(population_matrix=Np, r1=r1)
+vir_w_avg = calculate_average_virulence()
 # plot the average horizontal transmission & weighted virulence
-plot_horizontal_and_virulence(
-    βy_data=βy_w_avg,
-    vir_data=vir_w_avg,
-    png_path="$figure_directory/graph_3h.png"
-)
+plot_horizontal_and_virulence("$figure_directory/graph_3h.png")
 ########### Figure 3j ###########
 # calculate & plot the population evenness through time
-plot_evenness(data=Np, png_path="$figure_directory/graph_3j.png")
+plot_evenness("$figure_directory/graph_3j.png")
