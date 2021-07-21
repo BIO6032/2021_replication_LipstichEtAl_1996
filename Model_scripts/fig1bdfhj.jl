@@ -12,13 +12,15 @@ labels = vcat("Infected", ["" for i in 1:1:n_parasites]);
 plot_population_numbers(
     hcat(labels...),
     "by=1.0\n \nNumber of infected and uninfected hosts",
+    100,
+    size(Np)[1],
     "$figure_directory/graph_1b.png"
 )
 ########### Figure 1h ###########
 # calculate the weighted average mortality
 ui_w_avg = calculate_mortality()
 # plot the weighted average mortality rate through time
-plot_mortality("$figure_directory/graph_1h.png")
+plot_mortality(1, size(Np)[1], "$figure_directory/graph_1h.png")
 ########### Figure 1f ###########
 # calculate the weighted average β
 βy_w_avg = calculate_horizontal_transmission()
@@ -27,10 +29,10 @@ H0_w = calculate_H0()
 # calculate weighted V0
 V0_w = calculate_V0()
 # plot the average weighted V0
-plot_vertical_reproductive_ratio("$figure_directory/graph_1f.png")
+plot_vertical_reproductive_ratio(1, size(Np)[1], "$figure_directory/graph_1f.png")
 ########### Figure 1d ###########
 # plot the average weighted R0
-plot_reproductive_rate(6, "$figure_directory/graph_1d.png")
+plot_reproductive_rate(6, size(Np)[1], "$figure_directory/graph_1d.png")
 ########### Figure 1j ###########
 # calculate & plot the population evenness through time
-plot_evenness("$figure_directory/graph_1j.png")
+plot_evenness(1, size(Np)[1], "$figure_directory/graph_1j.png")

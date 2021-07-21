@@ -119,11 +119,15 @@ Plots the numbers of individuals from each strain, comparing infected
 and uninfected hosts as well as the total number of parasites.
     :param labels: vector of labels for each host
     :param plot_title: string of plot title
+    :param upper_y_limit: upper limit for the y-axis
+    :param upper_x_limit: upper limit for the x-axis
     :param png_path: path (as str) to write a PNG version of the plot
 """
 function plot_population_numbers(
     labels::Array{String},
     plot_title::String,
+    upper_y_limit::Int,
+    upper_x_limit::Int,
     png_path::String
 )
     # plot the number of infected hosts
@@ -136,7 +140,8 @@ function plot_population_numbers(
         xlabel="Time",
         ylabel="Number of individuals",
         label=labels,
-        ylims=(0, 100),
+        ylims=(0, upper_y_limit),
+        xlims=(0, upper_x_limit),
     )
     # add the number of uninfected hosts
     plot!(
@@ -157,9 +162,15 @@ end
 
 """
 Plots mortality data with regards to time.
+    :param upper_y_limit: upper limit for the y-axis
+    :param upper_x_limit: upper limit for the x-axis
     :param png_path: path (as str) to write a PNG version of the plot
 """
-function plot_mortality(png_path::String)
+function plot_mortality(
+    upper_y_limit::Int,
+    upper_x_limit::Int,
+    png_path::String
+)
     plot(
         ui_w_avg;
         c=:black,
@@ -168,7 +179,8 @@ function plot_mortality(png_path::String)
         xlabel="Time",
         ylabel="Mean mortality (ui)",
         leg=false,
-        ylims=(0, 1),
+        ylims=(0, upper_y_limit),
+        xlims=(0, upper_x_limit)
     )
     # save figure as a PNG
     png(png_path)
@@ -177,9 +189,14 @@ end
 """
 Plots the average reproductive rate (R0) with regards to time.
     :param upper_y_limit: upper limit for the y-axis
+    :param upper_x_limit: upper limit for the x-axis
     :param png_path: path (as str) to write a PNG version of the plot
 """
-function plot_reproductive_rate(upper_y_limit::Int, png_path::String)
+function plot_reproductive_rate(
+    upper_y_limit::Int,
+    upper_x_limit::Int,
+    png_path::String
+)
     plot(
         H0_w + V0_w;
         c=:black,
@@ -189,6 +206,7 @@ function plot_reproductive_rate(upper_y_limit::Int, png_path::String)
         ylabel="Mean R0",
         leg=false,
         ylims=(0, upper_y_limit),
+        xlims=(0, upper_x_limit),
     )
     # save figure as a PNG
     png(png_path)
@@ -196,9 +214,15 @@ end
 
 """
 Plots the vertical basic reproductive ratio (V0) with regards to time.
+    :param upper_y_limit: upper limit for the y-axis
+    :param upper_x_limit: upper limit for the x-axis
     :param png_path: path (as str) to write a PNG version of the plot
 """
-function plot_vertical_reproductive_ratio(png_path::String)
+function plot_vertical_reproductive_ratio(
+    upper_y_limit::Int,
+    upper_x_limit::Int,
+    png_path::String
+)
     plot(
         V0_w;
         c=:black,
@@ -207,7 +231,8 @@ function plot_vertical_reproductive_ratio(png_path::String)
         xlabel="Time",
         ylabel="Mean V0",
         leg=false,
-        ylims=(0, 1),
+        ylims=(0, upper_y_limit),
+        xlim=(0, upper_x_limit)
     )
     # save figure as a PNG
     png(png_path)
@@ -215,9 +240,15 @@ end
 
 """
 Plots average horizontal transmission and virulence with regards to time.
+    :param upper_y_limit: upper limit for the y-axis
+    :param upper_x_limit: upper limit for the x-axis
     :param png_path: path (as str) to write a PNG version of the plot
 """
-function plot_horizontal_and_virulence(png_path::String)
+function plot_horizontal_and_virulence(
+    upper_y_limit::Int,
+    upper_x_limit::Int,
+    png_path::String
+)
     # plot the horizontal transmission
     plot(
         βy_w_avg;
@@ -226,7 +257,8 @@ function plot_horizontal_and_virulence(png_path::String)
         label="Beta",
         xlabel="Time",
         ylabel="Mean virulence & \n Mean Beta",
-        ylims=(0, 1),
+        ylims=(0, upper_y_limit),
+        xlims=(0, upper_x_limit),
     )
     # add virulence to the plot
     plot!(
@@ -242,9 +274,15 @@ end
 """
 Calculates population evenness through its matrix.
 Plots evenness data with regards to time.
+    :param upper_y_limit: upper limit for the y-axis
+    :param upper_x_limit: upper limit for the x-axis
     :param png_path: path (as str) to write a PNG version of the plot
 """
-function plot_evenness(png_path::String)
+function plot_evenness(
+    upper_y_limit::Int,
+    upper_x_limit::Int,
+    png_path::String
+)
     # calculate the evenness through time
     evenness_data = mapslices(
         calculate_evenness,
@@ -262,7 +300,8 @@ function plot_evenness(png_path::String)
         ylabel="Relative abundance (log)",
         label=false,
         leg=false,
-        ylims=(0,1)
+        ylims=(0, upper_y_limit),
+        xlims=(0, upper_x_limit)
     )
     # save figure as a PNG
     png(png_path)

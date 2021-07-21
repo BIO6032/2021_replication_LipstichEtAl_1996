@@ -1,78 +1,18 @@
-# plot first 6,000 time steps
-# plot the number of infected hosts
-plot(
-    Np[:, 2:end];
-    c=:blue,
-    lw=1.5,
-    alpha=0.4,
-    title="c=4.0\n \nNumber of infected and uninfected hosts",
-    xlabel="Time",
-    ylabel="Number of individuals",
-    label=labels2,
-    ylims=(0, 100),
-    xlims=(0, 6e3)
+# plot first 6,000 time steps (before stabilization)
+include("../Model_scripts/Functions.jl");
+# plot the number of infected & uninfected hosts
+plot_population_numbers(
+    hcat(labels...),
+    "c=4.0\n \nNumber of infected and uninfected hosts",
+    5,
+    6000,
+    "$figure_directory/supplemental/supp_3b.png"
 )
-# add the number of uninfected hosts
-plot!(Np[:, 1]; c=:black, lw=1.5, label="Uninfected")
-# add total number of parasites
-plot!(sum(Np[:, 2:end]; dims=2); c=:red, label="Total parasites")
-# save figure as a PNG
-png("Figure3/supplemental/supp_3b.png")
 # plot the average weighted R0
-plot(
-    R0_w;
-    c=:black,
-    lw=1.5,
-    title="Average R0 in the population",
-    xlabel="Time",
-    ylabel="Mean R0",
-    leg=false,
-    ylims=(0, 5),
-    xlims=(0, 6e3)
-)
-# save figure as a PNG
-png("Figure3/supplemental/supp_3d.png")
+plot_reproductive_rate(5, 6000, "$figure_directory/supplemental/supp_3d.png")
 # plot the average V0
-plot(
-    V0_w;
-    c=:black,
-    lw=1.5,
-    title="Average V0 in the population",
-    xlabel="Time",
-    ylabel="Mean V0",
-    leg=false,
-    ylims=(0.0, 1.0),
-    xlims=(0, 6e3)
-)
-# save figure as a PNG
-png("Figure3/supplemental/supp_3f.png")
+plot_vertical_reproductive_ratio(1, 6000, "$figure_directory/supplemental/supp_3f.png")
 # plot the average horizontal transmission
-plot(
-    βy_w_avg;
-    c=:black,
-    title="Virulence and beta",
-    label="Beta",
-    xlabel="Time",
-    ylabel="Mean virulence & \n Mean Beta",
-    ylims=(0, 1),
-    xlims=(0, 6e3)
-)
-# add the average weighted virulence to the plot
-plot!(vir_w_avg; c=:blue, lw=1.5, label="Virulence")
-# save figure as a PNG
-png("Figure3/supplemental/supp_3h.png")
+plot_horizontal_and_virulence(1, 6000, "$figure_directory/supplemental/supp_3h.png")
 # plot the evenness through time
-plot(
-    evenness_data;
-    c=:black,
-    lw=0.5,
-    title="Evenness",
-    xlabel="Time",
-    ylabel="Relative abundance (log)",
-    label=false,
-    leg=false,
-    ylims=(0, 1),
-    xlims=(0, 6.1e3)
-)
-# save figure as a PNG
-png("Figure3/supplemental/supp_3j.png")
+plot_evenness(1, 6100, "$figure_directory/supplemental/supp_3j.png")
