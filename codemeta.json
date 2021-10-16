@@ -1,0 +1,74 @@
+{
+    "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+    "@type": "SoftwareSourceCode",
+    "codeRepository": "https://github.com/BIO6032/2021_replication_LipstichEtAl_1996",
+    "dateCreated": "2019-03-01",
+    "datePublished": "2021-04-23",
+    "dateModified": "2021-04-23",
+    "name": "[Re] The Evolution of Virulence in Pathogens with Vertical and Horizontal Transmission",
+    "version": "1.0.0",
+    "description": "This project is a Julia 1.6.0 replication of Lipsitch et al (1996), a paper in evolutionary modelling that challenged notions on the dynamics of viral transmission.",
+    "programmingLanguage": [
+        "Julia"
+    ],
+    "operatingSystem": [
+        "macOS"
+    ],
+    "author": [
+        {
+            "@type": "Person",
+            "@id": "http://orcid.org/0000-0002-3559-8239",
+            "givenName": "Fares",
+            "familyName": "Dhane",
+            "email": "fares.dhane@umontreal.ca",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "Département de Sciences Biologiques, Université de Montréal"
+            }
+        },
+        {
+            "@type": "Person",
+            "@id": "http://orcid.org/0000-0003-0885-3414",
+            "givenName": "Sandrine",
+            "familyName": "Soeharjono",
+            "email": "sandrine.soeharjono@umontreal.ca",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "Département de Sciences Biologiques, Université de Montréal"
+            }
+        },
+        {
+            "@type": "Person",
+            "@id": "http://orcid.org/0000-0002-5720-2581",
+            "givenName": "Kiri",
+            "familyName": "Stern",
+            "email": "kiri.stern@umontreal.ca",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "Département de Sciences Biologiques, Université de Montréal"
+            }
+        },
+        {
+            "@type": "Person",
+            "@id": "http://orcid.org/0000-0003-1162-169X",
+            "givenName": "Andrew",
+            "familyName": "MacDonald",
+            "email": "andrew.macdonald@umontreal.ca",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "Département de Biologie, Université de Sherbrooke"
+            }
+        },
+        {
+            "@type": "Person",
+            "@id": "http://orcid.org/0000-0002-0735-5184",
+            "givenName": "Timothée",
+            "familyName": "Poisot",
+            "email": "timothee.poisot@umontreal.ca",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "Département de Sciences Biologiques, Université de Montréal"
+            }
+        }
+    ]
+}
