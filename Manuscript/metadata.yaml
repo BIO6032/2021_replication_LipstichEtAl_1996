@@ -30,6 +30,11 @@ authors:
     email: andrew.macdonald@umontreal.ca
     affiliations: 1,*        # * is for contact author
 
+  - name: Timothée Poisot
+    orcid: 0000-0002-0735-5184
+    email: timothee.poisot@umontreal.ca
+    affiliations: 1
+
 # List of affiliations with code (corresponding to author affiliations), name
 # and address. You can also use these affiliations to add text such as "Equal
 # contributions" as name (with no address).
