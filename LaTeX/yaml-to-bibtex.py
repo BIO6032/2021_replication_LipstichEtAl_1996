@@ -45,7 +45,7 @@ if __name__ == '__main__':
     filename_out = args.filename_out
 
     # print("Generating bibtex entry ({1}) from {0}".format(filename_in, filename_out))
-    
+
     with open(filename_in, "r") as file:
         article = Article(file.read())
 
@@ -58,4 +58,3 @@ if __name__ == '__main__':
             print(content)
     else:
         print("Error! No author found.")
-

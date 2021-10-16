@@ -32,7 +32,7 @@
   \ifdefempty{\reviewerIINAME}{\textcolor{darkgray}{(Reviewer 2)}}
              {\reviewerIINAME\ifdefempty{\reviewerIIORCID}{}{$^{\orcid{\editorORCID}}$}}\\
   ~\\
-  %%           
+  %%
   \textbf{Received}\\
   \ifdefempty{\dateRECEIVED}{---}{\dateRECEIVED}\\
   ~\\
@@ -44,7 +44,7 @@
   \textbf{DOI}\\
   \ifdefempty{\articleDOI}{---}{\articleDOI}
 }
- 
+
 
 %% --- Bottom statement -------------------------------------------------------
 \newcommand{\container}[1]{\def\@container{#1}}
@@ -55,10 +55,10 @@
       \hrule \vskip .5em
       Copyright © \articleYEAR~\authorsABBRV,
       released under a Creative Commons Attribution 4.0 International license.
-      
+
       Correspondence should be addressed to
       \contactNAME~(\href{mailto:\contactEMAIL}{\contactEMAIL})
-  
+
       The authors have declared that no competing interests exists.
 
       \ifdefempty{\codeURL}{}
@@ -76,23 +76,16 @@
 \end{container}
 
 
-\newcommand{\mysubscript}[1]{\raisebox{-0.34ex}{\scriptsize#1}}
-
 %% --- Abstract ---------------------------------------------------------------
- \ifdefempty{\articleABSTRACT}{}{
- {\small \sffamily \textbf{Abstract} \articleABSTRACT \par}
- }
+%% \ifdefempty{\articleABSTRACT}{}{
+%%   {\small \sffamily \textbf{Abstract} \articleABSTRACT \par}
+%% }
 
 
 %% --- Replication ------------------------------------------------------------
-\ifdefempty{\replicationCITE}{}{
+\ifdefempty{\replicationBIB}{}{
   {\small \sffamily \bfseries A replication of}
   \ifdefempty{\replicationURL}
-       {\href{http://doi.org/\replicationDOI}{\small \sffamily \replicationCITE}}
-       {\href{\replicationURL}{\small \sffamily \replicationCITE}}.
+       {\href{http://doi.org/\replicationDOI}{\small \sffamily \replicationBIB}}
+       {\href{\replicationURL}{\small \sffamily \replicationBIB}}.
 \par }
-
-%% --- Keywords -----
-\ifdefempty{\articleKEYWORDS}{}{
- {\small \sffamily \textbf{Keywords} \articleKEYWORDS \par}
- }

@@ -41,7 +41,7 @@ def generate_README(article):
         "{_.contact.name} ([{_.contact.email}](mailto:{_.contact.email}))  \n"
         "**Competing Interests**: The authors have declared that no competing interests exist\n"
         "".format(_=article))
-                
+
     return content
 
 
@@ -62,7 +62,7 @@ if __name__ == '__main__':
     filename_out = args.filename_out
 
     # print("Generating markdown README ({1}) from {0}".format(filename_in, filename_out))
-    
+
     with open(filename_in, "r") as file:
         article = Article(file.read())
 
