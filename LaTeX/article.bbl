@@ -1,0 +1,420 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{Ebert:2013}{article}{}
+      \name{author}{1}{}{%
+        {{hash=68f5266c52ea6918791b04d9f4e3b02e}{%
+           family={Ebert},
+           familyi={E\bibinitperiod},
+           given={Dieter},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{68f5266c52ea6918791b04d9f4e3b02e}
+      \strng{fullhash}{68f5266c52ea6918791b04d9f4e3b02e}
+      \strng{bibnamehash}{68f5266c52ea6918791b04d9f4e3b02e}
+      \strng{authorbibnamehash}{68f5266c52ea6918791b04d9f4e3b02e}
+      \strng{authornamehash}{68f5266c52ea6918791b04d9f4e3b02e}
+      \strng{authorfullhash}{68f5266c52ea6918791b04d9f4e3b02e}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Vertical and horizontal transmission are terms that describe the transfer of symbionts from parents to offspring and among unrelated hosts, respectively. Many symbionts, including parasites, pathogens, mutualists, and microbiota, use a combination of both strategies, known as mixed-mode transmission (MMT). Here I review what is known about the evolution, ecology, and epidemiology of symbionts with MMT and compare MMT with our expectations for single-mode strategies. Symbionts with MMT are common and, in comparison with single-mode symbionts, show many surprising features. MMT combines the best of two worlds with regard to the ecological conditions required for persistence and plays a role in the evolution of virulence and genome architecture. Even rare transmission by the minority type of these two transmission modes can make a big difference for the system. This review explores the conceptual issues surrounding the dynamics of mixed-mode symbionts by reviewing literature from the entire range of host and symbiont taxa.}
+      \field{journaltitle}{Annual Review of Ecology, Evolution, and Systematics}
+      \field{number}{1}
+      \field{title}{The Epidemiology and Evolution of Symbionts with Mixed-Mode Transmission}
+      \field{volume}{44}
+      \field{year}{2013}
+      \field{pages}{623\bibrangedash 643}
+      \range{pages}{21}
+      \verb{doi}
+      \verb 10.1146/annurev-ecolsys-032513-100555
+      \endverb
+      \verb{eprint}
+      \verb https://doi.org/10.1146/annurev-ecolsys-032513-100555
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1146/annurev-ecolsys-032513-100555
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1146/annurev-ecolsys-032513-100555
+      \endverb
+    \endentry
+    \entry{CHEN2006}{article}{}
+      \name{author}{3}{}{%
+        {{hash=076ee07409999fa05e18a6b66edfd4ea}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Yanping},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=45027869f20ee64efab58247d75d8e52}{%
+           family={Evans},
+           familyi={E\bibinitperiod},
+           given={Jay},
+           giveni={J\bibinitperiod}}}%
+        {{hash=c2cfade9772a97a0788562c8f1e33292}{%
+           family={Feldlaufer},
+           familyi={F\bibinitperiod},
+           given={Mark},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{ff90287de813921fcee7ab42bb73c3f1}
+      \strng{fullhash}{ff90287de813921fcee7ab42bb73c3f1}
+      \strng{bibnamehash}{ff90287de813921fcee7ab42bb73c3f1}
+      \strng{authorbibnamehash}{ff90287de813921fcee7ab42bb73c3f1}
+      \strng{authornamehash}{ff90287de813921fcee7ab42bb73c3f1}
+      \strng{authorfullhash}{ff90287de813921fcee7ab42bb73c3f1}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The most crucial stage in the dynamics of virus infections is the mode of virus transmission. In general, transmission of viruses can occur through two pathways: horizontal and vertical transmission. In horizontal transmission, viruses are transmitted among individuals of the same generation, while vertical transmission occurs from mothers to their offspring. Because of its highly organized social structure and crowded population density, the honey bee colony represents a risky environment for the spread of disease infection. Like other plant and animal viruses, bee viruses use different survival strategies, including utilization of both horizontal and vertical routes, to transmit and maintain levels in a host population. In this review, we explore the current knowledge about the honey bee viruses and transmission routes of bee viruses. In addition, different transmission strategies on the persistence and dynamics of host–pathogen interactions are also discussed.}
+      \field{issn}{0022-2011}
+      \field{journaltitle}{Journal of Invertebrate Pathology}
+      \field{note}{Society of Invertebrate Pathology 2006 Special Issue}
+      \field{number}{3}
+      \field{title}{Horizontal and vertical transmission of viruses in the honey bee, Apis mellifera}
+      \field{volume}{92}
+      \field{year}{2006}
+      \field{pages}{152\bibrangedash 159}
+      \range{pages}{8}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.jip.2006.03.010
+      \endverb
+      \verb{urlraw}
+      \verb http://www.sciencedirect.com/science/article/pii/S0022201106000814
+      \endverb
+      \verb{url}
+      \verb http://www.sciencedirect.com/science/article/pii/S0022201106000814
+      \endverb
+      \keyw{Viruses,Varroa mite,Horizontal transmission,Vertical transmission}
+    \endentry
+    \entry{Clayton:1994}{article}{}
+      \name{author}{2}{}{%
+        {{hash=71a6f72ed7c7bd7d2a124302ccb1f917}{%
+           family={Clayton},
+           familyi={C\bibinitperiod},
+           given={Dale\bibnamedelima H.},
+           giveni={D\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=7823989694287651cbd37f8d3696958b}{%
+           family={Tompkins},
+           familyi={T\bibinitperiod},
+           given={Daniel\bibnamedelima M.},
+           giveni={D\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{0637101d38565bdb6becb6cb53dd9f32}
+      \strng{fullhash}{0637101d38565bdb6becb6cb53dd9f32}
+      \strng{bibnamehash}{0637101d38565bdb6becb6cb53dd9f32}
+      \strng{authorbibnamehash}{0637101d38565bdb6becb6cb53dd9f32}
+      \strng{authornamehash}{0637101d38565bdb6becb6cb53dd9f32}
+      \strng{authorfullhash}{0637101d38565bdb6becb6cb53dd9f32}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Theory suggests that the evolution of parasite virulence is linked to the dynamics of parasite transmission. All else being equal, parasites transmitted vertically from parents to offspring should be less virulent than parasites capable of horizontal transmission to unrelated hosts. This is because the fitness of vertically transmitted parasites is tightly linked to the reproductive success of the host, whereas the fitness of horizontally transmitted parasites is relatively independent of host reproduction. The virulence-transmission relation has seldom been tested because of difficulties inherent in comparing virulences of different parasite-host systems. We compared the virulence of lice and mites infesting a single group of captive rock doves (Columba livia). Lice, which were vertically transmitted, had no detectable effect on host fitness, whereas horizontally transmitted mites drove host reproductive success to zero. These results, in conjunction with a survey of the literature, support the hypothesis that ectoparasite virulence is linked to the mode of transmission.}
+      \field{journaltitle}{Proceedings of the Royal Society of London. Series B: Biological Sciences}
+      \field{number}{1347}
+      \field{title}{Ectoparasite virulence is linked to mode of transmission}
+      \field{volume}{256}
+      \field{year}{1994}
+      \field{pages}{211\bibrangedash 217}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1098/rspb.1994.0072
+      \endverb
+      \verb{eprint}
+      \verb https://royalsocietypublishing.org/doi/pdf/10.1098/rspb.1994.0072
+      \endverb
+      \verb{urlraw}
+      \verb https://royalsocietypublishing.org/doi/abs/10.1098/rspb.1994.0072
+      \endverb
+      \verb{url}
+      \verb https://royalsocietypublishing.org/doi/abs/10.1098/rspb.1994.0072
+      \endverb
+    \endentry
+    \entry{EWALD:2011}{article}{}
+      \name{author}{1}{}{%
+        {{hash=6b799d4691bbc9d93300e72ed2812bc1}{%
+           family={Ewald},
+           familyi={E\bibinitperiod},
+           given={Paul\bibnamedelima W},
+           giveni={P\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+      }
+      \strng{namehash}{6b799d4691bbc9d93300e72ed2812bc1}
+      \strng{fullhash}{6b799d4691bbc9d93300e72ed2812bc1}
+      \strng{bibnamehash}{6b799d4691bbc9d93300e72ed2812bc1}
+      \strng{authorbibnamehash}{6b799d4691bbc9d93300e72ed2812bc1}
+      \strng{authornamehash}{6b799d4691bbc9d93300e72ed2812bc1}
+      \strng{authorfullhash}{6b799d4691bbc9d93300e72ed2812bc1}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1473-3099}
+      \field{journaltitle}{The Lancet Infectious Diseases}
+      \field{number}{10}
+      \field{title}{Genetics and evolution of infectious diseases}
+      \field{volume}{11}
+      \field{year}{2011}
+      \field{pages}{739}
+      \range{pages}{1}
+      \verb{doi}
+      \verb https://doi.org/10.1016/S1473-3099(11)70271-7
+      \endverb
+      \verb{urlraw}
+      \verb http://www.sciencedirect.com/science/article/pii/S1473309911702717
+      \endverb
+      \verb{url}
+      \verb http://www.sciencedirect.com/science/article/pii/S1473309911702717
+      \endverb
+    \endentry
+    \entry{PAYNE2017}{incollection}{}
+      \name{author}{1}{}{%
+        {{hash=ea8ce24b798db545ab793ee2b95e2769}{%
+           family={Payne},
+           familyi={P\bibinitperiod},
+           given={Susan},
+           giveni={S\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=ea8ce24b798db545ab793ee2b95e2769}{%
+           family={Payne},
+           familyi={P\bibinitperiod},
+           given={Susan},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Academic Press}%
+      }
+      \strng{namehash}{ea8ce24b798db545ab793ee2b95e2769}
+      \strng{fullhash}{ea8ce24b798db545ab793ee2b95e2769}
+      \strng{bibnamehash}{ea8ce24b798db545ab793ee2b95e2769}
+      \strng{authorbibnamehash}{ea8ce24b798db545ab793ee2b95e2769}
+      \strng{authornamehash}{ea8ce24b798db545ab793ee2b95e2769}
+      \strng{authorfullhash}{ea8ce24b798db545ab793ee2b95e2769}
+      \strng{editorbibnamehash}{ea8ce24b798db545ab793ee2b95e2769}
+      \strng{editornamehash}{ea8ce24b798db545ab793ee2b95e2769}
+      \strng{editorfullhash}{ea8ce24b798db545ab793ee2b95e2769}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Pathogens are disease-causing agents and pathogenesis is the study of the disease process. In cultured cells, observed changes (i.e., death, altered morphology, transformation) can be ascribed directly to virus infection. However disease is a more complex process that may result from direct virus effects, immune responses to infection, or a combination of both. Modern studies of viral pathogenesis seek to understand not only the damage to an organism but the underlying molecular events that cause the observed damage. Diseases caused by human viruses are often studied in animal models. Developing such models may include adaption of a human virus to growth in animals. Or human viruses may be used to inoculate animals by unnatural routes, or at very high doses. Alternatively, studying the pathogenesis of an animal virus in its natural host may provide insight into pathogenesis of a related human virus. Development of model systems can be difficult and expensive but modern genetic methods are providing new avenues of study. Often results from several different models are combined to gain an understanding of the pathogenesis of a single virus.}
+      \field{booktitle}{Viruses}
+      \field{isbn}{978-0-12-803109-4}
+      \field{title}{Chapter 9 - Viral Pathogenesis}
+      \field{year}{2017}
+      \field{pages}{87\bibrangedash 95}
+      \range{pages}{9}
+      \verb{doi}
+      \verb https://doi.org/10.1016/B978-0-12-803109-4.00009-X
+      \endverb
+      \verb{urlraw}
+      \verb http://www.sciencedirect.com/science/article/pii/B978012803109400009X
+      \endverb
+      \verb{url}
+      \verb http://www.sciencedirect.com/science/article/pii/B978012803109400009X
+      \endverb
+      \keyw{Pathogen,virulence,disease,pathogenesis,cytopathic effect,primary replication,M cell,viremia,blood–brain barrier}
+    \endentry
+    \entry{Ewald:1987}{article}{}
+      \name{author}{1}{}{%
+        {{hash=14c0d410e74922ec5d60c2bdb6709bf9}{%
+           family={EWALD},
+           familyi={E\bibinitperiod},
+           given={PAUL\bibnamedelima W.},
+           giveni={P\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+      }
+      \strng{namehash}{14c0d410e74922ec5d60c2bdb6709bf9}
+      \strng{fullhash}{14c0d410e74922ec5d60c2bdb6709bf9}
+      \strng{bibnamehash}{14c0d410e74922ec5d60c2bdb6709bf9}
+      \strng{authorbibnamehash}{14c0d410e74922ec5d60c2bdb6709bf9}
+      \strng{authornamehash}{14c0d410e74922ec5d60c2bdb6709bf9}
+      \strng{authorfullhash}{14c0d410e74922ec5d60c2bdb6709bf9}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Annals of the New York Academy of Sciences}
+      \field{number}{1}
+      \field{title}{Transmission Modes and Evolution of the Parasitism-Mutualism Continuuma}
+      \field{volume}{503}
+      \field{year}{1987}
+      \field{pages}{295\bibrangedash 306}
+      \range{pages}{12}
+      \verb{doi}
+      \verb https://doi.org/10.1111/j.1749-6632.1987.tb40616.x
+      \endverb
+      \verb{eprint}
+      \verb https://nyaspubs.onlinelibrary.wiley.com/doi/pdf/10.1111/j.1749-6632.1987.tb40616.x
+      \endverb
+      \verb{urlraw}
+      \verb https://nyaspubs.onlinelibrary.wiley.com/doi/abs/10.1111/j.1749-6632.1987.tb40616.x
+      \endverb
+      \verb{url}
+      \verb https://nyaspubs.onlinelibrary.wiley.com/doi/abs/10.1111/j.1749-6632.1987.tb40616.x
+      \endverb
+    \endentry
+    \entry{Lipsitch:1996}{article}{}
+      \name{author}{3}{}{%
+        {{hash=30d93188d01ed0a75284d60fdf366301}{%
+           family={Lipsitch},
+           familyi={L\bibinitperiod},
+           given={Marc},
+           giveni={M\bibinitperiod}}}%
+        {{hash=ccfd4699e0d306dec922137a976fc5ee}{%
+           family={Siller},
+           familyi={S\bibinitperiod},
+           given={Steven},
+           giveni={S\bibinitperiod}}}%
+        {{hash=6b63180e77466ce81c34087d70a19cb9}{%
+           family={Nowak},
+           familyi={N\bibinitperiod},
+           given={Martin\bibnamedelima A.},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \strng{namehash}{51b9ecfbeaef431725622ea9ec19084a}
+      \strng{fullhash}{51b9ecfbeaef431725622ea9ec19084a}
+      \strng{bibnamehash}{51b9ecfbeaef431725622ea9ec19084a}
+      \strng{authorbibnamehash}{51b9ecfbeaef431725622ea9ec19084a}
+      \strng{authornamehash}{51b9ecfbeaef431725622ea9ec19084a}
+      \strng{authorfullhash}{51b9ecfbeaef431725622ea9ec19084a}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The idea that vertical transmission of parasites selects for lower virulence is widely accepted. However, little theoretical work has considered the evolution of virulence for parasites with mixed horizontal plus vertical transmission. Many human, animal, and plant parasites are transmitted both vertically and horizontally, and some horizontal transmission is generally necessary to maintain parasites at all. We present a population-dynamical model for the evolution of virulence when both vertical and horizontal transmission are present. In the simplest such model, up to two infectious strains can coexist within one host population. Virulent, vertically transmitted pathogens can persist in a population when they provide protection against more virulent, horizontally transmitted strains. When virulence is maintained by a correlation with horizontal transmission rates, increased levels of vertical transmission always lower the evolutionarily stable (ESS) level of virulence. Contrary to existing theory, however, increases in opportunities for horizontal transmission also lower the ESS level of virulence. We explain these findings in light of earlier work and confirm them in simulations including imperfect vertical transmission. We describe further simulations, in which both vertical and horizontal transmission rates are allowed to evolve. The outcome of these simulations depends on whether high levels of vertical transmission are possible with low virulence. Finally, we argue against the notion of a virulence-avirulence continuum between horizontal and vertical transmission, and discuss our results in relation to empirical studies of transmission and virulence.}
+      \field{journaltitle}{Evolution}
+      \field{number}{5}
+      \field{title}{THE EVOLUTION OF VIRULENCE IN PATHOGENS WITH VERTICAL AND HORIZONTAL TRANSMISSION}
+      \field{volume}{50}
+      \field{year}{1996}
+      \field{pages}{1729\bibrangedash 1741}
+      \range{pages}{13}
+      \verb{doi}
+      \verb https://doi.org/10.1111/j.1558-5646.1996.tb03560.x
+      \endverb
+      \verb{eprint}
+      \verb https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1558-5646.1996.tb03560.x
+      \endverb
+      \verb{urlraw}
+      \verb https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1558-5646.1996.tb03560.x
+      \endverb
+      \verb{url}
+      \verb https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1558-5646.1996.tb03560.x
+      \endverb
+      \keyw{Epidemiology,horizontal transmission,parasite,pathogen,pathogenicity,vertical transmission,virulence}
+    \endentry
+    \entry{Lipsitch:1995}{article}{}
+      \name{author}{4}{}{%
+        {{hash=30d93188d01ed0a75284d60fdf366301}{%
+           family={Lipsitch},
+           familyi={L\bibinitperiod},
+           given={Marc},
+           giveni={M\bibinitperiod}}}%
+        {{hash=6b63180e77466ce81c34087d70a19cb9}{%
+           family={Nowak},
+           familyi={N\bibinitperiod},
+           given={Martin\bibnamedelima A.},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=68f5266c52ea6918791b04d9f4e3b02e}{%
+           family={Ebert},
+           familyi={E\bibinitperiod},
+           given={Dieter},
+           giveni={D\bibinitperiod}}}%
+        {{hash=46f392962803b157f2a2666260d8c593}{%
+           family={May},
+           familyi={M\bibinitperiod},
+           given={Robert\bibnamedelima M.},
+           giveni={R\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{acd6f6d8c984e7d9418c2ad8de2b5ffe}
+      \strng{fullhash}{ce02bf73a64e61fa48e928c948899787}
+      \strng{bibnamehash}{ce02bf73a64e61fa48e928c948899787}
+      \strng{authorbibnamehash}{ce02bf73a64e61fa48e928c948899787}
+      \strng{authornamehash}{acd6f6d8c984e7d9418c2ad8de2b5ffe}
+      \strng{authorfullhash}{ce02bf73a64e61fa48e928c948899787}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We analyse a model of the transmission dynamics of a parasite transmitted both vertically and horizontally. The basic reproductive ratio (R0) of the parasite is shown to be a sum of horizontal and vertical components. We derive expressions for the equilibrium prevalence of infection for a mixture of horizontal and vertical transmission; prevalence can reach 100\% if transmission is sufficiently high. At the endemic equilibrium, if prevalence is high, most transmission will in general be vertical, but horizontal transmission rates must be high to reach and stably maintain such an equilibrium. Surprisingly, for such parasites the highest equilibrium rates of vertical transmission are observed when horizontal transmission is very effective. We discuss the implications for assessing the importance of horizontal v. vertical transmission from field data, and we suggest some implications for the evolution of virulence.}
+      \field{journaltitle}{Proceedings of the Royal Society of London. Series B: Biological Sciences}
+      \field{number}{1359}
+      \field{title}{The population dynamics of vertically and horizontally transmitted parasites}
+      \field{volume}{260}
+      \field{year}{1995}
+      \field{pages}{321\bibrangedash 327}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1098/rspb.1995.0099
+      \endverb
+      \verb{eprint}
+      \verb https://royalsocietypublishing.org/doi/pdf/10.1098/rspb.1995.0099
+      \endverb
+      \verb{urlraw}
+      \verb https://royalsocietypublishing.org/doi/abs/10.1098/rspb.1995.0099
+      \endverb
+      \verb{url}
+      \verb https://royalsocietypublishing.org/doi/abs/10.1098/rspb.1995.0099
+      \endverb
+    \endentry
+    \entry{Levin:1996}{article}{}
+      \name{author}{1}{}{%
+        {{hash=8b3ef8bc37afa0947cdcbd98c740655c}{%
+           family={Levin},
+           familyi={L\bibinitperiod},
+           given={B\bibnamedelima R},
+           giveni={B\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \strng{namehash}{8b3ef8bc37afa0947cdcbd98c740655c}
+      \strng{fullhash}{8b3ef8bc37afa0947cdcbd98c740655c}
+      \strng{bibnamehash}{8b3ef8bc37afa0947cdcbd98c740655c}
+      \strng{authorbibnamehash}{8b3ef8bc37afa0947cdcbd98c740655c}
+      \strng{authornamehash}{8b3ef8bc37afa0947cdcbd98c740655c}
+      \strng{authorfullhash}{8b3ef8bc37afa0947cdcbd98c740655c}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1080-6040}
+      \field{journaltitle}{Centers for Disease Control}
+      \field{number}{2}
+      \field{title}{The evolution and maintenance of virulence in microparasites}
+      \field{volume}{2}
+      \field{year}{1996}
+      \field{pages}{93\bibrangedash 102}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.3201/eid0202.960203
+      \endverb
+      \verb{urlraw}
+      \verb http://www.sciencedirect.com/science/article/pii/S1473309911702717
+      \endverb
+      \verb{url}
+      \verb http://www.sciencedirect.com/science/article/pii/S1473309911702717
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

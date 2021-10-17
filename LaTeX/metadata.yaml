@@ -5,7 +5,8 @@
 #  - For a successful replication, it should be prefixed with "[Re]"
 #  - For a failed replication, it should be prefixed with "[¬Re]"
 #  - For other article types, no instruction (but please, not too long)
-title: "[Re] The Evolution of Virulence in Pathogens with Vertical and Horizontal Transmission"
+title: "[Re] The Evolution of Virulence in Pathogens with Vertical and
+       Horizontal Transmission"
 
 # List of authors with name, orcid number, email and affiliation
 # Affiliation "*" means contact author (required even for single-authored papers)
@@ -54,7 +55,7 @@ keywords: Epidemiology, horizontal transmission, vertical transmission, pathogen
 #   see https://guides.github.com/activities/citable-code/
 code:
   - url: https://github.com/BIO6032/2019_replication_LipstichEtAl_1996
-  - doi: 
+  - doi:
 
 # Information about the original article that has been replicated
 replication:
