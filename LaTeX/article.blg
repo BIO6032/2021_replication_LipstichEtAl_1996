@@ -1,15 +1,15 @@
 [0] Config.pm:311> INFO - This is Biber 2.16
 [0] Config.pm:314> INFO - Logfile is 'article.blg'
-[104] biber-darwin:340> INFO - === Sat Oct 16, 2021, 23:14:36
-[139] Biber.pm:415> INFO - Reading 'article.bcf'
-[248] Biber.pm:952> INFO - Found 9 citekeys in bib section 0
-[263] Biber.pm:4340> INFO - Processing section 0
-[287] Biber.pm:4531> INFO - Looking for bibtex format file 'bibliography.bib' for section 0
-[290] bibtex.pm:1689> INFO - LaTeX decoding ...
-[310] bibtex.pm:1494> INFO - Found BibTeX data source 'bibliography.bib'
-[446] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[446] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[446] Biber.pm:4168> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
-[446] Biber.pm:4174> INFO - No sort tailoring available for locale 'en-US'
-[463] bbl.pm:654> INFO - Writing 'article.bbl' with encoding 'UTF-8'
-[469] bbl.pm:757> INFO - Output to article.bbl
+[106] biber-darwin:340> INFO - === Sun Oct 17, 2021, 00:25:39
+[128] Biber.pm:415> INFO - Reading 'article.bcf'
+[287] Biber.pm:952> INFO - Found 9 citekeys in bib section 0
+[310] Biber.pm:4340> INFO - Processing section 0
+[408] Biber.pm:4531> INFO - Looking for bibtex format file 'bibliography.bib' for section 0
+[410] bibtex.pm:1689> INFO - LaTeX decoding ...
+[430] bibtex.pm:1494> INFO - Found BibTeX data source 'bibliography.bib'
+[578] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[578] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[578] Biber.pm:4168> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
+[578] Biber.pm:4174> INFO - No sort tailoring available for locale 'en-US'
+[593] bbl.pm:654> INFO - Writing 'article.bbl' with encoding 'UTF-8'
+[600] bbl.pm:757> INFO - Output to article.bbl

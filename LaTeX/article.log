@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2021.10.16)  16 OCT 2021 23:14
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2021.10.16)  17 OCT 2021 00:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1554,25 +1554,11 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-) (./content.tex
-
-! LaTeX Error: Can be used only in preamble.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1 \usepackage
-               {subfig}
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-[1
+) (./content.tex [1
 
 ]
 ! Undefined control sequence.
-l.120 $X_0$ = 80 and $Y\mysubscript
+l.119 $X_0$ = 80 and $Y\mysubscript
                                    {1.0}$ = 1, respectively. We inferred the...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1581,14 +1567,23 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 [2]
-Overfull \hbox (0.21454pt too wide) in paragraph at lines 148--153
+Overfull \hbox (0.21454pt too wide) in paragraph at lines 147--152
 []\TU/SourceSerifPro(0)/m/n/10 Equation ([][]7[][]) defines the monotonically i
 ncreasing relationship between disease-induced
  []
 
 ! Undefined control sequence.
+l.162 \floatsetup
+                 [figure]{style=plain,subcapbesideposition=top}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
 l.165         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [a]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1599,7 +1594,7 @@ File: figures/graph_1a.png Graphic file (type bmp)
 <figures/graph_1a.png>
 ! Undefined control sequence.
 l.167         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [b]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1610,7 +1605,7 @@ File: figures/graph_1b.png Graphic file (type bmp)
 <figures/graph_1b.png>
 ! Undefined control sequence.
 l.170         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [c]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1621,7 +1616,7 @@ File: figures/graph_1c.png Graphic file (type bmp)
 <figures/graph_1c.png>
 ! Undefined control sequence.
 l.172         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [d]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1632,7 +1627,7 @@ File: figures/graph_1d.png Graphic file (type bmp)
 <figures/graph_1d.png>
 ! Undefined control sequence.
 l.175         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [e]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1643,7 +1638,7 @@ File: figures/graph_1e.png Graphic file (type bmp)
 <figures/graph_1e.png>
 ! Undefined control sequence.
 l.177         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [f]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1654,7 +1649,7 @@ File: figures/graph_1f.png Graphic file (type bmp)
 <figures/graph_1f.png>
 ! Undefined control sequence.
 l.180         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [g]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1665,7 +1660,7 @@ File: figures/graph_1g.png Graphic file (type bmp)
 <figures/graph_1g.png>
 ! Undefined control sequence.
 l.182         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [h]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1676,7 +1671,7 @@ File: figures/graph_1h.png Graphic file (type bmp)
 <figures/graph_1h.png>
 ! Undefined control sequence.
 l.185         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [i]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1687,7 +1682,7 @@ File: figures/graph_1i.png Graphic file (type bmp)
 <figures/graph_1i.png>
 ! Undefined control sequence.
 l.187         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [j]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1728,50 +1723,12 @@ l.202 }
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.202 }
-       
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.202 }
-       
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.202 }
-       
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.202 }
-       
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 202--202
-[]\TU/RobotoCondensed(0)/b/n/9 Figure 1. |\TU/SourceSerifPro(0)/b/n/9 Evolution
-ary dynamics of 100 infected strains introduced every
- []
-
-
-LaTeX Warning: Float too large for page by 10.0853pt on input line 204.
+LaTeX Warning: Float too large for page by 11.8653pt on input line 204.
 
 ! Undefined control sequence.
 l.249         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [a]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1782,7 +1739,7 @@ File: figures/graph_2a.png Graphic file (type bmp)
 <figures/graph_2a.png>
 ! Undefined control sequence.
 l.251         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [b]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1793,7 +1750,7 @@ File: figures/graph_2b.png Graphic file (type bmp)
 <figures/graph_2b.png>
 ! Undefined control sequence.
 l.254         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [c]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1804,7 +1761,7 @@ File: figures/graph_2c.png Graphic file (type bmp)
 <figures/graph_2c.png>
 ! Undefined control sequence.
 l.256         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [d]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1815,7 +1772,7 @@ File: figures/graph_2d.png Graphic file (type bmp)
 <figures/graph_2d.png>
 ! Undefined control sequence.
 l.259         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [e]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1826,7 +1783,7 @@ File: figures/graph_2e.png Graphic file (type bmp)
 <figures/graph_2e.png>
 ! Undefined control sequence.
 l.261         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [f]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1837,7 +1794,7 @@ File: figures/graph_2f.png Graphic file (type bmp)
 <figures/graph_2f.png>
 ! Undefined control sequence.
 l.264         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [g]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1848,7 +1805,7 @@ File: figures/graph_2g.png Graphic file (type bmp)
 <figures/graph_2g.png>
 ! Undefined control sequence.
 l.266         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [h]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1859,7 +1816,7 @@ File: figures/graph_2h.png Graphic file (type bmp)
 <figures/graph_2h.png>
 ! Undefined control sequence.
 l.269         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [i]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1870,7 +1827,7 @@ File: figures/graph_2i.png Graphic file (type bmp)
 <figures/graph_2i.png>
 ! Undefined control sequence.
 l.271         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [j]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1887,71 +1844,6 @@ l.289 }
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
-! Extra }, or forgotten $.
-<recently read> \egroup 
-                        
-l.289 }
-       
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.289 }
-       
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.289 }
-       
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.289 }
-       
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.289 }
-       
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.289 }
-       
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Extra }, or forgotten $.
-<recently read> \egroup 
-                        
-l.289 }
-       
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
 ! Missing $ inserted.
 <inserted text> 
                 $
@@ -1977,46 +1869,12 @@ I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 289--289
-[]\TU/RobotoCondensed(0)/b/n/9 Figure 2. |\TU/SourceSerifPro(0)/b/n/9 Evolution
-ary dynamics of 100 infected strains introduced every
- []
+LaTeX Warning: Float too large for page by 33.8653pt on input line 291.
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 289--289
-\TU/SourceSerifPro(0)/b/n/9 10$[]\OML/cmm/m/it/9 generationsfortwohorizontaltra
-nsmissionopportunity;$\TU/SourceSerifPro(0)/b/n/9 c = 0.5$\OT1/cmr/m/n/9 (\OML/
-cmm/m/it/9 left\OT1/cmr/m/n/9 )\OML/cmm/m/it/9 and$\TU/SourceSerifPro(0)/b/n/9 
-c =
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 289--289
-\TU/SourceSerifPro(0)/b/n/9 4.0$\OT1/cmr/m/n/9 (\OML/cmm/m/it/9 right\OT1/cmr/m
-/n/9 )\OML/cmm/m/it/9 :TheparametersareidenticaltothoseinFigure\OT1/cmr/m/n/9 1
-\OML/cmm/m/it/9 butwith$\TU/SourceSerifPro(0)/b/n/9 e$[]$, $\OML/cmm/m/it/9 b[]
-$ \TU/SourceSerifPro(0)/b/n/9 and $\OML/cmm/m/it/9 ^^L[]$ \TU/SourceSerifPro(0)
-/b/n/9 constrained
- []
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.289 }
-       
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-
-LaTeX Warning: Float too large for page by 43.0853pt on input line 291.
-
-[3] [4]
+[3] [4] [5]
 ! Undefined control sequence.
 l.303         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [a]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -2027,7 +1885,7 @@ File: figures/graph_3a.png Graphic file (type bmp)
 <figures/graph_3a.png>
 ! Undefined control sequence.
 l.305         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [b]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -2038,7 +1896,7 @@ File: figures/graph_3b.png Graphic file (type bmp)
 <figures/graph_3b.png>
 ! Undefined control sequence.
 l.308         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [c]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -2049,7 +1907,7 @@ File: figures/graph_3c.png Graphic file (type bmp)
 <figures/graph_3c.png>
 ! Undefined control sequence.
 l.310         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [d]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -2060,7 +1918,7 @@ File: figures/graph_3d.png Graphic file (type bmp)
 <figures/graph_3d.png>
 ! Undefined control sequence.
 l.313         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [e]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -2071,7 +1929,7 @@ File: figures/graph_3e.png Graphic file (type bmp)
 <figures/graph_3e.png>
 ! Undefined control sequence.
 l.315         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [f]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -2082,7 +1940,7 @@ File: figures/graph_3f.png Graphic file (type bmp)
 <figures/graph_3f.png>
 ! Undefined control sequence.
 l.318         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [g]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -2093,7 +1951,7 @@ File: figures/graph_3g.png Graphic file (type bmp)
 <figures/graph_3g.png>
 ! Undefined control sequence.
 l.320         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [h]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -2104,7 +1962,7 @@ File: figures/graph_3h.png Graphic file (type bmp)
 <figures/graph_3h.png>
 ! Undefined control sequence.
 l.323         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [i]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -2115,7 +1973,7 @@ File: figures/graph_3i.png Graphic file (type bmp)
 <figures/graph_3i.png>
 ! Undefined control sequence.
 l.325         \sidesubfloat
-                           []{\includegraphics[width=0.4\textwidth]{figures/...
+                           [j]{\includegraphics[width=0.4\textwidth]{figures...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -2124,98 +1982,8 @@ and I'll forget about whatever was undefined.
 
 File: figures/graph_3j.png Graphic file (type bmp)
 <figures/graph_3j.png>
-! Missing $ inserted.
-<inserted text> 
-                $
-l.341 }
-       
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
 
-! Extra }, or forgotten $.
-<recently read> \egroup 
-                        
-l.341 }
-       
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.341 }
-       
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.341 }
-       
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.341 }
-       
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Extra }, or forgotten $.
-<recently read> \egroup 
-                        
-l.341 }
-       
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.341 }
-       
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 341--341
-[]\TU/RobotoCondensed(0)/b/n/9 Figure 3. |\TU/SourceSerifPro(0)/b/n/9 Evolution
-ary dynamics of 100 infected strains introduced every
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 341--341
-\TU/SourceSerifPro(0)/b/n/9 10$[]\OML/cmm/m/it/9 generationsfortwovaluesofhoriz
-ontaltransmissionopportunity;$\TU/SourceSerifPro(0)/b/n/9 c = 0.5$\OT1/cmr/m/n/
-9 (\OML/cmm/m/it/9 left\OT1/cmr/m/n/9 )\OML/cmm/m/it/9 and$\TU/SourceSerifPro(0
-)/b/n/9 c =
- []
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.341 }
-       
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-
-LaTeX Warning: Float too large for page by 21.0853pt on input line 343.
+LaTeX Warning: Float too large for page by 22.8653pt on input line 343.
 
 ! Missing $ inserted.
 <inserted text> 
@@ -2249,7 +2017,10 @@ l.395 [0, $r_
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
-[5] [6] [7] [8]) [9] (./article.aux)
+[6] [7]) [8] [9] (./article.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `article.out' has not changed.
 (rerunfilecheck)             Checksum: CE7CB4E4C2002103F4DD2E436A462280;1557.
 Package logreq Info: Writing requests to 'article.run.xml'.
@@ -2257,12 +2028,12 @@ Package logreq Info: Writing requests to 'article.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 39621 strings out of 476919
- 813195 string characters out of 5821839
- 1702116 words of memory out of 5000000
- 58958 multiletter control sequences out of 15000+600000
- 408110 words of font info for 99 fonts, out of 8000000 for 9000
+ 39618 strings out of 476919
+ 813043 string characters out of 5821839
+ 1699868 words of memory out of 5000000
+ 58956 multiletter control sequences out of 15000+600000
+ 408102 words of font info for 98 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 128i,18n,130p,1792b,4761s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 128i,17n,130p,1792b,4762s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on article.pdf (9 pages).
