@@ -1,4 +1,4 @@
-subfloat\section{Introduction}
+\section{Introduction}
 An essential part of parasitic transmission and the evolution of host-pathogen
 interactions is the mode of transmission.
 Vertical transmission is the direct transfer of a parasite from one generation
@@ -159,32 +159,21 @@ offspring from an infected host $e_i$ directly depends on $b_i$ through the
 equation $e_i = b_x - b_i$, each strain also possesses an $e_i$ value of 0.9
 and 0.0, in each respective case.
 
-\floatsetup[figure]{style=plain,subcapbesideposition=top}
+\captionsetup{position=top, labelfont=bf, textfont=0.1\scriptsize, singlelinecheck=off}
+
 \begin{figure}[tbph]
     \centering
-        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_1a.png}\label{fig:1a}}
-    \hfil
-        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_1b.png}\label{fig:1b}}
-
-    \medskip
-        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_1c.png}\label{fig:1c}}
-    \hfil
-        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_1d.png}\label{fig:1d}}
-
-    \medskip
-        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_1e.png}\label{fig:1e}}
-    \hfil
-        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_1f.png}\label{fig:1f}}
-
-    \medskip
-        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_1g.png}\label{fig:1g}}
-    \hfil
-        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_1h.png}\label{fig:1h}}
-
-    \medskip
-        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_1i.png}\label{fig:1i}}
-    \hfil
+        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_1a.png}\label{fig:1a}}\hfil
+        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_1b.png}\label{fig:1b}}\\[-2ex]
+        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_1c.png}\label{fig:1c}}\hfil
+        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_1d.png}\label{fig:1d}}\\[-2ex]
+        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_1e.png}\label{fig:1e}}\hfil
+        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_1f.png}\label{fig:1f}}\\[-2ex]
+        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_1g.png}\label{fig:1g}}\hfil
+        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_1h.png}\label{fig:1h}}\\[-2ex]
+        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_1i.png}\label{fig:1i}}\hfil
         \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_1j.png}\label{fig:1j}}
+\captionsetup{width=1.2\linewidth}
 \caption{\textbf{Evolutionary dynamics of 100 infected strains introduced every
 $10^3$ generations for two vertical transmission values, $b_i = 0.1$ (left) and
 $b_i = 1.0$ (right)}. We demonstrate (a,b) the number of uninfected and infected
@@ -244,48 +233,35 @@ modes of transmission on parasite fitness. We ensure non-negative horizontal
 transmission values by setting $\beta_i$ to zero if the second term happens to
 be greater than the first term by chance.
 
-\begin{figure}[tbp]
+\begin{figure}[tbph]
     \centering
-        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_2a.png}\label{fig:2a}}
-    \hfil
-        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_2b.png}\label{fig:2b}}
-
-    \medskip
-        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_2c.png}\label{fig:2c}}
-    \hfil
-        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_2d.png}\label{fig:2d}}
-
-    \medskip
-        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_2e.png}\label{fig:2e}}
-    \hfil
-        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_2f.png}\label{fig:2f}}
-
-    \medskip
-        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_2g.png}\label{fig:2g}}
-    \hfil
-        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_2h.png}\label{fig:2h}}
-
-    \medskip
-        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_2i.png}\label{fig:2i}}
-    \hfil
+        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_2a.png}\label{fig:2a}}\hfil
+        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_2b.png}\label{fig:2b}}\\[-2ex]
+        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_2c.png}\label{fig:2c}}\hfil
+        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_2d.png}\label{fig:2d}}\\[-2ex]
+        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_2e.png}\label{fig:2e}}\hfil
+        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_2f.png}\label{fig:2f}}\\[-2ex]
+        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_2g.png}\label{fig:2g}}\hfil
+        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_2h.png}\label{fig:2h}}\\[-2ex]
+        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_2i.png}\label{fig:2i}}\hfil
         \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_2j.png}\label{fig:2j}}
+\captionsetup{width=1.2\linewidth}
 \caption{\textbf{Evolutionary dynamics of 100 infected strains introduced every
 $10^3$ generations for two horizontal transmission opportunity, $c = 0.5$ (left)
 and $c = 4.0$ (right).} The parameters are identical to those in Figure 1 but
-with $e_i$, $b_i$ and $\beta_i$ constrained through equations (\ref{eqn:9}),
-(\ref{eqn:10}) and (\ref{eqn:11}). We demonstrate (a,b) the number of uninfected
-and infected hosts with each strain; (c,d) the mean $R_0$ in the population;
-(e,f) the average of all new infections acquired vertically; (g,h) the average
-virulence and horizontal transmission rate $\beta_i$; (i,j) the evenness of the
-total population. We show that a higher contact rate $c$ selects for lower
-virulence at equilibrium and higher vertical transmission rates. The variability
-induced by the parameters here allow for strains of high vertical transmission
-and low virulence to persist. Constants: $b_x = 1.0$ and $u_x = 0.2$. Each
-infected strain possesses a random value of $u_i$ \in [$u_x$, 1].
-\textit{We successfully reproduced Figure 2 from its corresponding figure in the
-original study. Although our results follow the same trends, our simulations
-demonstrate lower values of $V_0$, virulence and $\beta_i$, on top of minor
-differences due to stochasticity.}
+with constrains from equations (\ref{eqn:9}), (\ref{eqn:10}) and (\ref{eqn:11}).
+We demonstrate (a,b) the number of uninfected and infected hosts with each
+strain; (c,d) the mean $R_0$; (e,f) the average of all new infections acquired
+vertically; (g,h) the average virulence and horizontal transmission rate
+$\beta_i$; (i,j) the evenness of the total population. We show that a higher
+contact rate $c$ selects for lower virulence at equilibrium and higher vertical
+transmission rates. The variability induced by the parameters allows for strains
+of high vertical transmission and low virulence to persist. Constants:
+$b_x = 1.0$ and $u_x = 0.2$. Each infected strain possesses a random value of
+$u_i$ \in [$u_x$, 1]. \textit{We successfully reproduced Figure 2 from its
+corresponding figure in the original study. Although our results follow the
+same trends, our simulations demonstrate lower values of $V_0$, virulence and
+$\beta_i$, on top of minor differences due to stochasticity.}
 }
 \label{fig:figure2}
 \end{figure}
@@ -298,31 +274,19 @@ to those in Figure 2, with the exception of $r_3$ restricted by the range
 [0, $r_1$] such that the fraction of infected offspring from infected hosts
 may not exceed the total virulence.
 
-\begin{figure}[tbp]
+\begin{figure}[tbph]
     \centering
-        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_3a.png}\label{fig:3a}}
-    \hfil
-        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_3b.png}\label{fig:3b}}
-
-    \medskip
-        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_3c.png}\label{fig:3c}}
-    \hfil
-        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_3d.png}\label{fig:3d}}
-
-    \medskip
-        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_3e.png}\label{fig:3e}}
-    \hfil
-        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_3f.png}\label{fig:3f}}
-
-    \medskip
-        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_3g.png}\label{fig:3g}}
-    \hfil
-        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_3h.png}\label{fig:3h}}
-
-    \medskip
-        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_3i.png}\label{fig:3i}}
-    \hfil
+        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_3a.png}\label{fig:3a}}\hfil
+        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_3b.png}\label{fig:3b}}\\[-2ex]
+        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_3c.png}\label{fig:3c}}\hfil
+        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_3d.png}\label{fig:3d}}\\[-2ex]
+        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_3e.png}\label{fig:3e}}\hfil
+        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_3f.png}\label{fig:3f}}\\[-2ex]
+        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_3g.png}\label{fig:3g}}\hfil
+        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_3h.png}\label{fig:3h}}\\[-2ex]
+        \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_3i.png}\label{fig:3i}}\hfil
         \subfloat[]{\includegraphics[width=0.4\textwidth]{figures/graph_3j.png}\label{fig:3j}}
+\captionsetup{width=1.2\linewidth}
 \caption{\textbf{Evolutionary dynamics of 100 infected strains introduced every
 $10^3$ generations for two values of horizontal transmission opportunity,
 $c = 0.5$ (left) and $c = 4.0$ (right).} All parameters are identical to those
