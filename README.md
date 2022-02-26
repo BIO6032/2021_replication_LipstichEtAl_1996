@@ -8,9 +8,9 @@ This project is a Julia 1.6.0 replication of Lipsitch et al (1996), a paper in e
 
 The goal of this project was to replicate the epidemiological model for the evolution of virulence presenting trade-offs between horizontal and vertical transmission of pathogens. Our results can be viewed in [ReScience C](https://rescience.github.io/bibliography/Dhane_2021.html) or on [Zenodo](https://zenodo.org/record/5722853#.YZ62ZS3b3-Y). The open review is available [here](https://github.com/ReScience/submissions/issues/56#issuecomment-977556264).
 
-Julia Lang scripts defining model parameters (as found in the original study) are available in the folder "Model_scripts".
+Julia Lang scripts defining model parameters (as found in the original study) are available in the folder ```Model_scripts```.
 
-All figures produced in the replication study are found in their respective folders.
+All figures produced in the replication study can be found in the ```Article/figures``` subfolder.
 
 To run our replication code, clone our repository to your computer, checkout to the master branch, and run the following lines:
 
@@ -19,4 +19,4 @@ To run our replication code, clone our repository to your computer, checkout to 
 ] instantiate
 ```
 
-Finally, run the 00run_project.jl file in the Model_scripts/ folder.
+Finally, run the ```00run_project.jl``` file in the ```Model_scripts/``` folder.
